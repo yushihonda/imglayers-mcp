@@ -1,0 +1,187 @@
+{
+  "version": "0.1.0",
+  "projectId": "proj_20260416_012",
+  "createdAt": "2026-04-16T08:05:25Z",
+  "source": {
+    "inputUri": "/Users/hondayushi/workspaece/mcp/imglayers-mcp/eval/images/12_photo_mixed_overlay.png",
+    "originalFileName": "12_photo_mixed_overlay.png",
+    "mimeType": "image/png",
+    "sha256": "3bdf00fc5ee62bb9d9686e7d172b683339a2bc300f0e233672cd779570d748ec",
+    "width": 1200,
+    "height": 800
+  },
+  "canvas": {
+    "width": 1200,
+    "height": 800,
+    "background": "#653047"
+  },
+  "pipeline": {
+    "imageType": "ui_mock",
+    "engines": {
+      "decomposition": "sam2",
+      "ocr": "paddleocr",
+      "retrySegmentation": "sam2",
+      "fontClassifier": "known-fonts",
+      "visionReview": "disabled"
+    },
+    "detailLevel": "high",
+    "preprocessing": {
+      "orientationCorrection": false,
+      "unwarping": false
+    },
+    "timingsMs": {
+      "ocr_ms": 5621.015166998404,
+      "image_type_ms": 22.27383299759822,
+      "decompose_ms": 34327.24699999744,
+      "text_reconstruction_ms": 83.888916997239
+    },
+    "engineRequested": "sam2",
+    "engineInitial": "sam2",
+    "crossEngineRetryUsed": false,
+    "deviceUsed": "mps",
+    "sam2Checkpoint": "small"
+  },
+  "stats": {
+    "totalLayers": 2,
+    "textLayers": 1,
+    "imageLayers": 1,
+    "vectorLikeLayers": 0,
+    "lowConfidenceLayers": 2
+  },
+  "assets": {
+    "original": "meta/original.png",
+    "preview": "preview/preview.png",
+    "layersDir": "layers"
+  },
+  "layers": [
+    {
+      "id": "bg_001",
+      "name": "background",
+      "type": "image",
+      "semanticRole": "background",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 1200.0,
+        "height": 800.0
+      },
+      "zIndex": 0,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/bg_001.png",
+        "format": "png",
+        "hasAlpha": false
+      },
+      "style": {
+        "dominantColors": [
+          "#080808",
+          "#F86838",
+          "#185808",
+          "#180808"
+        ],
+        "fill": {
+          "type": "linear-gradient",
+          "angle": 90.0,
+          "stops": [
+            {
+              "offset": 0.0,
+              "color": "#8E316A"
+            },
+            {
+              "offset": 1.0,
+              "color": "#231707"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.7,
+      "engineUsed": "sam2"
+    },
+    {
+      "id": "headline_001",
+      "name": "headline",
+      "type": "text",
+      "semanticRole": "headline",
+      "bbox": {
+        "x": 77.0,
+        "y": 199.0,
+        "width": 628.0,
+        "height": 570.0
+      },
+      "zIndex": 1,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/headline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Explore Now Wanderlust Capture every moment",
+        "lines": [
+          {
+            "text": "Explore Now Wanderlust Capture every moment",
+            "bbox": {
+              "x": 77.0,
+              "y": 199.0,
+              "width": 628.0,
+              "height": 570.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Hiragino Sans",
+        "fontCandidates": [
+          "Hiragino Sans",
+          "Helvetica",
+          "Inter",
+          "Arial",
+          "Arial"
+        ],
+        "fontWeight": 400,
+        "fontSize": 513.0,
+        "color": "#FC6C3C",
+        "textAlign": "left",
+        "reconstructionConfidence": 0.0,
+        "dominantColors": [
+          "#080808",
+          "#F86838",
+          "#F8F8F8"
+        ],
+        "text_color": "#0C0C0C",
+        "fitScorePass1": 0.0,
+        "fitScorePass2": 0.0,
+        "styleConfidence": 0.0,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9874510169029236,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      }
+    }
+  ],
+  "groups": [],
+  "warnings": [],
+  "exports": {
+    "manifest": "manifest.json",
+    "preview": "preview/preview.png"
+  }
+}

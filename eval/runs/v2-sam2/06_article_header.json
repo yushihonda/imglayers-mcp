@@ -1,0 +1,1149 @@
+{
+  "version": "0.1.0",
+  "projectId": "proj_20260416_006",
+  "createdAt": "2026-04-16T08:01:32Z",
+  "source": {
+    "inputUri": "/Users/hondayushi/workspaece/mcp/imglayers-mcp/eval/images/06_article_header.png",
+    "originalFileName": "06_article_header.png",
+    "mimeType": "image/png",
+    "sha256": "8310223d719606d862cd6baac61b62ddcc5d7657c8bfacad1f111162398ccd7d",
+    "width": 1000,
+    "height": 400
+  },
+  "canvas": {
+    "width": 1000,
+    "height": 400,
+    "background": "#FAFAFA"
+  },
+  "pipeline": {
+    "imageType": "banner",
+    "engines": {
+      "decomposition": "sam2",
+      "ocr": "paddleocr",
+      "retrySegmentation": "sam2",
+      "fontClassifier": "known-fonts",
+      "visionReview": "disabled"
+    },
+    "detailLevel": "high",
+    "preprocessing": {
+      "orientationCorrection": false,
+      "unwarping": false
+    },
+    "timingsMs": {
+      "ocr_ms": 3119.617083000776,
+      "image_type_ms": 7.131333000870654,
+      "decompose_ms": 16026.654332999897,
+      "text_reconstruction_ms": 21.19887499793549
+    },
+    "engineRequested": "sam2",
+    "engineInitial": "sam2",
+    "crossEngineRetryUsed": false,
+    "deviceUsed": "mps",
+    "sam2Checkpoint": "small"
+  },
+  "stats": {
+    "totalLayers": 24,
+    "textLayers": 23,
+    "imageLayers": 1,
+    "vectorLikeLayers": 0,
+    "lowConfidenceLayers": 1
+  },
+  "assets": {
+    "original": "meta/original.png",
+    "preview": "preview/preview.png",
+    "layersDir": "layers"
+  },
+  "layers": [
+    {
+      "id": "bg_001",
+      "name": "background",
+      "type": "image",
+      "semanticRole": "background",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 1000.0,
+        "height": 400.0
+      },
+      "zIndex": 0,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/bg_001.png",
+        "format": "png",
+        "hasAlpha": false
+      },
+      "style": {
+        "dominantColors": [
+          "#F8F8F8",
+          "#183858",
+          "#487898",
+          "#687878"
+        ],
+        "fill": {
+          "type": "linear-gradient",
+          "angle": 180.0,
+          "stops": [
+            {
+              "offset": 0.0,
+              "color": "#FAFAFA"
+            },
+            {
+              "offset": 1.0,
+              "color": "#646464"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.7,
+      "engineUsed": "sam2"
+    },
+    {
+      "id": "button_001",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 48.0,
+        "y": 39.0,
+        "width": 144.0,
+        "height": 20.0
+      },
+      "zIndex": 1,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "TECHNOLOGY",
+        "lines": [
+          {
+            "text": "TECHNOLOGY",
+            "bbox": {
+              "x": 48.0,
+              "y": 39.0,
+              "width": 144.0,
+              "height": 20.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Hiragino Sans",
+          "Arial",
+          "Helvetica",
+          "Inter"
+        ],
+        "fontWeight": 700,
+        "fontSize": 18.0,
+        "color": "#E43C3C",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.216,
+        "dominantColors": [
+          "#F8F8F8",
+          "#E83848",
+          "#E84858"
+        ],
+        "text_color": "#E43C3C",
+        "fitScorePass1": 0.216,
+        "fitScorePass2": 0.21641791044776118,
+        "styleConfidence": 0.21641791044776118,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9430446326732635,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      }
+    },
+    {
+      "id": "button_002",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 50.0,
+        "y": 83.0,
+        "width": 37.0,
+        "height": 45.0
+      },
+      "zIndex": 2,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9200785756111145,
+      "engineUsed": "sam2",
+      "children": [
+        "row_001"
+      ]
+    },
+    {
+      "id": "button_003",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 90.0,
+        "y": 83.0,
+        "width": 28.0,
+        "height": 45.0
+      },
+      "zIndex": 3,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_003.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9266162514686584,
+      "engineUsed": "sam2",
+      "children": [
+        "row_001"
+      ]
+    },
+    {
+      "id": "button_004",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 173.0,
+        "y": 83.0,
+        "width": 33.0,
+        "height": 45.0
+      },
+      "zIndex": 4,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_004.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.934634655714035,
+      "engineUsed": "sam2",
+      "children": [
+        "row_001"
+      ]
+    },
+    {
+      "id": "body_001",
+      "name": "body_text",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 424.0,
+        "y": 83.0,
+        "width": 40.0,
+        "height": 45.0
+      },
+      "zIndex": 5,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/body_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "The Future ofAl",
+        "lines": [
+          {
+            "text": "The Future ofAl",
+            "bbox": {
+              "x": 424.0,
+              "y": 83.0,
+              "width": 40.0,
+              "height": 45.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Hiragino Sans",
+        "fontCandidates": [
+          "Hiragino Sans",
+          "Arial",
+          "Helvetica",
+          "Inter",
+          "Arial"
+        ],
+        "fontWeight": 400,
+        "fontSize": 40.5,
+        "color": "#243C54",
+        "textAlign": "left",
+        "reconstructionConfidence": 0.438,
+        "dominantColors": [
+          "#F8F8F8",
+          "#183858",
+          "#788898"
+        ],
+        "text_color": "#243C54",
+        "fitScorePass1": 0.438,
+        "fitScorePass2": 0.13761467889908258,
+        "styleConfidence": 0.438,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9526784121990204,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Paragraph",
+        "textRole": "paragraph"
+      },
+      "children": [
+        "row_001"
+      ]
+    },
+    {
+      "id": "button_005",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 209.0,
+        "y": 87.0,
+        "width": 41.0,
+        "height": 42.0
+      },
+      "zIndex": 6,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_005.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9104732871055603,
+      "engineUsed": "sam2",
+      "children": [
+        "row_001"
+      ]
+    },
+    {
+      "id": "button_006",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 360.0,
+        "y": 87.0,
+        "width": 46.0,
+        "height": 42.0
+      },
+      "zIndex": 7,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_006.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.8946555554866791,
+      "engineUsed": "sam2",
+      "children": [
+        "row_001"
+      ]
+    },
+    {
+      "id": "button_007",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 121.0,
+        "y": 93.0,
+        "width": 31.0,
+        "height": 36.0
+      },
+      "zIndex": 8,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_007.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9371272027492523,
+      "engineUsed": "sam2",
+      "children": [
+        "row_001"
+      ]
+    },
+    {
+      "id": "button_008",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 293.0,
+        "y": 93.0,
+        "width": 49.0,
+        "height": 36.0
+      },
+      "zIndex": 9,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_008.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.8581884801387787,
+      "engineUsed": "sam2",
+      "children": [
+        "row_001"
+      ]
+    },
+    {
+      "id": "button_009",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 260.0,
+        "y": 94.0,
+        "width": 27.0,
+        "height": 35.0
+      },
+      "zIndex": 10,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_009.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9484990239143372,
+      "engineUsed": "sam2",
+      "children": [
+        "row_001"
+      ]
+    },
+    {
+      "id": "button_010",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 117.0,
+        "y": 153.0,
+        "width": 34.0,
+        "height": 45.0
+      },
+      "zIndex": 11,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_010.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9550284743309021,
+      "engineUsed": "sam2",
+      "children": [
+        "row_002"
+      ]
+    },
+    {
+      "id": "headline_001",
+      "name": "headline",
+      "type": "text",
+      "semanticRole": "headline",
+      "bbox": {
+        "x": 236.0,
+        "y": 153.0,
+        "width": 62.0,
+        "height": 58.0
+      },
+      "zIndex": 12,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/headline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "in Everyday Life",
+        "lines": [
+          {
+            "text": "in Everyday Life",
+            "bbox": {
+              "x": 236.0,
+              "y": 153.0,
+              "width": 62.0,
+              "height": 58.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 700,
+        "fontSize": 52.2,
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#183858",
+          "#98A8B8"
+        ],
+        "text_color": "#243C54",
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Hiragino Sans",
+          "Helvetica",
+          "Inter",
+          "Arial"
+        ],
+        "reconstructionConfidence": 0.39077340569877883,
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.39077340569877883,
+        "styleConfidence": 0.39077340569877883,
+        "pass2Updated": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9365666508674622,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "row_002"
+      ]
+    },
+    {
+      "id": "button_011",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 383.0,
+        "y": 153.0,
+        "width": 30.0,
+        "height": 45.0
+      },
+      "zIndex": 13,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_011.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9551241397857666,
+      "engineUsed": "sam2",
+      "children": [
+        "row_002"
+      ]
+    },
+    {
+      "id": "button_012",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 55.0,
+        "y": 163.0,
+        "width": 39.0,
+        "height": 35.0
+      },
+      "zIndex": 14,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_012.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9426629543304443,
+      "engineUsed": "sam2",
+      "children": [
+        "row_002"
+      ]
+    },
+    {
+      "id": "button_013",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 184.0,
+        "y": 163.0,
+        "width": 31.0,
+        "height": 36.0
+      },
+      "zIndex": 15,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_013.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9299126267433167,
+      "engineUsed": "sam2",
+      "children": [
+        "row_002"
+      ]
+    },
+    {
+      "id": "button_014",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 301.0,
+        "y": 163.0,
+        "width": 63.0,
+        "height": 48.0
+      },
+      "zIndex": 16,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_014.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9305198490619659,
+      "engineUsed": "sam2",
+      "children": [
+        "row_002"
+      ]
+    },
+    {
+      "id": "button_015",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 445.0,
+        "y": 163.0,
+        "width": 31.0,
+        "height": 36.0
+      },
+      "zIndex": 17,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_015.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9152311682701111,
+      "engineUsed": "sam2",
+      "children": [
+        "row_002"
+      ]
+    },
+    {
+      "id": "button_016",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 153.0,
+        "y": 164.0,
+        "width": 30.0,
+        "height": 34.0
+      },
+      "zIndex": 18,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_016.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9327236413955688,
+      "engineUsed": "sam2",
+      "children": [
+        "row_002"
+      ]
+    },
+    {
+      "id": "subheadline_001",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 48.0,
+        "y": 281.0,
+        "width": 41.0,
+        "height": 23.0
+      },
+      "zIndex": 19,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.955721914768219,
+      "engineUsed": "sam2",
+      "children": [
+        "row_003"
+      ]
+    },
+    {
+      "id": "subheadline_002",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 404.0,
+        "y": 282.0,
+        "width": 99.0,
+        "height": 23.0
+      },
+      "zIndex": 20,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "the way we work, learn, and connect",
+        "lines": [
+          {
+            "text": "the way we work, learn, and connect",
+            "bbox": {
+              "x": 404.0,
+              "y": 282.0,
+              "width": 99.0,
+              "height": 23.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 700,
+        "fontSize": 20.7,
+        "textAlign": "center",
+        "dominantColors": [
+          "#F8F8F8",
+          "#487898",
+          "#D8E8E8"
+        ],
+        "text_color": "#3C849C",
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Helvetica",
+          "Hiragino Sans",
+          "Inter",
+          "Arial"
+        ],
+        "reconstructionConfidence": 0.23892893923789907,
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.23892893923789907,
+        "styleConfidence": 0.23892893923789907,
+        "pass2Updated": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9222452044487,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "row_003"
+      ]
+    },
+    {
+      "id": "subheadline_003",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 274.0,
+        "y": 283.0,
+        "width": 65.0,
+        "height": 22.0
+      },
+      "zIndex": 21,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_003.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.8895421922206879,
+      "engineUsed": "sam2",
+      "children": [
+        "row_003"
+      ]
+    },
+    {
+      "id": "subheadline_004",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 219.0,
+        "y": 339.0,
+        "width": 143.0,
+        "height": 20.0
+      },
+      "zIndex": 22,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_004.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "March 15,2024",
+        "lines": [
+          {
+            "text": "March 15,2024",
+            "bbox": {
+              "x": 219.0,
+              "y": 339.0,
+              "width": 143.0,
+              "height": 20.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 700,
+        "fontSize": 18.0,
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#687878",
+          "#D8D8D8"
+        ],
+        "text_color": "#6C6C84",
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Helvetica",
+          "Hiragino Sans",
+          "Arial",
+          "Inter"
+        ],
+        "reconstructionConfidence": 0.1831223628691983,
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.1831223628691983,
+        "styleConfidence": 0.1831223628691983,
+        "pass2Updated": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9232562482357025,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "row_004"
+      ]
+    },
+    {
+      "id": "subheadline_005",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 128.0,
+        "y": 340.0,
+        "width": 52.0,
+        "height": 18.0
+      },
+      "zIndex": 23,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_005.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "By Jane Smith",
+        "lines": [
+          {
+            "text": "By Jane Smith",
+            "bbox": {
+              "x": 128.0,
+              "y": 340.0,
+              "width": 52.0,
+              "height": 18.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 700,
+        "fontSize": 16.2,
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#687878",
+          "#9898A8"
+        ],
+        "text_color": "#6C6C84",
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Hiragino Sans",
+          "Arial",
+          "Helvetica",
+          "Inter"
+        ],
+        "reconstructionConfidence": 0.2631578947368421,
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.2631578947368421,
+        "styleConfidence": 0.2631578947368421,
+        "pass2Updated": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9527036249637604,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "row_004"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "row_001",
+      "name": "row (9 button)",
+      "layerIds": [
+        "button_002",
+        "button_003",
+        "button_004",
+        "body_001",
+        "button_005",
+        "button_006",
+        "button_007",
+        "button_008",
+        "button_009"
+      ]
+    },
+    {
+      "id": "row_002",
+      "name": "row (8 button)",
+      "layerIds": [
+        "button_010",
+        "headline_001",
+        "button_011",
+        "button_012",
+        "button_013",
+        "button_014",
+        "button_015",
+        "button_016"
+      ]
+    },
+    {
+      "id": "row_003",
+      "name": "row (3 subheadline)",
+      "layerIds": [
+        "subheadline_001",
+        "subheadline_002",
+        "subheadline_003"
+      ]
+    },
+    {
+      "id": "row_004",
+      "name": "row (2 subheadline)",
+      "layerIds": [
+        "subheadline_004",
+        "subheadline_005"
+      ]
+    }
+  ],
+  "warnings": [],
+  "exports": {
+    "manifest": "manifest.json",
+    "preview": "preview/preview.png"
+  }
+}

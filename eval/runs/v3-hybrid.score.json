@@ -1,0 +1,157 @@
+{
+  "per_case": {
+    "01_simple_banner": {
+      "text_recall": 1.0,
+      "text_precision": 1.0,
+      "text_f1": 1.0,
+      "bbox_iou_mean": 0.7528760397156385,
+      "role_accuracy": 0.8571428571428571,
+      "layer_count_ratio": 0.9285714285714286,
+      "overall": 0.8917904385003381,
+      "gt_n": 7,
+      "det_n": 8
+    },
+    "02_tech_banner": {
+      "text_recall": 0.8571428571428571,
+      "text_precision": 0.8571428571428571,
+      "text_f1": 0.8571428571428571,
+      "bbox_iou_mean": 0.7121050933610622,
+      "role_accuracy": 0.7272727272727273,
+      "layer_count_ratio": 0.7272727272727273,
+      "overall": 0.7689353642493565,
+      "gt_n": 11,
+      "det_n": 17
+    },
+    "03_product_card": {
+      "text_recall": 1.0,
+      "text_precision": 1.0,
+      "text_f1": 1.0,
+      "bbox_iou_mean": 0.722436330462218,
+      "role_accuracy": 0.8571428571428571,
+      "layer_count_ratio": 1.0,
+      "overall": 0.8948947969012688,
+      "gt_n": 7,
+      "det_n": 7
+    },
+    "04_simple_poster": {
+      "text_recall": 1.0,
+      "text_precision": 1.0,
+      "text_f1": 1.0,
+      "bbox_iou_mean": 0.7489483364267504,
+      "role_accuracy": 1.0,
+      "layer_count_ratio": 0.9375,
+      "overall": 0.9278620841066876,
+      "gt_n": 8,
+      "det_n": 9
+    },
+    "05_sale_badge": {
+      "text_recall": 1.0,
+      "text_precision": 1.0,
+      "text_f1": 1.0,
+      "bbox_iou_mean": 0.7459494254679516,
+      "role_accuracy": 0.8,
+      "layer_count_ratio": 0.95,
+      "overall": 0.8789873563669878,
+      "gt_n": 10,
+      "det_n": 11
+    },
+    "06_article_header": {
+      "text_recall": 0.8571428571428571,
+      "text_precision": 0.8571428571428571,
+      "text_f1": 0.8571428571428571,
+      "bbox_iou_mean": 0.5764001303988027,
+      "role_accuracy": 0.875,
+      "layer_count_ratio": 1.0,
+      "overall": 0.8128500325997007,
+      "gt_n": 8,
+      "det_n": 8
+    },
+    "07_app_screen": {
+      "text_recall": 1.0,
+      "text_precision": 1.0,
+      "text_f1": 1.0,
+      "bbox_iou_mean": 0.6887701084525069,
+      "role_accuracy": 0.6666666666666666,
+      "layer_count_ratio": 1.0,
+      "overall": 0.8388591937797933,
+      "gt_n": 15,
+      "det_n": 15
+    },
+    "08_minimal_logo": {
+      "text_recall": 1.0,
+      "text_precision": 1.0,
+      "text_f1": 1.0,
+      "bbox_iou_mean": 0.7313692059626444,
+      "role_accuracy": 0.6,
+      "layer_count_ratio": 0.9,
+      "overall": 0.8178423014906612,
+      "gt_n": 5,
+      "det_n": 6
+    },
+    "09_multi_badge": {
+      "text_recall": 1.0,
+      "text_precision": 1.0,
+      "text_f1": 1.0,
+      "bbox_iou_mean": 0.6905736212794443,
+      "role_accuracy": 1.0,
+      "layer_count_ratio": 0.95,
+      "overall": 0.915143405319861,
+      "gt_n": 10,
+      "det_n": 11
+    },
+    "10_high_contrast": {
+      "text_recall": 1.0,
+      "text_precision": 1.0,
+      "text_f1": 1.0,
+      "bbox_iou_mean": 0.7726745299092223,
+      "role_accuracy": 0.8333333333333334,
+      "layer_count_ratio": 0.9285714285714286,
+      "overall": 0.8907876800963532,
+      "gt_n": 7,
+      "det_n": 8
+    },
+    "11_illustration_scene": {
+      "text_recall": 1.0,
+      "text_precision": 1.0,
+      "text_f1": 1.0,
+      "bbox_iou_mean": 0.7506200854901542,
+      "role_accuracy": 0.42857142857142855,
+      "layer_count_ratio": 0.9375,
+      "overall": 0.7854228785153956,
+      "gt_n": 8,
+      "det_n": 7
+    },
+    "12_photo_mixed_overlay": {
+      "text_recall": 1.0,
+      "text_precision": 1.0,
+      "text_f1": 1.0,
+      "bbox_iou_mean": 0.7064399021243841,
+      "role_accuracy": 0.8333333333333334,
+      "layer_count_ratio": 0.0,
+      "overall": 0.7349433088644294,
+      "gt_n": 6,
+      "det_n": 24
+    },
+    "13_matome_layout": {
+      "text_recall": 0.8823529411764706,
+      "text_precision": 0.8823529411764706,
+      "text_f1": 0.8823529411764706,
+      "bbox_iou_mean": 0.6785236152187946,
+      "role_accuracy": 0.8387096774193549,
+      "layer_count_ratio": 0.9857142857142858,
+      "overall": 0.835988995428445,
+      "gt_n": 35,
+      "det_n": 36
+    }
+  },
+  "summary": {
+    "text_f1": 0.968972204266322,
+    "text_recall": 0.968972204266322,
+    "text_precision": 0.968972204266322,
+    "bbox_iou_mean": 0.713668186482275,
+    "role_accuracy": 0.7936286831448123,
+    "layer_count_ratio": 0.86500999000999,
+    "overall": 0.8457159874014829,
+    "cases": 13
+  }
+}

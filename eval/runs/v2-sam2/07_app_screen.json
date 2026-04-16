@@ -1,0 +1,507 @@
+{
+  "version": "0.1.0",
+  "projectId": "proj_20260416_007",
+  "createdAt": "2026-04-16T08:01:47Z",
+  "source": {
+    "inputUri": "/Users/hondayushi/workspaece/mcp/imglayers-mcp/eval/images/07_app_screen.png",
+    "originalFileName": "07_app_screen.png",
+    "mimeType": "image/png",
+    "sha256": "b54a80ad466da05621c8f62de0338398d1cf76e254bf2548965d0b033770dfd5",
+    "width": 400,
+    "height": 800
+  },
+  "canvas": {
+    "width": 400,
+    "height": 800,
+    "background": "#FBFBFC"
+  },
+  "pipeline": {
+    "imageType": "banner",
+    "engines": {
+      "decomposition": "sam2",
+      "ocr": "paddleocr",
+      "retrySegmentation": "sam2",
+      "fontClassifier": "known-fonts",
+      "visionReview": "disabled"
+    },
+    "detailLevel": "high",
+    "preprocessing": {
+      "orientationCorrection": false,
+      "unwarping": false
+    },
+    "timingsMs": {
+      "ocr_ms": 1620.9480840007018,
+      "image_type_ms": 5.780833002063446,
+      "decompose_ms": 12904.750749999948,
+      "text_reconstruction_ms": 45.71483399922727
+    },
+    "engineRequested": "sam2",
+    "engineInitial": "sam2",
+    "crossEngineRetryUsed": false,
+    "deviceUsed": "mps",
+    "sam2Checkpoint": "small"
+  },
+  "stats": {
+    "totalLayers": 6,
+    "textLayers": 5,
+    "imageLayers": 1,
+    "vectorLikeLayers": 0,
+    "lowConfidenceLayers": 0
+  },
+  "assets": {
+    "original": "meta/original.png",
+    "preview": "preview/preview.png",
+    "layersDir": "layers"
+  },
+  "layers": [
+    {
+      "id": "bg_001",
+      "name": "background",
+      "type": "image",
+      "semanticRole": "background",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 400.0,
+        "height": 800.0
+      },
+      "zIndex": 0,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/bg_001.png",
+        "format": "png",
+        "hasAlpha": false
+      },
+      "style": {
+        "dominantColors": [
+          "#F8F8F8",
+          "#F8B8C8",
+          "#88C8E8",
+          "#282828"
+        ],
+        "fill": {
+          "type": "linear-gradient",
+          "angle": 90.0,
+          "stops": [
+            {
+              "offset": 0.0,
+              "color": "#FCFCFC"
+            },
+            {
+              "offset": 1.0,
+              "color": "#7E7E7F"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.7,
+      "engineUsed": "sam2"
+    },
+    {
+      "id": "body_001",
+      "name": "body_text",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 400.0,
+        "height": 82.0
+      },
+      "zIndex": 1,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/body_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Explore",
+        "lines": [
+          {
+            "text": "Explore",
+            "bbox": {
+              "x": 0.0,
+              "y": 0.0,
+              "width": 400.0,
+              "height": 82.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Inter",
+        "fontCandidates": [
+          "Inter",
+          "Helvetica",
+          "Arial",
+          "Hiragino Sans",
+          "Arial"
+        ],
+        "fontWeight": 400,
+        "fontSize": 73.8,
+        "color": "#FCB4CC",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.037,
+        "dominantColors": [
+          "#F8F8F8",
+          "#282828",
+          "#E8E8E8"
+        ],
+        "text_color": "#242424",
+        "fitScorePass1": 0.037,
+        "fitScorePass2": 0.01139211665527455,
+        "styleConfidence": 0.037,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.983260840177536,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Paragraph",
+        "textRole": "paragraph"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    },
+    {
+      "id": "headline_001",
+      "name": "headline",
+      "type": "text",
+      "semanticRole": "headline",
+      "bbox": {
+        "x": 21.0,
+        "y": 106.0,
+        "width": 360.0,
+        "height": 247.0
+      },
+      "zIndex": 2,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/headline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Beach Paradise From $299",
+        "lines": [
+          {
+            "text": "Beach Paradise From $299",
+            "bbox": {
+              "x": 21.0,
+              "y": 106.0,
+              "width": 360.0,
+              "height": 247.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Helvetica",
+          "Arial",
+          "Hiragino Sans",
+          "Inter"
+        ],
+        "fontWeight": 400,
+        "fontSize": 222.3,
+        "color": "#84CCE4",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.05,
+        "dominantColors": [
+          "#F8B8C8",
+          "#F8F8F8",
+          "#282828"
+        ],
+        "text_color": "#FCB4CC",
+        "fitScorePass1": 0.05,
+        "fitScorePass2": 0.02862887012464817,
+        "styleConfidence": 0.05,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9640830755233765,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    },
+    {
+      "id": "subheadline_001",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 24.0,
+        "y": 380.0,
+        "width": 352.0,
+        "height": 220.0
+      },
+      "zIndex": 3,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Mountain Retreat",
+        "lines": [
+          {
+            "text": "Mountain Retreat",
+            "bbox": {
+              "x": 24.0,
+              "y": 380.0,
+              "width": 352.0,
+              "height": 220.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Inter",
+        "fontCandidates": [
+          "Inter",
+          "Helvetica",
+          "Arial",
+          "Hiragino Sans",
+          "Arial"
+        ],
+        "fontWeight": 400,
+        "fontSize": 198.0,
+        "color": "#3C3C3C",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.144,
+        "dominantColors": [
+          "#88C8E8",
+          "#F8F8F8",
+          "#282828"
+        ],
+        "text_color": "#84CCE4",
+        "fitScorePass1": 0.144,
+        "fitScorePass2": 0.028756406797949826,
+        "styleConfidence": 0.144,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9530955255031586,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    },
+    {
+      "id": "subheadline_002",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 76.0,
+        "y": 568.0,
+        "width": 42.0,
+        "height": 28.0
+      },
+      "zIndex": 4,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "From $399",
+        "lines": [
+          {
+            "text": "From $399",
+            "bbox": {
+              "x": 76.0,
+              "y": 568.0,
+              "width": 42.0,
+              "height": 28.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Helvetica",
+          "Inter",
+          "Hiragino Sans",
+          "Arial"
+        ],
+        "fontWeight": 700,
+        "fontSize": 25.2,
+        "color": "#242424",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.15765765765765766,
+        "dominantColors": [
+          "#F8F8F8",
+          "#E83848",
+          "#F8E8E8"
+        ],
+        "text_color": "#E43C3C",
+        "fitScorePass1": 0.117,
+        "fitScorePass2": 0.15765765765765766,
+        "styleConfidence": 0.15765765765765766,
+        "pass2Updated": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.8776030540466309,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001",
+        "container_001"
+      ]
+    },
+    {
+      "id": "subheadline_003",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 0.0,
+        "y": 719.0,
+        "width": 400.0,
+        "height": 81.0
+      },
+      "zIndex": 5,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_003.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Home Search Profile",
+        "lines": [
+          {
+            "text": "Home Search Profile",
+            "bbox": {
+              "x": 0.0,
+              "y": 719.0,
+              "width": 400.0,
+              "height": 81.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Helvetica",
+          "Inter",
+          "Hiragino Sans",
+          "Arial"
+        ],
+        "fontWeight": 700,
+        "fontSize": 72.9,
+        "color": "#E43C3C",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.158,
+        "dominantColors": [
+          "#F8F8F8",
+          "#E8E8E8",
+          "#687878"
+        ],
+        "text_color": "#3C3C3C",
+        "fitScorePass1": 0.158,
+        "fitScorePass2": 0.022025283461488337,
+        "styleConfidence": 0.158,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9895627498626709,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "textgroup_001",
+      "name": "Explore\nBeach Paradise From $299\nMountain Retreat\nFrom $399",
+      "layerIds": [
+        "body_001",
+        "headline_001",
+        "subheadline_001",
+        "subheadline_002"
+      ]
+    },
+    {
+      "id": "container_001",
+      "name": "subheadline",
+      "layerIds": [
+        "subheadline_001",
+        "subheadline_002"
+      ]
+    }
+  ],
+  "warnings": [],
+  "exports": {
+    "manifest": "manifest.json",
+    "preview": "preview/preview.png"
+  }
+}

@@ -235,7 +235,7 @@ def build_manifest(
 
     # Build container hierarchy: assign each layer to its smallest enclosing
     # container (card/button/badge/image with significantly larger bbox).
-    _build_container_hierarchy(layer_nodes, group_nodes, allocator)
+    _build_container_hierarchy(layer_nodes, group_nodes, allocator, canvas.width, canvas.height)
 
     manifest = Manifest(
         version="0.1.0",
@@ -323,17 +323,23 @@ def _inpaint_text_holes_v2(
         ty2 = min(h, int(round(tb.y + tb.h)))
         if tx2 <= tx1 or ty2 <= ty1:
             continue
+        # Clip text bbox to container bounds before writing back, and use the
+        # same clipped rectangle on both sides so the shapes match.
+        loc_y1 = max(0, ty1 - cy1)
+        loc_y2 = min(mask_bg.shape[0], ty2 - cy1)
+        loc_x1 = max(0, tx1 - cx1)
+        loc_x2 = min(mask_bg.shape[1], tx2 - cx1)
+        if loc_y2 <= loc_y1 or loc_x2 <= loc_x1:
+            continue
+        out_y1 = cy1 + loc_y1
+        out_y2 = cy1 + loc_y2
+        out_x1 = cx1 + loc_x1
+        out_x2 = cx1 + loc_x2
         hole_in_container = np.zeros_like(mask_bg)
-        hole_in_container[
-            max(0, ty1 - cy1):min(mask_bg.shape[0], ty2 - cy1),
-            max(0, tx1 - cx1):min(mask_bg.shape[1], tx2 - cx1),
-        ] = True
+        hole_in_container[loc_y1:loc_y2, loc_x1:loc_x2] = True
         filled_container = fill_hole(model, container_rgb, hole_in_container)
-        out[ty1:ty2, tx1:tx2, :3] = filled_container[
-            max(0, ty1 - cy1):min(filled_container.shape[0], ty2 - cy1),
-            max(0, tx1 - cx1):min(filled_container.shape[1], tx2 - cx1),
-        ]
-        out[ty1:ty2, tx1:tx2, 3] = 255
+        out[out_y1:out_y2, out_x1:out_x2, :3] = filled_container[loc_y1:loc_y2, loc_x1:loc_x2]
+        out[out_y1:out_y2, out_x1:out_x2, 3] = 255
 
     return out
 
@@ -447,59 +453,46 @@ def _map_vision_type_to_role(vtype: str | None) -> str | None:
 
 
 def _build_container_hierarchy(
-    layer_nodes: list, group_nodes: list, allocator
+    layer_nodes: list, group_nodes: list, allocator, canvas_w: int = 0, canvas_h: int = 0
 ) -> None:
-    """Assign each layer to its smallest enclosing container layer.
+    """Build a deep, Figma-style tree from flat layers.
 
-    A layer A is a container of B if:
-      - A's bbox fully contains B's bbox (with small tolerance)
-      - A is significantly larger (bbox area > 1.5× B's area)
-      - A is not the background (full canvas)
-      - A is non-text OR kind is "button"/"card"/"badge"/"image"
-
-    Updates each child node's `children` field to reference the container.
-    Appends container groups to `group_nodes`.
+    Strategy:
+      1. Any non-background layer may act as a parent for smaller layers it
+         encloses. Text layers can be parents of even-smaller text layers
+         (e.g. a headline block containing individual words).
+      2. Assign every non-background layer to its smallest enclosing parent.
+         If none exists, the layer becomes a top-level child of the virtual
+         root.
+      3. Auto-group sibling layers that share a row or column into synthetic
+         "cluster" groups (adds another nesting level for alignments without
+         a physical container).
     """
-    # Parent candidates: non-background, non-text-only elements that could
-    # visually wrap other elements.
-    containable_roles = {"card", "button", "badge", "illustration", "product_image"}
-    candidates = []
+    node_by_id = {n.id: n for n in layer_nodes}
+    valid_nodes: list = []
     for node in layer_nodes:
         bb = node.bbox
         if bb.width <= 0 or bb.height <= 0:
             continue
-        is_bg = (
-            node.semantic_role == "background"
-            or (bb.width >= 900 and bb.height >= 900 and node.type != "text")
-        )
-        if is_bg:
+        if node.semantic_role == "background":
             continue
-        role = node.semantic_role or ""
-        if role in containable_roles or (node.type != "text" and role not in {"decoration", "icon"}):
-            candidates.append(node)
+        if canvas_w and canvas_h and bb.width >= canvas_w * 0.95 and bb.height >= canvas_h * 0.95 and node.type != "text":
+            continue
+        valid_nodes.append(node)
 
-    # Track parent assignments: child_id → parent_id
     parent_of: dict[str, str] = {}
-
-    for child in layer_nodes:
-        if child.semantic_role == "background":
-            continue
+    for child in valid_nodes:
         cb = child.bbox
-        if cb.width <= 0 or cb.height <= 0:
-            continue
-        child_area = cb.width * cb.height
-
-        # Find the smallest container that fully contains this child.
-        best_parent: str | None = None
+        best_parent_id: str | None = None
         best_parent_area = float("inf")
-        for parent in candidates:
+        for parent in valid_nodes:
             if parent.id == child.id:
                 continue
             pb = parent.bbox
             p_area = pb.width * pb.height
-            if p_area < child_area * 1.5:
+            c_area = cb.width * cb.height
+            if p_area < c_area * 1.15:
                 continue
-            # Containment check with 2px tolerance.
             if (
                 pb.x <= cb.x + 2
                 and pb.y <= cb.y + 2
@@ -508,31 +501,157 @@ def _build_container_hierarchy(
             ):
                 if p_area < best_parent_area:
                     best_parent_area = p_area
-                    best_parent = parent.id
+                    best_parent_id = parent.id
+        if best_parent_id is not None:
+            parent_of[child.id] = best_parent_id
 
-        if best_parent is not None:
-            parent_of[child.id] = best_parent
+    direct_children: dict[str, list[str]] = {}
+    for child_id, pid in parent_of.items():
+        direct_children.setdefault(pid, []).append(child_id)
 
-    # Build container groups from parent_of mapping.
-    parent_children: dict[str, list[str]] = {}
-    for child_id, parent_id in parent_of.items():
-        parent_children.setdefault(parent_id, []).append(child_id)
-
-    node_by_id = {n.id: n for n in layer_nodes}
-    for parent_id, child_ids in parent_children.items():
+    for parent_id, child_ids in direct_children.items():
         parent_node = node_by_id[parent_id]
+        sub_groups = _cluster_siblings(
+            [node_by_id[cid] for cid in child_ids],
+            allocator=allocator,
+            group_nodes=group_nodes,
+            node_by_id=node_by_id,
+        )
         group_id = allocator.allocate("container_group")
+        group_ids_in_order: list[str] = [parent_id]
+        for entry in sub_groups:
+            if entry["kind"] == "group":
+                group_ids_in_order.append(entry["id"])
+            else:
+                group_ids_in_order.append(entry["id"])
         group_nodes.append(LayerGroup(
             id=group_id,
-            name=f"{parent_node.name or parent_id} container",
-            layer_ids=[parent_id] + child_ids,
+            name=f"{parent_node.semantic_role or parent_node.name or parent_id}",
+            layer_ids=group_ids_in_order,
         ))
-        # Update children refs on child layers.
         for cid in child_ids:
-            child_node = node_by_id[cid]
-            existing = child_node.children or []
+            cnode = node_by_id[cid]
+            existing = cnode.children or []
             if group_id not in existing:
-                child_node.children = existing + [group_id]
+                cnode.children = existing + [group_id]
+
+    _group_top_level_siblings(
+        layer_nodes=layer_nodes,
+        parent_of=parent_of,
+        allocator=allocator,
+        group_nodes=group_nodes,
+        node_by_id=node_by_id,
+        canvas_w=canvas_w,
+        canvas_h=canvas_h,
+    )
+
+
+def _cluster_siblings(
+    children: list,
+    *,
+    allocator,
+    group_nodes: list,
+    node_by_id: dict,
+) -> list[dict]:
+    """Group siblings by row/column alignment and return a mixed list of
+    {kind: "group" | "layer", id}."""
+    if len(children) < 3:
+        return [{"kind": "layer", "id": c.id} for c in sorted(children, key=lambda n: (n.bbox.y, n.bbox.x))]
+
+    rows = _cluster_by_axis(children, axis="y")
+    if len(rows) == 1:
+        cols = _cluster_by_axis(children, axis="x")
+        if len(cols) > 1:
+            rows = cols
+
+    output: list[dict] = []
+    if len(rows) == 1:
+        for c in sorted(children, key=lambda n: (n.bbox.y, n.bbox.x)):
+            output.append({"kind": "layer", "id": c.id})
+        return output
+
+    for row in rows:
+        if len(row) == 1:
+            output.append({"kind": "layer", "id": row[0].id})
+            continue
+        row_sorted = sorted(row, key=lambda n: (n.bbox.y, n.bbox.x))
+        group_id = allocator.allocate("sibling_cluster")
+        first_role = row_sorted[0].semantic_role or row_sorted[0].name or ""
+        label = f"cluster ({len(row_sorted)} {first_role})"
+        group_nodes.append(LayerGroup(
+            id=group_id,
+            name=label,
+            layer_ids=[n.id for n in row_sorted],
+        ))
+        for n in row_sorted:
+            existing = n.children or []
+            if group_id not in existing:
+                n.children = existing + [group_id]
+        output.append({"kind": "group", "id": group_id})
+    return output
+
+
+def _cluster_by_axis(nodes: list, *, axis: str) -> list[list]:
+    """Cluster nodes so items within the same axis band land in one row/col."""
+    if not nodes:
+        return []
+    attr = "y" if axis == "y" else "x"
+    sizeattr = "height" if axis == "y" else "width"
+    items = sorted(nodes, key=lambda n: getattr(n.bbox, attr))
+    clusters: list[list] = [[items[0]]]
+    ref = items[0]
+    for n in items[1:]:
+        ref_center = getattr(ref.bbox, attr) + getattr(ref.bbox, sizeattr) / 2
+        n_center = getattr(n.bbox, attr) + getattr(n.bbox, sizeattr) / 2
+        tol = max(getattr(ref.bbox, sizeattr), getattr(n.bbox, sizeattr)) * 0.6
+        if abs(n_center - ref_center) <= tol:
+            clusters[-1].append(n)
+        else:
+            clusters.append([n])
+            ref = n
+    return clusters
+
+
+def _group_top_level_siblings(
+    *,
+    layer_nodes: list,
+    parent_of: dict[str, str],
+    allocator,
+    group_nodes: list,
+    node_by_id: dict,
+    canvas_w: int,
+    canvas_h: int,
+) -> None:
+    """Top-level layers (without a physical parent) get clustered into
+    row/column synthetic groups so the tree root never has a flat list."""
+    tops = [
+        n for n in layer_nodes
+        if n.semantic_role != "background"
+        and n.id not in parent_of
+        and n.bbox.width > 0
+        and n.bbox.height > 0
+    ]
+    if len(tops) < 3:
+        return
+    rows = _cluster_by_axis(tops, axis="y")
+    if len(rows) <= 1:
+        return
+    for row in rows:
+        if len(row) < 2:
+            continue
+        row_sorted = sorted(row, key=lambda n: (n.bbox.y, n.bbox.x))
+        group_id = allocator.allocate("row_cluster")
+        first_role = row_sorted[0].semantic_role or row_sorted[0].name or ""
+        label = f"row ({len(row_sorted)} {first_role})"
+        group_nodes.append(LayerGroup(
+            id=group_id,
+            name=label,
+            layer_ids=[n.id for n in row_sorted],
+        ))
+        for n in row_sorted:
+            existing = n.children or []
+            if group_id not in existing:
+                n.children = existing + [group_id]
 
 
 def _save_layer_png(rgba: np.ndarray, path) -> None:

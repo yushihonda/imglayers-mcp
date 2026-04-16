@@ -149,7 +149,9 @@ _TEMPLATE = r"""<!doctype html>
                cursor: pointer; user-select: none; transition: background .08s; }
   .tree-node:hover { background: var(--hover); }
   .tree-node.selected { background: var(--selected); }
-  .tree-node .indent { flex-shrink: 0; }
+  .tree-node .indent { flex-shrink: 0; position: relative; }
+  .tree-node .indent::before { content: ""; position: absolute; top: 0; bottom: 0;
+                               right: 4px; border-left: 1px dotted var(--border); opacity: .6; }
   .tree-node .arrow { width: 16px; height: 16px; display: flex; align-items: center;
                       justify-content: center; font-size: 9px; color: var(--fg2);
                       flex-shrink: 0; transition: transform .12s; }
@@ -267,104 +269,105 @@ function renderTabs() {
 const treeEl = document.getElementById("layer-tree");
 
 function buildTree() {
-  // Separate container groups (that have a parent layer) from text groups.
   const groups = DATA.groups || [];
   const containerGroups = groups.filter(g => g.id.startsWith("container_"));
-  const textGroups = groups.filter(g => !g.id.startsWith("container_"));
+  const otherGroups = groups.filter(g => !g.id.startsWith("container_"));
 
-  // Each container group has a parent layer = the first layer in layerIds.
-  // The rest are children (contained layers).
-  const inContainerAsChild = new Set();
-  containerGroups.forEach(g => {
-    g.childIds.slice(1).forEach(id => inContainerAsChild.add(id));
-  });
   const containerParents = new Set(containerGroups.map(g => g.childIds[0]));
+  const containerGroupByParentId = {};
+  containerGroups.forEach(g => { containerGroupByParentId[g.childIds[0]] = g; });
 
-  const inTextGroup = new Set();
-  textGroups.forEach(g => g.childIds.forEach(id => inTextGroup.add(id)));
+  // A layer is a "non-parent child of a container" if it appears in a
+  // container group's layerIds but not as the first (parent) entry.
+  const absorbedByContainer = new Set();
+  containerGroups.forEach(g => {
+    g.childIds.slice(1).forEach(id => absorbedByContainer.add(id));
+  });
 
-  const tree = [];
+  // Non-container groups (textgroup / sibling_cluster / row_cluster /
+  // container_group's synthetic sub-groups) are attached to their members.
+  const groupsContainingLayer = {};
+  otherGroups.forEach(g => {
+    g.childIds.forEach(id => {
+      if (!groupsContainingLayer[id]) groupsContainingLayer[id] = [];
+      groupsContainingLayer[id].push(g);
+    });
+  });
 
-  // Root-level items: layers not in any container, plus text groups not nested.
-  const rootLayers = [...DATA.layers].filter(L =>
-    !inContainerAsChild.has(L.id) && !inTextGroup.has(L.id)
-  ).sort((a, b) => b.zIndex - a.zIndex);
-
-  rootLayers.forEach(L => {
-    if (containerParents.has(L.id)) {
-      // This layer is a container parent; wrap it with its children.
-      const g = containerGroups.find(g => g.childIds[0] === L.id);
-      const childLayerIds = g.childIds.slice(1);
-      const childLayers = childLayerIds.map(id => layerById[id]).filter(Boolean);
-      // Children might themselves be in text groups.
-      const childItems = buildChildItems(childLayers, textGroups, inTextGroup);
-      tree.push({ kind: "container", data: L, group: g, children: childItems });
-    } else {
-      tree.push({ kind: "layer", data: L });
+  function wrapLayer(layer, visited) {
+    // If this layer is a container parent, return a container node.
+    if (containerParents.has(layer.id) && !visited.has(layer.id)) {
+      visited.add(layer.id);
+      const g = containerGroupByParentId[layer.id];
+      const subItems = g.childIds.slice(1)
+        .map(id => resolveChildItem(id, visited))
+        .filter(Boolean);
+      return { kind: "container", data: layer, group: g, children: subItems };
     }
-  });
-
-  // Add text groups that aren't inside a container.
-  textGroups.forEach(tg => {
-    const kids = tg.childIds.map(id => layerById[id]).filter(Boolean);
-    // Only add at root if none of its children are inside a container.
-    if (kids.every(k => !inContainerAsChild.has(k.id))) {
-      tree.push({ kind: "textgroup", data: tg, children: kids.sort((a,b) => b.zIndex - a.zIndex) });
-    }
-  });
-
-  // Sort by max child zIndex desc.
-  tree.sort((a, b) => {
-    const az = a.kind === "layer" ? a.data.zIndex :
-               a.kind === "container" ? Math.max(a.data.zIndex, ...a.children.map(c => c.data.zIndex || 0)) :
-               Math.max(...a.children.map(c => c.zIndex || 0), 0);
-    const bz = b.kind === "layer" ? b.data.zIndex :
-               b.kind === "container" ? Math.max(b.data.zIndex, ...b.children.map(c => c.data.zIndex || 0)) :
-               Math.max(...b.children.map(c => c.zIndex || 0), 0);
-    return bz - az;
-  });
-  return tree;
-}
-
-function buildChildItems(childLayers, textGroups, inTextGroup, containerGroups = null, containerParents = null) {
-  // Wrap children with their text groups when applicable.
-  // Also recursively nest: if a child layer is itself a container parent,
-  // wrap it with its grandchildren.
-  if (containerGroups === null) {
-    const groups = DATA.groups || [];
-    containerGroups = groups.filter(g => g.id.startsWith("container_"));
-    containerParents = new Set(containerGroups.map(g => g.childIds[0]));
+    return { kind: "layer", data: layer };
   }
-  const items = [];
-  const handled = new Set();
-  const sortedKids = [...childLayers].sort((a, b) => b.zIndex - a.zIndex);
 
-  sortedKids.forEach(L => {
-    if (handled.has(L.id)) return;
-    // Nested container: this child is itself the parent of a sub-container.
-    if (containerParents.has(L.id)) {
-      const g = containerGroups.find(g => g.childIds[0] === L.id);
-      if (g) {
-        const subChildIds = g.childIds.slice(1);
-        const subChildLayers = subChildIds.map(id => layerById[id]).filter(Boolean);
-        const subItems = buildChildItems(subChildLayers, textGroups, inTextGroup, containerGroups, containerParents);
-        items.push({ kind: "container", data: L, group: g, children: subItems });
-        handled.add(L.id);
-        subChildIds.forEach(id => handled.add(id));
-        return;
-      }
-    }
-    const tg = textGroups.find(g => g.childIds.includes(L.id));
-    if (tg) {
-      const tgKids = tg.childIds.map(id => childLayers.find(k => k && k.id === id)).filter(Boolean);
-      tgKids.forEach(k => handled.add(k.id));
-      items.push({ kind: "textgroup", data: tg, children: tgKids.sort((a,b) => b.zIndex - a.zIndex) });
-    } else {
-      items.push({ kind: "layer", data: L });
-      handled.add(L.id);
+  const groupIndex = Object.fromEntries(groups.map(g => [g.id, g]));
+
+  function resolveChildItem(childId, visited) {
+    if (layerById[childId]) return wrapLayer(layerById[childId], visited);
+    const g = groupIndex[childId];
+    if (!g) return null;
+    return wrapGroup(g, visited);
+  }
+
+  function wrapGroup(group, visited) {
+    if (visited.has(group.id)) return null;
+    visited.add(group.id);
+    const children = group.childIds.map(id => {
+      // Inside a non-container group, each child id is a layer id.
+      if (layerById[id]) return wrapLayer(layerById[id], visited);
+      return resolveChildItem(id, visited);
+    }).filter(Boolean);
+    return { kind: "group", data: group, children };
+  }
+
+  // Root level: layers not absorbed by a container AND not already inside
+  // a non-container group whose other members pull them in.
+  const tree = [];
+  const visited = new Set();
+
+  // First pass: synthetic groups whose children are all "top-level" go to root.
+  const rootGroupIds = new Set();
+  otherGroups.forEach(g => {
+    const kids = g.childIds.filter(id => layerById[id]);
+    if (kids.length === 0) return;
+    const allTop = kids.every(id => !absorbedByContainer.has(id));
+    if (allTop && (g.id.startsWith("row_") || g.id.startsWith("cluster_"))) {
+      rootGroupIds.add(g.id);
     }
   });
-  return items;
+
+  const inRootGroup = new Set();
+  rootGroupIds.forEach(gid => {
+    const g = groups.find(gg => gg.id === gid);
+    if (!g) return;
+    g.childIds.forEach(id => inRootGroup.add(id));
+  });
+
+  rootGroupIds.forEach(gid => {
+    const g = groups.find(gg => gg.id === gid);
+    if (g) {
+      const item = wrapGroup(g, visited);
+      if (item) tree.push(item);
+    }
+  });
+
+  // Remaining top-level layers.
+  const rootLayers = DATA.layers
+    .filter(L => !absorbedByContainer.has(L.id) && !inRootGroup.has(L.id))
+    .sort((a, b) => b.zIndex - a.zIndex);
+  rootLayers.forEach(L => {
+    if (visited.has(L.id)) return;
+    tree.push(wrapLayer(L, visited));
+  });
+
+  return tree;
 }
 
 function renderTree() {
@@ -374,9 +377,10 @@ function renderTree() {
 }
 
 function renderNode(parent, node, depth) {
+  if (!node) return;
   if (node.kind === "layer") {
     renderLayerNode(parent, node.data, depth);
-  } else if (node.kind === "textgroup") {
+  } else if (node.kind === "group") {
     renderGroupNode(parent, node.data, node.children, depth);
   } else if (node.kind === "container") {
     renderContainerNode(parent, node.data, node.group, node.children, depth);
@@ -420,16 +424,39 @@ function renderContainerNode(parent, parentLayer, group, childItems, depth) {
   parent.appendChild(childWrap);
 }
 
+function groupKindColor(id) {
+  if (id.startsWith("textgroup_")) return "#c49cde";
+  if (id.startsWith("row_")) return "#61afef";
+  if (id.startsWith("cluster_")) return "#98c379";
+  return "#c49cde";
+}
+
+function collectGroupLeafIds(node, out) {
+  if (!node) return out;
+  if (node.kind === "layer") { out.add(node.data.id); return out; }
+  if (node.kind === "container") {
+    out.add(node.data.id);
+    node.children.forEach(c => collectGroupLeafIds(c, out));
+    return out;
+  }
+  if (node.kind === "group") {
+    node.children.forEach(c => collectGroupLeafIds(c, out));
+  }
+  return out;
+}
+
 function renderGroupNode(parent, group, children, depth) {
   const row = document.createElement("div");
   row.className = "tree-node" + (S.selected === group.id ? " selected" : "");
+  const leafIds = Array.from(collectGroupLeafIds({kind:"group", data:group, children}, new Set()));
+  const allOn = leafIds.length > 0 && leafIds.every(id => S.visible.has(id));
   row.innerHTML =
     `<span class="indent" style="width:${depth*16+8}px"></span>` +
     `<span class="arrow ${S.expanded.has(group.id)?'open':''}">&#9654;</span>` +
-    `<span class="icon" style="color:#c49cde">${ICONS.group}</span>` +
+    `<span class="icon" style="color:${groupKindColor(group.id)}">${ICONS.group}</span>` +
     `<span class="node-name">${esc(group.name || group.id)}</span>` +
     `<span class="node-type">${children.length}</span>` +
-    `<span class="vis-toggle ${groupAllVisible(group)?'':'off'}">${groupAllVisible(group)?'&#128065;':'&#128064;'}</span>`;
+    `<span class="vis-toggle ${allOn?'':'off'}">${allOn?'&#128065;':'&#128064;'}</span>`;
 
   row.querySelector(".arrow").onclick = e => {
     e.stopPropagation();
@@ -438,8 +465,7 @@ function renderGroupNode(parent, group, children, depth) {
   };
   row.querySelector(".vis-toggle").onclick = e => {
     e.stopPropagation();
-    const on = groupAllVisible(group);
-    children.forEach(c => on ? S.visible.delete(c.id) : S.visible.add(c.id));
+    leafIds.forEach(id => allOn ? S.visible.delete(id) : S.visible.add(id));
     renderTree(); renderStage();
   };
   row.onclick = () => { S.selected = S.selected === group.id ? null : group.id; renderTree(); renderStage(); renderInspector(); };
@@ -447,7 +473,7 @@ function renderGroupNode(parent, group, children, depth) {
 
   const childWrap = document.createElement("div");
   childWrap.className = "group-children" + (S.expanded.has(group.id) ? "" : " collapsed");
-  children.forEach(L => renderLayerNode(childWrap, L, depth + 1));
+  children.forEach(item => renderNode(childWrap, item, depth + 1));
   parent.appendChild(childWrap);
 }
 

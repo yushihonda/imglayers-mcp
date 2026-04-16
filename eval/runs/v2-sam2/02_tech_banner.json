@@ -1,0 +1,742 @@
+{
+  "version": "0.1.0",
+  "projectId": "proj_20260416_002",
+  "createdAt": "2026-04-16T08:00:12Z",
+  "source": {
+    "inputUri": "/Users/hondayushi/workspaece/mcp/imglayers-mcp/eval/images/02_tech_banner.png",
+    "originalFileName": "02_tech_banner.png",
+    "mimeType": "image/png",
+    "sha256": "6a55afa32691873228225ef1b3167e825cf28d3e910240395827adec412ef0b8",
+    "width": 1000,
+    "height": 500
+  },
+  "canvas": {
+    "width": 1000,
+    "height": 500,
+    "background": "#0E0C52"
+  },
+  "pipeline": {
+    "imageType": "banner",
+    "engines": {
+      "decomposition": "sam2",
+      "ocr": "paddleocr",
+      "retrySegmentation": "sam2",
+      "fontClassifier": "known-fonts",
+      "visionReview": "disabled"
+    },
+    "detailLevel": "high",
+    "preprocessing": {
+      "orientationCorrection": false,
+      "unwarping": false
+    },
+    "timingsMs": {
+      "ocr_ms": 3710.498332999123,
+      "image_type_ms": 10.250125000311527,
+      "decompose_ms": 14271.238500001346,
+      "text_reconstruction_ms": 100.74974999952246
+    },
+    "engineRequested": "sam2",
+    "engineInitial": "sam2",
+    "crossEngineRetryUsed": false,
+    "deviceUsed": "mps",
+    "sam2Checkpoint": "small"
+  },
+  "stats": {
+    "totalLayers": 12,
+    "textLayers": 12,
+    "imageLayers": 0,
+    "vectorLikeLayers": 0,
+    "lowConfidenceLayers": 11
+  },
+  "assets": {
+    "original": "meta/original.png",
+    "preview": "preview/preview.png",
+    "layersDir": "layers"
+  },
+  "layers": [
+    {
+      "id": "headline_001",
+      "name": "headline",
+      "type": "text",
+      "semanticRole": "headline",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 1000.0,
+        "height": 500.0
+      },
+      "zIndex": 0,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/headline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Analytics",
+        "lines": [
+          {
+            "text": "Analytics",
+            "bbox": {
+              "x": 0.0,
+              "y": 0.0,
+              "width": 1000.0,
+              "height": 500.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Hiragino Sans",
+        "fontCandidates": [
+          "Hiragino Sans",
+          "Helvetica",
+          "Inter",
+          "Arial",
+          "Arial"
+        ],
+        "fontWeight": 400,
+        "fontSize": 450.0,
+        "color": "#6C6CFC",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.0,
+        "dominantColors": [
+          "#181848",
+          "#080838",
+          "#180868"
+        ],
+        "text_color": "#6C6CFC",
+        "fitScorePass1": 0.0,
+        "fitScorePass2": 0.0,
+        "styleConfidence": 0.0,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9926956295967102,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    },
+    {
+      "id": "body_001",
+      "name": "body_text",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 37.0,
+        "y": 50.0,
+        "width": 740.0,
+        "height": 402.0
+      },
+      "zIndex": 1,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/body_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Powered AI",
+        "lines": [
+          {
+            "text": "Powered AI",
+            "bbox": {
+              "x": 37.0,
+              "y": 50.0,
+              "width": 740.0,
+              "height": 402.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Hiragino Sans",
+        "fontCandidates": [
+          "Hiragino Sans",
+          "Helvetica",
+          "Inter",
+          "Arial",
+          "Arial"
+        ],
+        "fontWeight": 400,
+        "fontSize": 361.8,
+        "color": "#6C6CFC",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.0,
+        "dominantColors": [
+          "#181848",
+          "#180868",
+          "#080848"
+        ],
+        "text_color": "#6C6CFC",
+        "fitScorePass1": 0.0,
+        "fitScorePass2": 0.0,
+        "styleConfidence": 0.0,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9818461537361145,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Paragraph",
+        "textRole": "paragraph"
+      },
+      "children": [
+        "container_001"
+      ]
+    },
+    {
+      "id": "button_001",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 544.0,
+        "y": 108.0,
+        "width": 26.0,
+        "height": 31.0
+      },
+      "zIndex": 2,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9300832152366638,
+      "engineUsed": "sam2",
+      "children": [
+        "cluster_001",
+        "container_002"
+      ]
+    },
+    {
+      "id": "button_002",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 634.0,
+        "y": 108.0,
+        "width": 26.0,
+        "height": 31.0
+      },
+      "zIndex": 3,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9549560546875,
+      "engineUsed": "sam2",
+      "children": [
+        "cluster_001",
+        "container_002"
+      ]
+    },
+    {
+      "id": "button_003",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 663.0,
+        "y": 108.0,
+        "width": 52.0,
+        "height": 30.0
+      },
+      "zIndex": 4,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_003.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Transform your",
+        "lines": [
+          {
+            "text": "Transform your",
+            "bbox": {
+              "x": 663.0,
+              "y": 108.0,
+              "width": 52.0,
+              "height": 30.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Hiragino Sans",
+        "fontCandidates": [
+          "Hiragino Sans",
+          "Helvetica",
+          "Inter",
+          "Arial",
+          "Arial"
+        ],
+        "fontWeight": 400,
+        "fontSize": 27.0,
+        "color": "#FCFCFC",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.0,
+        "dominantColors": [
+          "#080848",
+          "#F8F8F8",
+          "#080838"
+        ],
+        "text_color": "#FCFCFC",
+        "fitScorePass1": 0.0,
+        "fitScorePass2": 0.0,
+        "styleConfidence": 0.0,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.8689378499984741,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      },
+      "children": [
+        "cluster_001",
+        "container_002"
+      ]
+    },
+    {
+      "id": "button_004",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 500.0,
+        "y": 171.0,
+        "width": 25.0,
+        "height": 38.0
+      },
+      "zIndex": 5,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_004.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9613154530525208,
+      "engineUsed": "sam2",
+      "children": [
+        "cluster_002",
+        "container_002"
+      ]
+    },
+    {
+      "id": "button_005",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 528.0,
+        "y": 178.0,
+        "width": 25.0,
+        "height": 31.0
+      },
+      "zIndex": 6,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_005.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9373494684696198,
+      "engineUsed": "sam2",
+      "children": [
+        "cluster_002",
+        "container_002"
+      ]
+    },
+    {
+      "id": "button_006",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 568.0,
+        "y": 178.0,
+        "width": 25.0,
+        "height": 31.0
+      },
+      "zIndex": 7,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_006.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9516478776931763,
+      "engineUsed": "sam2",
+      "children": [
+        "cluster_002",
+        "container_002"
+      ]
+    },
+    {
+      "id": "button_007",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 659.0,
+        "y": 178.0,
+        "width": 25.0,
+        "height": 31.0
+      },
+      "zIndex": 8,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_007.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9098428189754486,
+      "engineUsed": "sam2",
+      "children": [
+        "cluster_002",
+        "container_002"
+      ]
+    },
+    {
+      "id": "body_002",
+      "name": "body_text",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 828.0,
+        "y": 178.0,
+        "width": 32.0,
+        "height": 31.0
+      },
+      "zIndex": 9,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/body_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "data into i insights",
+        "lines": [
+          {
+            "text": "data into i insights",
+            "bbox": {
+              "x": 828.0,
+              "y": 178.0,
+              "width": 32.0,
+              "height": 31.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Hiragino Sans",
+        "fontCandidates": [
+          "Hiragino Sans",
+          "Helvetica",
+          "Inter",
+          "Arial",
+          "Arial"
+        ],
+        "fontWeight": 400,
+        "fontSize": 27.9,
+        "color": "#B4B4E4",
+        "textAlign": "right",
+        "reconstructionConfidence": 0.1,
+        "dominantColors": [
+          "#080848",
+          "#A8A8D8",
+          "#282868"
+        ],
+        "text_color": "#B4B4E4",
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.0,
+        "styleConfidence": 0.1,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9222984910011292,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Paragraph",
+        "textRole": "paragraph"
+      },
+      "children": [
+        "container_001"
+      ]
+    },
+    {
+      "id": "body_003",
+      "name": "body_text",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 499.0,
+        "y": 279.0,
+        "width": 283.0,
+        "height": 63.0
+      },
+      "zIndex": 10,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/body_003.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Get Started",
+        "lines": [
+          {
+            "text": "Get Started",
+            "bbox": {
+              "x": 499.0,
+              "y": 279.0,
+              "width": 283.0,
+              "height": 63.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 900,
+        "fontSize": 56.7,
+        "textAlign": "right",
+        "dominantColors": [
+          "#6868F8",
+          "#F8F8F8",
+          "#080858"
+        ],
+        "text_color": "#6C6CFC",
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.016046867040244522,
+        "styleConfidence": 0.1,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9926276803016663,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Paragraph",
+        "textRole": "paragraph"
+      },
+      "children": [
+        "container_001"
+      ]
+    },
+    {
+      "id": "subheadline_001",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 500.0,
+        "y": 369.0,
+        "width": 281.0,
+        "height": 63.0
+      },
+      "zIndex": 11,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Learn More",
+        "lines": [
+          {
+            "text": "Learn More",
+            "bbox": {
+              "x": 500.0,
+              "y": 369.0,
+              "width": 281.0,
+              "height": 63.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 400,
+        "fontSize": 56.7,
+        "textAlign": "right",
+        "dominantColors": [
+          "#180868",
+          "#6868F8",
+          "#4838B8"
+        ],
+        "text_color": "#6C6CFC",
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.0,
+        "styleConfidence": 0.1,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9891556203365326,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001",
+        "container_001"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "textgroup_001",
+      "name": "Analytics\nLearn More",
+      "layerIds": [
+        "headline_001",
+        "subheadline_001"
+      ]
+    },
+    {
+      "id": "container_001",
+      "name": "headline",
+      "layerIds": [
+        "headline_001",
+        "body_001",
+        "body_002",
+        "body_003",
+        "subheadline_001"
+      ]
+    },
+    {
+      "id": "cluster_001",
+      "name": "cluster (3 button)",
+      "layerIds": [
+        "button_001",
+        "button_002",
+        "button_003"
+      ]
+    },
+    {
+      "id": "cluster_002",
+      "name": "cluster (4 button)",
+      "layerIds": [
+        "button_004",
+        "button_005",
+        "button_006",
+        "button_007"
+      ]
+    },
+    {
+      "id": "container_002",
+      "name": "body_text",
+      "layerIds": [
+        "body_001",
+        "cluster_001",
+        "cluster_002"
+      ]
+    }
+  ],
+  "warnings": [],
+  "exports": {
+    "manifest": "manifest.json",
+    "preview": "preview/preview.png"
+  }
+}

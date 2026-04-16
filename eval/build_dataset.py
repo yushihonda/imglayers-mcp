@@ -391,6 +391,106 @@ def case10_high_contrast():
     save("10_high_contrast", img, gt)
 
 
+def case11_illustration_scene():
+    W, H = 1000, 700
+    img = Image.new("RGB", (W, H), "#87CEEB")
+    d = ImageDraw.Draw(img)
+    d.rectangle([0, 500, W, H], fill="#6BAE74")
+    d.ellipse([150, 100, 350, 280], fill="#FFD93D")
+    for cx, cy, r, c in [(700, 120, 40, "#FFFFFF"), (800, 160, 55, "#FFFFFF"), (880, 130, 35, "#FFFFFF")]:
+        d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=c)
+    d.polygon([(300, 500), (420, 300), (540, 500)], fill="#4A7C7E")
+    d.polygon([(500, 500), (640, 250), (780, 500)], fill="#3A5F61")
+    d.rectangle([80, 540, 160, 620], fill="#8B4513")
+    d.ellipse([40, 470, 200, 570], fill="#228B22")
+    d.text((100, 640), "Nature", fill="#FFFFFF", font=font(32))
+    gt = {
+        "image_type": "illustration",
+        "canvas": {"width": W, "height": H},
+        "layers": [
+            {"role": "background", "bbox": {"x": 0, "y": 0, "width": W, "height": H}, "color": "#87CEEB"},
+            {"role": "decoration", "bbox": {"x": 0, "y": 500, "width": W, "height": 200}, "color": "#6BAE74"},
+            {"role": "illustration", "bbox": {"x": 150, "y": 100, "width": 200, "height": 180}, "color": "#FFD93D"},
+            {"role": "decoration", "bbox": {"x": 660, "y": 80, "width": 255, "height": 115}, "color": "#FFFFFF"},
+            {"role": "illustration", "bbox": {"x": 300, "y": 300, "width": 240, "height": 200}, "color": "#4A7C7E"},
+            {"role": "illustration", "bbox": {"x": 500, "y": 250, "width": 280, "height": 250}, "color": "#3A5F61"},
+            {"role": "illustration", "bbox": {"x": 40, "y": 470, "width": 160, "height": 150}, "color": "#228B22"},
+            {"role": "headline", "bbox": {"x": 100, "y": 640, "width": 200, "height": 44}, "text": "Nature"},
+        ],
+    }
+    save("11_illustration_scene", img, gt)
+
+
+def case12_photo_mixed_overlay():
+    W, H = 1200, 800
+    img = Image.new("RGB", (W, H), "#000000")
+    d = ImageDraw.Draw(img)
+    for y in range(H):
+        for x in range(0, W, 4):
+            r = int(100 + 80 * math.sin((x + y) * 0.01))
+            g = int(50 + 40 * math.cos(y * 0.02))
+            b = int(80 + 100 * math.sin(x * 0.015))
+            d.rectangle([x, y, x + 4, y + 1], fill=(max(0, r), max(0, g), max(0, b)))
+    d.rectangle([80, 200, 700, 600], fill="#000000")
+    d.text((120, 250), "Wanderlust", fill="#FFFFFF", font=font(72))
+    d.text((120, 360), "Capture every moment", fill="#DDDDDD", font=font(40))
+    d.rounded_rectangle([120, 470, 400, 540], radius=6, fill="#FF6B35")
+    d.text((160, 485), "Explore Now", fill="#FFFFFF", font=font(28))
+    gt = {
+        "image_type": "photo_mixed",
+        "canvas": {"width": W, "height": H},
+        "layers": [
+            {"role": "background", "bbox": {"x": 0, "y": 0, "width": W, "height": H}, "color": "#1F2E4A"},
+            {"role": "card", "bbox": {"x": 80, "y": 200, "width": 620, "height": 400}, "color": "#000000"},
+            {"role": "headline", "bbox": {"x": 120, "y": 250, "width": 500, "height": 80}, "text": "Wanderlust"},
+            {"role": "subheadline", "bbox": {"x": 120, "y": 360, "width": 550, "height": 50}, "text": "Capture every moment"},
+            {"role": "button", "bbox": {"x": 120, "y": 470, "width": 280, "height": 70}, "color": "#FF6B35"},
+            {"role": "button", "bbox": {"x": 160, "y": 485, "width": 200, "height": 40}, "text": "Explore Now"},
+        ],
+    }
+    save("12_photo_mixed_overlay", img, gt)
+
+
+def case13_matome_layout():
+    W, H = 900, 1400
+    img = Image.new("RGB", (W, H), "#FFF7EB")
+    d = ImageDraw.Draw(img)
+    d.rectangle([0, 0, W, 120], fill="#FF7043")
+    d.text((40, 40), "Best Picks 2026", fill="#FFFFFF", font=font(44))
+    def card(y, title, price, tag_color):
+        d.rounded_rectangle([40, y, W - 40, y + 260], radius=12, fill="#FFFFFF")
+        d.rectangle([60, y + 20, 260, y + 240], fill="#DDDDDD")
+        d.rounded_rectangle([280, y + 30, 400, y + 70], radius=20, fill=tag_color)
+        d.text((295, y + 38), "NEW", fill="#FFFFFF", font=font(22))
+        d.text((280, y + 90), title, fill="#2D2D2D", font=font(30))
+        d.text((280, y + 140), price, fill="#E63946", font=font(36))
+        d.rounded_rectangle([280, y + 190, 500, y + 240], radius=8, fill="#FF7043")
+        d.text((315, y + 200), "Detail", fill="#FFFFFF", font=font(26))
+    titles = [("Item A", "\u00a52,980"), ("Item B", "\u00a54,200"), ("Item C", "\u00a51,680"), ("Item D", "\u00a56,500")]
+    colors = ["#43A047", "#1E88E5", "#FB8C00", "#8E24AA"]
+    for i, ((t, p), c) in enumerate(zip(titles, colors)):
+        card(160 + i * 290, t, p, c)
+    layers = [
+        {"role": "background", "bbox": {"x": 0, "y": 0, "width": W, "height": H}, "color": "#FFF7EB"},
+        {"role": "card", "bbox": {"x": 0, "y": 0, "width": W, "height": 120}, "color": "#FF7043"},
+        {"role": "headline", "bbox": {"x": 40, "y": 40, "width": 500, "height": 50}, "text": "Best Picks 2026"},
+    ]
+    for i, ((t, p), c) in enumerate(zip(titles, colors)):
+        y = 160 + i * 290
+        layers.extend([
+            {"role": "card", "bbox": {"x": 40, "y": y, "width": W - 80, "height": 260}, "color": "#FFFFFF"},
+            {"role": "illustration", "bbox": {"x": 60, "y": y + 20, "width": 200, "height": 220}, "color": "#DDDDDD"},
+            {"role": "button", "bbox": {"x": 280, "y": y + 30, "width": 120, "height": 40}, "color": c},
+            {"role": "button", "bbox": {"x": 295, "y": y + 38, "width": 80, "height": 30}, "text": "NEW"},
+            {"role": "headline", "bbox": {"x": 280, "y": y + 90, "width": 300, "height": 40}, "text": t},
+            {"role": "headline", "bbox": {"x": 280, "y": y + 140, "width": 240, "height": 50}, "text": p},
+            {"role": "button", "bbox": {"x": 280, "y": y + 190, "width": 220, "height": 50}, "color": "#FF7043"},
+            {"role": "button", "bbox": {"x": 315, "y": y + 200, "width": 150, "height": 40}, "text": "Detail"},
+        ])
+    gt = {"image_type": "ui-matome", "canvas": {"width": W, "height": H}, "layers": layers}
+    save("13_matome_layout", img, gt)
+
+
 def main():
     print("Building eval dataset...")
     case1_simple_banner()
@@ -403,6 +503,9 @@ def main():
     case8_minimal_logo()
     case9_multi_badge()
     case10_high_contrast()
+    case11_illustration_scene()
+    case12_photo_mixed_overlay()
+    case13_matome_layout()
     print(f"\nDone. Written to {IMG_DIR} and {GT_DIR}")
 
 

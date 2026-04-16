@@ -1,0 +1,549 @@
+{
+  "version": "0.1.0",
+  "projectId": "proj_20260416_013",
+  "createdAt": "2026-04-16T08:06:03Z",
+  "source": {
+    "inputUri": "/Users/hondayushi/workspaece/mcp/imglayers-mcp/eval/images/13_matome_layout.png",
+    "originalFileName": "13_matome_layout.png",
+    "mimeType": "image/png",
+    "sha256": "4a88899c65ab2c6608f14a9b006c2b1f1e36c50076912858c05ed6a484f4bfeb",
+    "width": 900,
+    "height": 1400
+  },
+  "canvas": {
+    "width": 900,
+    "height": 1400,
+    "background": "#FFD6C2"
+  },
+  "pipeline": {
+    "imageType": "banner",
+    "engines": {
+      "decomposition": "sam2",
+      "ocr": "paddleocr",
+      "retrySegmentation": "sam2",
+      "fontClassifier": "known-fonts",
+      "visionReview": "disabled"
+    },
+    "detailLevel": "high",
+    "preprocessing": {
+      "orientationCorrection": false,
+      "unwarping": false
+    },
+    "timingsMs": {
+      "ocr_ms": 7919.071874999645,
+      "image_type_ms": 26.80129199870862,
+      "decompose_ms": 29735.637665999093,
+      "text_reconstruction_ms": 305.0747089982906
+    },
+    "engineRequested": "sam2",
+    "engineInitial": "sam2",
+    "crossEngineRetryUsed": false,
+    "deviceUsed": "mps",
+    "sam2Checkpoint": "small"
+  },
+  "stats": {
+    "totalLayers": 6,
+    "textLayers": 6,
+    "imageLayers": 0,
+    "vectorLikeLayers": 0,
+    "lowConfidenceLayers": 6
+  },
+  "assets": {
+    "original": "meta/original.png",
+    "preview": "preview/preview.png",
+    "layersDir": "layers"
+  },
+  "layers": [
+    {
+      "id": "body_001",
+      "name": "body_text",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 900.0,
+        "height": 402.0
+      },
+      "zIndex": 0,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/body_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "NEW Best Picks 2026 Item A ¥2,980 Detail",
+        "lines": [
+          {
+            "text": "NEW Best Picks 2026 Item A ¥2,980 Detail",
+            "bbox": {
+              "x": 0.0,
+              "y": 0.0,
+              "width": 900.0,
+              "height": 402.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Helvetica",
+          "Hiragino Sans",
+          "Inter",
+          "Arial"
+        ],
+        "fontWeight": 700,
+        "fontSize": 361.8,
+        "color": "#FC6C3C",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.243,
+        "dominantColors": [
+          "#F8F8F8",
+          "#F87848",
+          "#F8F8E8"
+        ],
+        "text_color": "#FC6C3C",
+        "fitScorePass1": 0.243,
+        "fitScorePass2": 0.10686808300678718,
+        "styleConfidence": 0.243,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9916366338729858,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Paragraph",
+        "textRole": "paragraph"
+      },
+      "children": [
+        "row_001"
+      ]
+    },
+    {
+      "id": "headline_001",
+      "name": "headline",
+      "type": "text",
+      "semanticRole": "headline",
+      "bbox": {
+        "x": 40.0,
+        "y": 126.0,
+        "width": 821.0,
+        "height": 799.0
+      },
+      "zIndex": 1,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/headline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Item B NEW ￥4,200",
+        "lines": [
+          {
+            "text": "Item B NEW ￥4,200",
+            "bbox": {
+              "x": 40.0,
+              "y": 126.0,
+              "width": 821.0,
+              "height": 799.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Helvetica",
+          "Inter",
+          "Hiragino Sans",
+          "Arial"
+        ],
+        "fontWeight": 700,
+        "fontSize": 719.1,
+        "color": "#FC6C3C",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.296,
+        "dominantColors": [
+          "#F8F8F8",
+          "#D8D8D8",
+          "#F8F8E8"
+        ],
+        "text_color": "#FCFCFC",
+        "fitScorePass1": 0.296,
+        "fitScorePass2": 0.1957115610869587,
+        "styleConfidence": 0.296,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9710038602352142,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001",
+        "row_001"
+      ]
+    },
+    {
+      "id": "subheadline_001",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 279.0,
+        "y": 639.0,
+        "width": 223.0,
+        "height": 54.0
+      },
+      "zIndex": 2,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Detail",
+        "lines": [
+          {
+            "text": "Detail",
+            "bbox": {
+              "x": 279.0,
+              "y": 639.0,
+              "width": 223.0,
+              "height": 54.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Helvetica",
+          "Hiragino Sans",
+          "Arial",
+          "Inter"
+        ],
+        "fontWeight": 700,
+        "fontSize": 48.6,
+        "color": "#FCFCFC",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.237,
+        "dominantColors": [
+          "#F87848",
+          "#F8F8F8",
+          "#F89878"
+        ],
+        "text_color": "#FC6C3C",
+        "fitScorePass1": 0.237,
+        "fitScorePass2": 0.0,
+        "styleConfidence": 0.237,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9934681355953217,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "container_001"
+      ]
+    },
+    {
+      "id": "subheadline_002",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 41.0,
+        "y": 740.0,
+        "width": 819.0,
+        "height": 551.0
+      },
+      "zIndex": 3,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "NEW Item C ￥1,680 Item D ¥6,500 Detail",
+        "lines": [
+          {
+            "text": "NEW Item C ￥1,680 Item D ¥6,500 Detail",
+            "bbox": {
+              "x": 41.0,
+              "y": 740.0,
+              "width": 819.0,
+              "height": 551.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Helvetica",
+          "Hiragino Sans",
+          "Inter",
+          "Arial"
+        ],
+        "fontWeight": 700,
+        "fontSize": 495.9,
+        "color": "#FC6C3C",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.14310199178674843,
+        "dominantColors": [
+          "#F8F8F8",
+          "#D8D8D8",
+          "#F8F8E8"
+        ],
+        "text_color": "#FCFCFC",
+        "fitScorePass1": 0.0,
+        "fitScorePass2": 0.14310199178674843,
+        "styleConfidence": 0.14310199178674843,
+        "pass2Updated": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9680211544036865,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    },
+    {
+      "id": "subheadline_003",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 279.0,
+        "y": 749.0,
+        "width": 123.0,
+        "height": 65.0
+      },
+      "zIndex": 4,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_003.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "NEW",
+        "lines": [
+          {
+            "text": "NEW",
+            "bbox": {
+              "x": 279.0,
+              "y": 749.0,
+              "width": 123.0,
+              "height": 65.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Hiragino Sans",
+        "fontCandidates": [
+          "Hiragino Sans",
+          "Helvetica",
+          "Inter",
+          "Arial",
+          "Arial"
+        ],
+        "fontWeight": 400,
+        "fontSize": 58.5,
+        "color": "#FC6C3C",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.0,
+        "dominantColors": [
+          "#F88808",
+          "#F8F8F8",
+          "#F8A838"
+        ],
+        "text_color": "#FC840C",
+        "fitScorePass1": 0.0,
+        "fitScorePass2": 0.0,
+        "styleConfidence": 0.0,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9310494661331177,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "container_002"
+      ]
+    },
+    {
+      "id": "subheadline_004",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 279.0,
+        "y": 929.0,
+        "width": 223.0,
+        "height": 54.0
+      },
+      "zIndex": 5,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_004.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Detail",
+        "lines": [
+          {
+            "text": "Detail",
+            "bbox": {
+              "x": 279.0,
+              "y": 929.0,
+              "width": 223.0,
+              "height": 54.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Hiragino Sans",
+        "fontCandidates": [
+          "Hiragino Sans",
+          "Helvetica",
+          "Inter",
+          "Arial",
+          "Arial"
+        ],
+        "fontWeight": 400,
+        "fontSize": 48.6,
+        "color": "#FC840C",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.0,
+        "dominantColors": [
+          "#F87848",
+          "#F8F8F8",
+          "#F89878"
+        ],
+        "text_color": "#FC6C3C",
+        "fitScorePass1": 0.0,
+        "fitScorePass2": 0.0,
+        "styleConfidence": 0.0,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9906438887119293,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "container_002"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "textgroup_001",
+      "name": "Item B NEW ￥4,200\nNEW Item C ￥1,680 Item D ¥6,500 Detail",
+      "layerIds": [
+        "headline_001",
+        "subheadline_002"
+      ]
+    },
+    {
+      "id": "container_001",
+      "name": "headline",
+      "layerIds": [
+        "headline_001",
+        "subheadline_001"
+      ]
+    },
+    {
+      "id": "container_002",
+      "name": "subheadline",
+      "layerIds": [
+        "subheadline_002",
+        "subheadline_003",
+        "subheadline_004"
+      ]
+    },
+    {
+      "id": "row_001",
+      "name": "row (2 body_text)",
+      "layerIds": [
+        "body_001",
+        "headline_001"
+      ]
+    }
+  ],
+  "warnings": [],
+  "exports": {
+    "manifest": "manifest.json",
+    "preview": "preview/preview.png"
+  }
+}

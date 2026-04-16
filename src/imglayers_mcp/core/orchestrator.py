@@ -136,34 +136,14 @@ class Orchestrator:
         )
         h, w = rgba.shape[:2]
 
-        t = time.perf_counter()
-        ocr_boxes_for_classifier: list = []
-        it_result: ImageTypeResult = classify(rgba, ocr_boxes_for_classifier)
-        timings["image_type_ms"] = (time.perf_counter() - t) * 1000
-        self._save_debug(paths, "meta/image_type.json", it_result.to_dict())
-
-        preprocess = self._decide_preprocessing(it_result.image_type)
-
-        sam2, sam2_device, sam2_ckpt = self._get_sam2(device_preference, sam2_checkpoint)
-        sam2_available = sam2.available
-        decision = route_initial(engine, it_result.image_type, sam2_available=sam2_available)
-        initial_engine = decision.initial
-        self._save_debug(paths, "meta/engine_decision.json", decision.to_dict())
-
-        # ---- Stage 3: OCR extraction (image-type-aware preprocessing)
         ocr_lines: list[OCRLine] = []
         if enable_ocr and self.ocr.available:
             t = time.perf_counter()
             try:
-                ocr_lines = self.ocr.extract(
-                    rgba[..., :3],
-                    orientation=preprocess.orientation_correction,
-                    unwarping=preprocess.unwarping,
-                )
+                ocr_lines = self.ocr.extract(rgba[..., :3], orientation=False, unwarping=False)
             except Exception as exc:
                 warnings.append(WarningItem(code="OCR_FAILED", message=str(exc), severity="warn"))
             timings["ocr_ms"] = (time.perf_counter() - t) * 1000
-            # Save raw OCR for debug.
             self._save_debug(paths, "ocr/ocr.json", {
                 "lines": [
                     {"text": l.text, "bbox": l.bbox.to_dict(), "confidence": l.confidence}
@@ -176,6 +156,18 @@ class Orchestrator:
                 message="PaddleOCR not installed",
                 severity="info",
             ))
+
+        t = time.perf_counter()
+        ocr_boxes_for_classifier = [ln.bbox for ln in ocr_lines] if ocr_lines else []
+        it_result: ImageTypeResult = classify(rgba, ocr_boxes_for_classifier)
+        timings["image_type_ms"] = (time.perf_counter() - t) * 1000
+        self._save_debug(paths, "meta/image_type.json", it_result.to_dict())
+
+        sam2, sam2_device, sam2_ckpt = self._get_sam2(device_preference, sam2_checkpoint)
+        sam2_available = sam2.available
+        decision = route_initial(engine, it_result.image_type, sam2_available=sam2_available)
+        initial_engine = decision.initial
+        self._save_debug(paths, "meta/engine_decision.json", decision.to_dict())
 
         ocr_bboxes = [ln.bbox for ln in ocr_lines] if ocr_lines else None
         t = time.perf_counter()
@@ -202,7 +194,7 @@ class Orchestrator:
             paths, rgba, rgba_full, src_path, raw_layers, text_contents, style_overrides,
             text_granularity, export_formats or ["manifest"], open_in_browser,
             image_type=it_result.image_type,
-            preprocess=preprocess,
+            preprocess=self._decide_preprocessing(it_result.image_type),
             warnings=warnings,
             timings=timings,
             engine_requested=engine,

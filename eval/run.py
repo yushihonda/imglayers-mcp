@@ -26,6 +26,8 @@ def main():
     ap.add_argument("tag", help="Run tag (e.g. 'baseline', 'ocr-preprocess')")
     ap.add_argument("--granularity", default="line")
     ap.add_argument("--detail", default="high")
+    ap.add_argument("--engine", default="hybrid", choices=["layerd", "sam2", "hybrid"])
+    ap.add_argument("--device", default="auto")
     args = ap.parse_args()
 
     out_dir = RUNS_DIR / args.tag
@@ -44,6 +46,8 @@ def main():
                 text_granularity=args.granularity,
                 enable_ocr=True,
                 open_in_browser=False,
+                engine=args.engine,
+                device_preference=args.device,
             )
             # Copy manifest to runs dir
             manifest_path = result.project_paths.manifest_path

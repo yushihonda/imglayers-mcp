@@ -1,0 +1,357 @@
+{
+  "version": "0.1.0",
+  "projectId": "proj_20260416_004",
+  "createdAt": "2026-04-16T08:00:53Z",
+  "source": {
+    "inputUri": "/Users/hondayushi/workspaece/mcp/imglayers-mcp/eval/images/04_simple_poster.png",
+    "originalFileName": "04_simple_poster.png",
+    "mimeType": "image/png",
+    "sha256": "20e69d9362187b9904be5e48e2a8649729ddb5692818bdf9200762525947beea",
+    "width": 800,
+    "height": 1000
+  },
+  "canvas": {
+    "width": 800,
+    "height": 1000,
+    "background": "#FFAE4E"
+  },
+  "pipeline": {
+    "imageType": "banner",
+    "engines": {
+      "decomposition": "sam2",
+      "ocr": "paddleocr",
+      "retrySegmentation": "sam2",
+      "fontClassifier": "known-fonts",
+      "visionReview": "disabled"
+    },
+    "detailLevel": "high",
+    "preprocessing": {
+      "orientationCorrection": false,
+      "unwarping": false
+    },
+    "timingsMs": {
+      "ocr_ms": 4646.616499998345,
+      "image_type_ms": 18.417374998534797,
+      "decompose_ms": 17591.171125000983,
+      "text_reconstruction_ms": 119.38541700146743
+    },
+    "engineRequested": "sam2",
+    "engineInitial": "sam2",
+    "crossEngineRetryUsed": false,
+    "deviceUsed": "mps",
+    "sam2Checkpoint": "small"
+  },
+  "stats": {
+    "totalLayers": 4,
+    "textLayers": 3,
+    "imageLayers": 1,
+    "vectorLikeLayers": 0,
+    "lowConfidenceLayers": 1
+  },
+  "assets": {
+    "original": "meta/original.png",
+    "preview": "preview/preview.png",
+    "layersDir": "layers"
+  },
+  "layers": [
+    {
+      "id": "bg_001",
+      "name": "background",
+      "type": "image",
+      "semanticRole": "background",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 800.0,
+        "height": 1000.0
+      },
+      "zIndex": 0,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/bg_001.png",
+        "format": "png",
+        "hasAlpha": false
+      },
+      "style": {
+        "dominantColors": [
+          "#F8D838",
+          "#F86868",
+          "#282828",
+          "#F8F8F8"
+        ],
+        "fill": {
+          "type": "linear-gradient",
+          "angle": 90.0,
+          "stops": [
+            {
+              "offset": 0.0,
+              "color": "#FF8760"
+            },
+            {
+              "offset": 1.0,
+              "color": "#7F6C1E"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.7,
+      "engineUsed": "sam2"
+    },
+    {
+      "id": "body_001",
+      "name": "body_text",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 800.0,
+        "height": 301.0
+      },
+      "zIndex": 1,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/body_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "SUMMER VIBES",
+        "lines": [
+          {
+            "text": "SUMMER VIBES",
+            "bbox": {
+              "x": 0.0,
+              "y": 0.0,
+              "width": 800.0,
+              "height": 301.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Inter",
+        "fontCandidates": [
+          "Inter",
+          "Arial",
+          "Helvetica",
+          "Hiragino Sans",
+          "Arial"
+        ],
+        "fontWeight": 400,
+        "fontSize": 270.9,
+        "color": "#242424",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.088,
+        "dominantColors": [
+          "#F86868",
+          "#F8F8F8",
+          "#F87878"
+        ],
+        "text_color": "#FC6C6C",
+        "fitScorePass1": 0.088,
+        "fitScorePass2": 0.0,
+        "styleConfidence": 0.088,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9923550188541412,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Paragraph",
+        "textRole": "paragraph"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    },
+    {
+      "id": "headline_001",
+      "name": "headline",
+      "type": "text",
+      "semanticRole": "headline",
+      "bbox": {
+        "x": 0.0,
+        "y": 302.0,
+        "width": 799.0,
+        "height": 698.0
+      },
+      "zIndex": 2,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/headline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "GET TICKETS Discover the beach",
+        "lines": [
+          {
+            "text": "GET TICKETS Discover the beach",
+            "bbox": {
+              "x": 0.0,
+              "y": 302.0,
+              "width": 799.0,
+              "height": 698.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Inter",
+          "Helvetica",
+          "Hiragino Sans",
+          "Arial"
+        ],
+        "fontWeight": 700,
+        "fontSize": 628.2,
+        "color": "#FCFCFC",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.07751126457047704,
+        "dominantColors": [
+          "#F8D838",
+          "#282828",
+          "#F8F8F8"
+        ],
+        "text_color": "#242424",
+        "fitScorePass1": 0.0,
+        "fitScorePass2": 0.07751126457047704,
+        "styleConfidence": 0.07751126457047704,
+        "pass2Updated": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9928285479545593,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    },
+    {
+      "id": "body_002",
+      "name": "body_text",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 49.0,
+        "y": 414.0,
+        "width": 303.0,
+        "height": 288.0
+      },
+      "zIndex": 3,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/body_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "this weekend",
+        "lines": [
+          {
+            "text": "this weekend",
+            "bbox": {
+              "x": 49.0,
+              "y": 414.0,
+              "width": 303.0,
+              "height": 288.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Hiragino Sans",
+          "Helvetica",
+          "Inter",
+          "Arial"
+        ],
+        "fontWeight": 700,
+        "fontSize": 259.2,
+        "color": "#FCE43C",
+        "textAlign": "left",
+        "reconstructionConfidence": 0.181,
+        "dominantColors": [
+          "#F8D838",
+          "#282828",
+          "#F8F8F8"
+        ],
+        "text_color": "#242424",
+        "fitScorePass1": 0.181,
+        "fitScorePass2": 0.07600718885727123,
+        "styleConfidence": 0.181,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9749590456485748,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Paragraph",
+        "textRole": "paragraph"
+      },
+      "children": [
+        "container_001"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "textgroup_001",
+      "name": "SUMMER VIBES\nGET TICKETS Discover the beach",
+      "layerIds": [
+        "body_001",
+        "headline_001"
+      ]
+    },
+    {
+      "id": "container_001",
+      "name": "headline",
+      "layerIds": [
+        "headline_001",
+        "body_002"
+      ]
+    }
+  ],
+  "warnings": [],
+  "exports": {
+    "manifest": "manifest.json",
+    "preview": "preview/preview.png"
+  }
+}

@@ -1,0 +1,381 @@
+{
+  "version": "0.1.0",
+  "projectId": "proj_20260416_009",
+  "createdAt": "2026-04-16T08:02:35Z",
+  "source": {
+    "inputUri": "/Users/hondayushi/workspaece/mcp/imglayers-mcp/eval/images/09_multi_badge.png",
+    "originalFileName": "09_multi_badge.png",
+    "mimeType": "image/png",
+    "sha256": "a5540c2bbfed3f9d0237c3042c932cada1286d04c1bcaecbe9f0d7b5f4cefb57",
+    "width": 1000,
+    "height": 500
+  },
+  "canvas": {
+    "width": 1000,
+    "height": 500,
+    "background": "#0F4C81"
+  },
+  "pipeline": {
+    "imageType": "ui_mock",
+    "engines": {
+      "decomposition": "sam2",
+      "ocr": "paddleocr",
+      "retrySegmentation": "sam2",
+      "fontClassifier": "known-fonts",
+      "visionReview": "disabled"
+    },
+    "detailLevel": "high",
+    "preprocessing": {
+      "orientationCorrection": false,
+      "unwarping": false
+    },
+    "timingsMs": {
+      "ocr_ms": 3601.5175829998043,
+      "image_type_ms": 11.127582998597063,
+      "decompose_ms": 20699.679583001853,
+      "text_reconstruction_ms": 94.85816600135877
+    },
+    "engineRequested": "sam2",
+    "engineInitial": "sam2",
+    "crossEngineRetryUsed": false,
+    "deviceUsed": "mps",
+    "sam2Checkpoint": "small"
+  },
+  "stats": {
+    "totalLayers": 4,
+    "textLayers": 4,
+    "imageLayers": 0,
+    "vectorLikeLayers": 0,
+    "lowConfidenceLayers": 3
+  },
+  "assets": {
+    "original": "meta/original.png",
+    "preview": "preview/preview.png",
+    "layersDir": "layers"
+  },
+  "layers": [
+    {
+      "id": "headline_001",
+      "name": "headline",
+      "type": "text",
+      "semanticRole": "headline",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 1000.0,
+        "height": 500.0
+      },
+      "zIndex": 0,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/headline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Free",
+        "lines": [
+          {
+            "text": "Free",
+            "bbox": {
+              "x": 0.0,
+              "y": 0.0,
+              "width": 1000.0,
+              "height": 500.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Hiragino Sans",
+        "fontCandidates": [
+          "Hiragino Sans",
+          "Helvetica",
+          "Inter",
+          "Arial",
+          "Arial"
+        ],
+        "fontWeight": 400,
+        "fontSize": 450.0,
+        "color": "#FC9C6C",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.0,
+        "dominantColors": [
+          "#084888",
+          "#289888",
+          "#E86858"
+        ],
+        "text_color": "#FC9C6C",
+        "fitScorePass1": 0.0,
+        "fitScorePass2": 0.0,
+        "styleConfidence": 0.0,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9969596266746521,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      }
+    },
+    {
+      "id": "body_001",
+      "name": "body_text",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 79.0,
+        "y": 99.0,
+        "width": 243.0,
+        "height": 303.0
+      },
+      "zIndex": 1,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/body_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Shipping Fast",
+        "lines": [
+          {
+            "text": "Shipping Fast",
+            "bbox": {
+              "x": 79.0,
+              "y": 99.0,
+              "width": 243.0,
+              "height": 303.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Hiragino Sans",
+          "Inter",
+          "Helvetica",
+          "Arial"
+        ],
+        "fontWeight": 700,
+        "fontSize": 272.7,
+        "color": "#FC9C6C",
+        "textAlign": "left",
+        "reconstructionConfidence": 0.102,
+        "dominantColors": [
+          "#F8A868",
+          "#F8F8F8",
+          "#084888"
+        ],
+        "text_color": "#FC9C6C",
+        "fitScorePass1": 0.102,
+        "fitScorePass2": 0.042980671414038656,
+        "styleConfidence": 0.102,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9970207512378693,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Paragraph",
+        "textRole": "paragraph"
+      },
+      "children": [
+        "cluster_001",
+        "container_001"
+      ]
+    },
+    {
+      "id": "body_002",
+      "name": "body_text",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 133.0,
+        "y": 99.0,
+        "width": 490.0,
+        "height": 303.0
+      },
+      "zIndex": 2,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/body_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Returns",
+        "lines": [
+          {
+            "text": "Returns",
+            "bbox": {
+              "x": 133.0,
+              "y": 99.0,
+              "width": 490.0,
+              "height": 303.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Hiragino Sans",
+        "fontCandidates": [
+          "Hiragino Sans",
+          "Inter",
+          "Helvetica",
+          "Arial",
+          "Arial"
+        ],
+        "fontWeight": 400,
+        "fontSize": 272.7,
+        "color": "#0C5484",
+        "textAlign": "left",
+        "reconstructionConfidence": 0.08284068902252574,
+        "dominantColors": [
+          "#289888",
+          "#F8A868",
+          "#084888"
+        ],
+        "text_color": "#FC9C6C",
+        "fitScorePass1": 0.043,
+        "fitScorePass2": 0.08284068902252574,
+        "styleConfidence": 0.08284068902252574,
+        "pass2Updated": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9918544888496399,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Paragraph",
+        "textRole": "paragraph"
+      },
+      "children": [
+        "cluster_001",
+        "container_001"
+      ]
+    },
+    {
+      "id": "body_003",
+      "name": "body_text",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 679.0,
+        "y": 99.0,
+        "width": 243.0,
+        "height": 303.0
+      },
+      "zIndex": 3,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/body_003.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Support 24/7",
+        "lines": [
+          {
+            "text": "Support 24/7",
+            "bbox": {
+              "x": 679.0,
+              "y": 99.0,
+              "width": 243.0,
+              "height": 303.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Helvetica",
+        "fontCandidates": [
+          "Helvetica",
+          "Hiragino Sans",
+          "Arial",
+          "Arial",
+          "Inter"
+        ],
+        "fontWeight": 400,
+        "fontSize": 272.7,
+        "color": "#FCFCFC",
+        "textAlign": "right",
+        "reconstructionConfidence": 0.019,
+        "dominantColors": [
+          "#E86858",
+          "#F8F8F8",
+          "#084888"
+        ],
+        "text_color": "#E46C54",
+        "fitScorePass1": 0.019,
+        "fitScorePass2": 0.018923280035206103,
+        "styleConfidence": 0.019,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9965171813964844,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Paragraph",
+        "textRole": "paragraph"
+      },
+      "children": [
+        "container_001"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "cluster_001",
+      "name": "cluster (2 body_text)",
+      "layerIds": [
+        "body_001",
+        "body_002"
+      ]
+    },
+    {
+      "id": "container_001",
+      "name": "headline",
+      "layerIds": [
+        "headline_001",
+        "cluster_001",
+        "body_003"
+      ]
+    }
+  ],
+  "warnings": [],
+  "exports": {
+    "manifest": "manifest.json",
+    "preview": "preview/preview.png"
+  }
+}

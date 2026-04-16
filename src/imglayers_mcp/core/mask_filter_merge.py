@@ -28,22 +28,40 @@ def process(
 ) -> tuple[list[MaskCandidate], MaskCandidate | None]:
     cfg = cfg or _cfg_for(image_type)
     h, w = rgb.shape[:2]
+    total = h * w
     if not candidates:
         return [], None
 
-    min_area = int(h * w * cfg.min_area_ratio)
+    min_area = int(total * cfg.min_area_ratio)
     kept = [c for c in candidates if c.area >= min_area]
     kept.sort(key=lambda c: -c.area)
     kept = kept[: cfg.max_candidates]
 
     kept = _suppress_near_duplicates(kept, cfg.iou_suppress)
-    kept = _absorb_inclusions(kept, cfg.inclusion_ratio)
-    kept = _adjacency_merge(kept, rgb, cfg.merge_color_delta)
+    bg_pre, non_bg = _pull_out_full_canvas(kept, total)
+    non_bg = _absorb_inclusions(non_bg, cfg.inclusion_ratio)
+    non_bg = _adjacency_merge(non_bg, rgb, cfg.merge_color_delta)
 
-    bg, remaining = _split_background(kept, h, w)
+    if bg_pre is not None:
+        bg, remaining = bg_pre, non_bg
+    else:
+        bg, remaining = _split_background(non_bg, h, w)
     remaining = _remove_contained_small_copies(remaining, cfg.inclusion_ratio)
     remaining.sort(key=lambda c: -c.area)
     return remaining, bg
+
+
+def _pull_out_full_canvas(
+    items: list[MaskCandidate], total: int
+) -> tuple[MaskCandidate | None, list[MaskCandidate]]:
+    """Pull a near-full-canvas mask out before inclusion absorption so that
+    smaller masks nested inside it are not swallowed."""
+    if not items:
+        return None, items
+    biggest = items[0]
+    if biggest.area >= 0.85 * total:
+        return biggest, items[1:]
+    return None, items
 
 
 def _cfg_for(image_type: str) -> FilterMergeConfig:

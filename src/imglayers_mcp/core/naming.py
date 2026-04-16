@@ -23,6 +23,8 @@ ROLE_PREFIX: dict[SemanticRole, str] = {
     "unknown": "unknown",
     "text_group": "textgroup",
     "container_group": "container",
+    "sibling_cluster": "cluster",
+    "row_cluster": "row",
 }
 
 
@@ -68,12 +70,15 @@ def infer_semantic_role(
     aspect = bbox.w / max(1.0, bbox.h)
 
     if layer_type == "vector_like":
-        if bbox.w <= canvas_w * 0.3 and bbox.h <= canvas_h * 0.15:
-            if aspect > 2.0:
-                return "button"
+        compact = min(bbox.w, bbox.h) / max(bbox.w, bbox.h, 1)
+        if area_ratio <= 0.025 and compact >= 0.5:
             return "icon"
+        if bbox.h <= canvas_h * 0.12 and 2.0 <= aspect <= 10.0 and bbox.w <= canvas_w * 0.5:
+            return "button"
         if contains_text and area_ratio >= 0.05:
             return "card"
+        if area_ratio >= 0.04:
+            return "illustration"
         return "decoration"
 
     if layer_type == "image":
@@ -101,11 +106,13 @@ def infer_semantic_role(
         return "illustration"
 
     if layer_type == "unknown":
-        if bbox.w <= canvas_w * 0.35 and bbox.h <= canvas_h * 0.35:
-            aspect_compact = min(bbox.w, bbox.h) / max(bbox.w, bbox.h, 1)
-            if aspect_compact >= 0.5:
-                return "icon"
-            return "illustration"
+        compact = min(bbox.w, bbox.h) / max(bbox.w, bbox.h, 1)
+        if aspect > 15.0 or aspect < 1.0 / 15.0:
+            return "decoration"
+        if area_ratio <= 0.025 and compact >= 0.5:
+            return "icon"
+        if bbox.h <= canvas_h * 0.15 and 2.0 <= aspect <= 10.0 and bbox.w <= canvas_w * 0.5:
+            return "button"
         if contains_text:
             return "card"
         return "illustration"

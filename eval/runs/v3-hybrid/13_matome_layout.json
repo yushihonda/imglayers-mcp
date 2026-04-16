@@ -1,0 +1,2263 @@
+{
+  "version": "0.1.0",
+  "projectId": "proj_20260416_013",
+  "createdAt": "2026-04-16T08:15:07Z",
+  "source": {
+    "inputUri": "/Users/hondayushi/workspaece/mcp/imglayers-mcp/eval/images/13_matome_layout.png",
+    "originalFileName": "13_matome_layout.png",
+    "mimeType": "image/png",
+    "sha256": "4a88899c65ab2c6608f14a9b006c2b1f1e36c50076912858c05ed6a484f4bfeb",
+    "width": 900,
+    "height": 1400
+  },
+  "canvas": {
+    "width": 900,
+    "height": 1400,
+    "background": "#FFD6C2"
+  },
+  "pipeline": {
+    "imageType": "banner",
+    "engines": {
+      "decomposition": "layerd",
+      "ocr": "paddleocr",
+      "retrySegmentation": "sam2",
+      "fontClassifier": "known-fonts",
+      "visionReview": "disabled"
+    },
+    "detailLevel": "high",
+    "preprocessing": {
+      "orientationCorrection": false,
+      "unwarping": false
+    },
+    "timingsMs": {
+      "ocr_ms": 6226.266958001361,
+      "image_type_ms": 25.903207999363076,
+      "decompose_ms": 2349.3624170005205,
+      "text_reconstruction_ms": 50.38441599754151
+    },
+    "engineRequested": "hybrid",
+    "engineInitial": "layerd",
+    "crossEngineRetryUsed": false,
+    "deviceUsed": "cpu"
+  },
+  "stats": {
+    "totalLayers": 36,
+    "textLayers": 17,
+    "imageLayers": 6,
+    "vectorLikeLayers": 0,
+    "lowConfidenceLayers": 35
+  },
+  "assets": {
+    "original": "meta/original.png",
+    "preview": "preview/preview.png",
+    "layersDir": "layers"
+  },
+  "layers": [
+    {
+      "id": "bg_001",
+      "name": "background",
+      "type": "image",
+      "semanticRole": "background",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 900.0,
+        "height": 1400.0
+      },
+      "zIndex": 0,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/bg_001.png",
+        "format": "png",
+        "hasAlpha": false
+      },
+      "style": {
+        "dominantColors": [
+          "#F8F8F8",
+          "#F8F8E8",
+          "#D8D8D8",
+          "#F87848"
+        ],
+        "fill": {
+          "type": "linear-gradient",
+          "angle": 180.0,
+          "stops": [
+            {
+              "offset": 0.0,
+              "color": "#A3482B"
+            },
+            {
+              "offset": 1.0,
+              "color": "#FFEBDC"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.6,
+      "engineUsed": "layerd"
+    },
+    {
+      "id": "card_001",
+      "name": "card",
+      "type": "image",
+      "semanticRole": "card",
+      "bbox": {
+        "x": 0.0,
+        "y": 120.0,
+        "width": 900.0,
+        "height": 1280.0
+      },
+      "zIndex": 1,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/card_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "style": {
+        "fontFamily": "Hiragino Sans",
+        "fontCandidates": [
+          "Hiragino Sans",
+          "Helvetica",
+          "Inter",
+          "Arial",
+          "Arial"
+        ],
+        "fontWeight": 400,
+        "color": "#FCFCFC",
+        "textAlign": "left",
+        "reconstructionConfidence": 0.1,
+        "dominantColors": [
+          "#F8F8F8",
+          "#F8F8E8",
+          "#D8D8D8",
+          "#F87848"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.55,
+      "engineUsed": "layerd",
+      "codegenHints": {
+        "componentCandidate": "Card",
+        "containerLikely": true
+      },
+      "retryState": {
+        "attempted": true,
+        "backend": "none",
+        "reason": "alpha_edge_mismatch",
+        "improved": false
+      }
+    },
+    {
+      "id": "card_002",
+      "name": "card",
+      "type": "unknown",
+      "semanticRole": "card",
+      "bbox": {
+        "x": 40.0,
+        "y": 160.0,
+        "width": 821.0,
+        "height": 261.0
+      },
+      "zIndex": 2,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/card_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.8,
+      "engineUsed": "layerd",
+      "children": [
+        "container_001"
+      ],
+      "retryState": {
+        "attempted": true,
+        "backend": "cc-refine",
+        "reason": "alpha_edge_mismatch",
+        "improved": true
+      }
+    },
+    {
+      "id": "card_003",
+      "name": "card",
+      "type": "unknown",
+      "semanticRole": "card",
+      "bbox": {
+        "x": 40.0,
+        "y": 450.0,
+        "width": 821.0,
+        "height": 261.0
+      },
+      "zIndex": 3,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/card_003.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.8,
+      "engineUsed": "layerd",
+      "children": [
+        "container_001"
+      ],
+      "retryState": {
+        "attempted": true,
+        "backend": "cc-refine",
+        "reason": "alpha_edge_mismatch",
+        "improved": true
+      }
+    },
+    {
+      "id": "card_004",
+      "name": "card",
+      "type": "unknown",
+      "semanticRole": "card",
+      "bbox": {
+        "x": 40.0,
+        "y": 740.0,
+        "width": 821.0,
+        "height": 261.0
+      },
+      "zIndex": 4,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/card_004.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.8,
+      "engineUsed": "layerd",
+      "children": [
+        "container_001"
+      ],
+      "retryState": {
+        "attempted": true,
+        "backend": "cc-refine",
+        "reason": "alpha_edge_mismatch",
+        "improved": true
+      }
+    },
+    {
+      "id": "card_005",
+      "name": "card",
+      "type": "unknown",
+      "semanticRole": "card",
+      "bbox": {
+        "x": 40.0,
+        "y": 1030.0,
+        "width": 821.0,
+        "height": 261.0
+      },
+      "zIndex": 5,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/card_005.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.8,
+      "engineUsed": "layerd",
+      "children": [
+        "container_001"
+      ],
+      "retryState": {
+        "attempted": true,
+        "backend": "cc-refine",
+        "reason": "alpha_edge_mismatch",
+        "improved": true
+      }
+    },
+    {
+      "id": "card_006",
+      "name": "card",
+      "type": "unknown",
+      "semanticRole": "card",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 900.0,
+        "height": 121.0
+      },
+      "zIndex": 6,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/card_006.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.6,
+      "engineUsed": "layerd",
+      "retryState": {
+        "attempted": true,
+        "backend": "none",
+        "reason": "alpha_edge_mismatch",
+        "improved": false
+      }
+    },
+    {
+      "id": "image_001",
+      "name": "illustration",
+      "type": "image",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 60.0,
+        "y": 180.0,
+        "width": 201.0,
+        "height": 221.0
+      },
+      "zIndex": 7,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "style": {
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Inter",
+          "Helvetica",
+          "Hiragino Sans",
+          "Arial"
+        ],
+        "fontWeight": 700,
+        "color": "#242424",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.226,
+        "dominantColors": [
+          "#D8D8D8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.8,
+      "engineUsed": "layerd",
+      "children": [
+        "container_002"
+      ],
+      "retryState": {
+        "attempted": true,
+        "backend": "cc-refine",
+        "reason": "alpha_edge_mismatch",
+        "improved": true
+      }
+    },
+    {
+      "id": "image_002",
+      "name": "illustration",
+      "type": "image",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 60.0,
+        "y": 470.0,
+        "width": 201.0,
+        "height": 221.0
+      },
+      "zIndex": 8,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "style": {
+        "fontFamily": "Inter",
+        "fontCandidates": [
+          "Inter",
+          "Arial",
+          "Arial",
+          "Hiragino Sans",
+          "Helvetica"
+        ],
+        "fontWeight": 400,
+        "color": "#E43C3C",
+        "textAlign": "left",
+        "reconstructionConfidence": 0.214,
+        "dominantColors": [
+          "#D8D8D8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.8,
+      "engineUsed": "layerd",
+      "children": [
+        "container_003"
+      ],
+      "retryState": {
+        "attempted": true,
+        "backend": "cc-refine",
+        "reason": "alpha_edge_mismatch",
+        "improved": true
+      }
+    },
+    {
+      "id": "image_003",
+      "name": "illustration",
+      "type": "image",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 60.0,
+        "y": 760.0,
+        "width": 201.0,
+        "height": 221.0
+      },
+      "zIndex": 9,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_003.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "style": {
+        "fontFamily": "Hiragino Sans",
+        "fontCandidates": [
+          "Hiragino Sans",
+          "Helvetica",
+          "Inter",
+          "Arial",
+          "Arial"
+        ],
+        "fontWeight": 400,
+        "color": "#FCFCFC",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.0,
+        "dominantColors": [
+          "#D8D8D8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.8,
+      "engineUsed": "layerd",
+      "children": [
+        "container_004"
+      ],
+      "retryState": {
+        "attempted": true,
+        "backend": "cc-refine",
+        "reason": "alpha_edge_mismatch",
+        "improved": true
+      }
+    },
+    {
+      "id": "image_004",
+      "name": "illustration",
+      "type": "image",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 60.0,
+        "y": 1050.0,
+        "width": 201.0,
+        "height": 221.0
+      },
+      "zIndex": 10,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_004.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "style": {
+        "fontFamily": "Hiragino Sans",
+        "fontCandidates": [
+          "Hiragino Sans",
+          "Helvetica",
+          "Inter",
+          "Arial",
+          "Arial"
+        ],
+        "fontWeight": 400,
+        "color": "#FCFCFC",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.0,
+        "dominantColors": [
+          "#D8D8D8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.8,
+      "engineUsed": "layerd",
+      "children": [
+        "container_005"
+      ],
+      "retryState": {
+        "attempted": true,
+        "backend": "cc-refine",
+        "reason": "alpha_edge_mismatch",
+        "improved": true
+      }
+    },
+    {
+      "id": "button_001",
+      "name": "button",
+      "type": "unknown",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 280.0,
+        "y": 640.0,
+        "width": 221.0,
+        "height": 51.0
+      },
+      "zIndex": 11,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.8,
+      "engineUsed": "layerd",
+      "children": [
+        "cluster_002",
+        "container_003"
+      ],
+      "retryState": {
+        "attempted": true,
+        "backend": "cc-refine",
+        "reason": "alpha_edge_mismatch",
+        "improved": true
+      }
+    },
+    {
+      "id": "button_002",
+      "name": "button",
+      "type": "unknown",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 280.0,
+        "y": 930.0,
+        "width": 221.0,
+        "height": 51.0
+      },
+      "zIndex": 12,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.8,
+      "engineUsed": "layerd",
+      "children": [
+        "cluster_003",
+        "container_004"
+      ],
+      "retryState": {
+        "attempted": true,
+        "backend": "cc-refine",
+        "reason": "alpha_edge_mismatch",
+        "improved": true
+      }
+    },
+    {
+      "id": "button_003",
+      "name": "button",
+      "type": "unknown",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 280.0,
+        "y": 1220.0,
+        "width": 221.0,
+        "height": 51.0
+      },
+      "zIndex": 13,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_003.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.8,
+      "engineUsed": "layerd",
+      "children": [
+        "cluster_004",
+        "container_005"
+      ],
+      "retryState": {
+        "attempted": true,
+        "backend": "cc-refine",
+        "reason": "alpha_edge_mismatch",
+        "improved": true
+      }
+    },
+    {
+      "id": "button_004",
+      "name": "button",
+      "type": "unknown",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 280.0,
+        "y": 350.0,
+        "width": 221.0,
+        "height": 51.0
+      },
+      "zIndex": 14,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_004.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.8,
+      "engineUsed": "layerd",
+      "children": [
+        "cluster_001",
+        "container_002"
+      ],
+      "retryState": {
+        "attempted": true,
+        "backend": "cc-refine",
+        "reason": "alpha_edge_mismatch",
+        "improved": true
+      }
+    },
+    {
+      "id": "button_005",
+      "name": "button",
+      "type": "unknown",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 280.0,
+        "y": 770.0,
+        "width": 121.0,
+        "height": 41.0
+      },
+      "zIndex": 15,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_005.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.8,
+      "engineUsed": "layerd",
+      "children": [
+        "cluster_003",
+        "container_004"
+      ],
+      "retryState": {
+        "attempted": true,
+        "backend": "cc-refine",
+        "reason": "high_residual_p95,alpha_edge_mismatch",
+        "improved": true
+      }
+    },
+    {
+      "id": "button_006",
+      "name": "button",
+      "type": "unknown",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 280.0,
+        "y": 480.0,
+        "width": 121.0,
+        "height": 41.0
+      },
+      "zIndex": 16,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_006.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.8,
+      "engineUsed": "layerd",
+      "children": [
+        "cluster_002",
+        "container_003"
+      ],
+      "retryState": {
+        "attempted": true,
+        "backend": "cc-refine",
+        "reason": "alpha_edge_mismatch",
+        "improved": true
+      }
+    },
+    {
+      "id": "button_007",
+      "name": "button",
+      "type": "unknown",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 282.0,
+        "y": 190.0,
+        "width": 119.0,
+        "height": 41.0
+      },
+      "zIndex": 17,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_007.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.8,
+      "engineUsed": "layerd",
+      "children": [
+        "cluster_001",
+        "container_002"
+      ],
+      "retryState": {
+        "attempted": true,
+        "backend": "cc-refine",
+        "reason": "alpha_edge_mismatch",
+        "improved": true
+      }
+    },
+    {
+      "id": "button_008",
+      "name": "button",
+      "type": "unknown",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 286.0,
+        "y": 1060.0,
+        "width": 115.0,
+        "height": 41.0
+      },
+      "zIndex": 18,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_008.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.8,
+      "engineUsed": "layerd",
+      "children": [
+        "cluster_004",
+        "container_005"
+      ],
+      "retryState": {
+        "attempted": true,
+        "backend": "cc-refine",
+        "reason": "high_residual_p95,alpha_edge_mismatch",
+        "improved": true
+      }
+    },
+    {
+      "id": "body_001",
+      "name": "body_text",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 34.0,
+        "y": 29.0,
+        "width": 329.0,
+        "height": 58.0
+      },
+      "zIndex": 19,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/body_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Best Picks 2026",
+        "lines": [
+          {
+            "text": "Best Picks 2026",
+            "bbox": {
+              "x": 34.0,
+              "y": 29.0,
+              "width": 329.0,
+              "height": 58.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 900,
+        "fontSize": 52.2,
+        "textAlign": "left",
+        "dominantColors": [
+          "#F87848",
+          "#F8F8F8",
+          "#F89878"
+        ],
+        "text_color": "#FC6C3C",
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.0,
+        "styleConfidence": 0.1,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "engineUsed": "layerd",
+      "codegenHints": {
+        "componentCandidate": "Paragraph",
+        "textRole": "paragraph"
+      },
+      "children": [
+        "container_006"
+      ]
+    },
+    {
+      "id": "button_009",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 286.0,
+        "y": 186.0,
+        "width": 69.0,
+        "height": 40.0
+      },
+      "zIndex": 20,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_009.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "NEW",
+        "lines": [
+          {
+            "text": "NEW",
+            "bbox": {
+              "x": 286.0,
+              "y": 186.0,
+              "width": 69.0,
+              "height": 40.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 900,
+        "fontSize": 36.0,
+        "textAlign": "left",
+        "dominantColors": [
+          "#48A848",
+          "#F8F8F8",
+          "#68B868"
+        ],
+        "text_color": "#3C9C3C",
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.0,
+        "styleConfidence": 0.1,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "engineUsed": "layerd",
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      },
+      "children": [
+        "textgroup_001",
+        "cluster_001",
+        "container_002"
+      ]
+    },
+    {
+      "id": "button_010",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 271.0,
+        "y": 239.0,
+        "width": 103.0,
+        "height": 46.0
+      },
+      "zIndex": 21,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_010.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Item A",
+        "lines": [
+          {
+            "text": "Item A",
+            "bbox": {
+              "x": 271.0,
+              "y": 239.0,
+              "width": 103.0,
+              "height": 46.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 700,
+        "fontSize": 41.4,
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#282828",
+          "#484848"
+        ],
+        "text_color": "#242424",
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Inter",
+          "Helvetica",
+          "Hiragino Sans",
+          "Arial"
+        ],
+        "reconstructionConfidence": 0.2157001414427157,
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.2157001414427157,
+        "styleConfidence": 0.2157001414427157,
+        "pass2Updated": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "engineUsed": "layerd",
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      },
+      "children": [
+        "textgroup_001",
+        "cluster_001",
+        "container_002"
+      ]
+    },
+    {
+      "id": "button_011",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 269.0,
+        "y": 286.0,
+        "width": 129.0,
+        "height": 55.0
+      },
+      "zIndex": 22,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_011.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "¥2,980",
+        "lines": [
+          {
+            "text": "¥2,980",
+            "bbox": {
+              "x": 269.0,
+              "y": 286.0,
+              "width": 129.0,
+              "height": 55.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 700,
+        "fontSize": 49.5,
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#E83848",
+          "#F8E8E8"
+        ],
+        "text_color": "#E43C3C",
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Inter",
+          "Hiragino Sans",
+          "Arial",
+          "Helvetica"
+        ],
+        "reconstructionConfidence": 0.17439372325249644,
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.17439372325249644,
+        "styleConfidence": 0.17439372325249644,
+        "pass2Updated": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "engineUsed": "layerd",
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      },
+      "children": [
+        "textgroup_001",
+        "cluster_001",
+        "container_002"
+      ]
+    },
+    {
+      "id": "button_012",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 306.0,
+        "y": 349.0,
+        "width": 84.0,
+        "height": 43.0
+      },
+      "zIndex": 23,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_012.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Detail",
+        "lines": [
+          {
+            "text": "Detail",
+            "bbox": {
+              "x": 306.0,
+              "y": 349.0,
+              "width": 84.0,
+              "height": 43.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 900,
+        "fontSize": 38.7,
+        "textAlign": "left",
+        "dominantColors": [
+          "#F87848",
+          "#F8F8F8",
+          "#F89878"
+        ],
+        "text_color": "#FC6C3C",
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.0,
+        "styleConfidence": 0.1,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "engineUsed": "layerd",
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      },
+      "children": [
+        "textgroup_001",
+        "container_007"
+      ]
+    },
+    {
+      "id": "button_013",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 286.0,
+        "y": 476.0,
+        "width": 68.0,
+        "height": 38.0
+      },
+      "zIndex": 24,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_013.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "NEW",
+        "lines": [
+          {
+            "text": "NEW",
+            "bbox": {
+              "x": 286.0,
+              "y": 476.0,
+              "width": 68.0,
+              "height": 38.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 900,
+        "fontSize": 34.2,
+        "textAlign": "left",
+        "dominantColors": [
+          "#1888E8",
+          "#F8F8F8",
+          "#3898E8"
+        ],
+        "text_color": "#2484E4",
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.0,
+        "styleConfidence": 0.1,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "engineUsed": "layerd",
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      },
+      "children": [
+        "textgroup_002",
+        "cluster_002",
+        "container_003"
+      ]
+    },
+    {
+      "id": "button_014",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 271.0,
+        "y": 529.0,
+        "width": 105.0,
+        "height": 46.0
+      },
+      "zIndex": 25,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_014.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Item B",
+        "lines": [
+          {
+            "text": "Item B",
+            "bbox": {
+              "x": 271.0,
+              "y": 529.0,
+              "width": 105.0,
+              "height": 46.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 700,
+        "fontSize": 41.4,
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#282828",
+          "#585858"
+        ],
+        "text_color": "#242424",
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Inter",
+          "Helvetica",
+          "Hiragino Sans",
+          "Arial"
+        ],
+        "reconstructionConfidence": 0.22559366754617413,
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.22559366754617413,
+        "styleConfidence": 0.22559366754617413,
+        "pass2Updated": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "engineUsed": "layerd",
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      },
+      "children": [
+        "textgroup_002",
+        "cluster_002",
+        "container_003"
+      ]
+    },
+    {
+      "id": "headline_001",
+      "name": "headline",
+      "type": "text",
+      "semanticRole": "headline",
+      "bbox": {
+        "x": 266.0,
+        "y": 574.0,
+        "width": 133.0,
+        "height": 60.0
+      },
+      "zIndex": 26,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/headline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "￥4,200",
+        "lines": [
+          {
+            "text": "￥4,200",
+            "bbox": {
+              "x": 266.0,
+              "y": 574.0,
+              "width": 133.0,
+              "height": 60.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 700,
+        "fontSize": 54.0,
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#E83848",
+          "#F8E8E8"
+        ],
+        "text_color": "#FCFCFC",
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Inter",
+          "Arial",
+          "Hiragino Sans",
+          "Helvetica"
+        ],
+        "reconstructionConfidence": 0.20183852917665868,
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.20183852917665868,
+        "styleConfidence": 0.20183852917665868,
+        "pass2Updated": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "engineUsed": "layerd",
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_002",
+        "cluster_002",
+        "container_003"
+      ]
+    },
+    {
+      "id": "subheadline_001",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 307.0,
+        "y": 638.0,
+        "width": 83.0,
+        "height": 43.0
+      },
+      "zIndex": 27,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Detail",
+        "lines": [
+          {
+            "text": "Detail",
+            "bbox": {
+              "x": 307.0,
+              "y": 638.0,
+              "width": 83.0,
+              "height": 43.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 900,
+        "fontSize": 38.7,
+        "textAlign": "left",
+        "dominantColors": [
+          "#F87848",
+          "#F8F8F8",
+          "#F89878"
+        ],
+        "text_color": "#FC6C3C",
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.0,
+        "styleConfidence": 0.1,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "engineUsed": "layerd",
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_002",
+        "container_008"
+      ]
+    },
+    {
+      "id": "subheadline_002",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 286.0,
+        "y": 767.0,
+        "width": 68.0,
+        "height": 36.0
+      },
+      "zIndex": 28,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "NEW",
+        "lines": [
+          {
+            "text": "NEW",
+            "bbox": {
+              "x": 286.0,
+              "y": 767.0,
+              "width": 68.0,
+              "height": 36.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 900,
+        "fontSize": 32.4,
+        "textAlign": "left",
+        "dominantColors": [
+          "#F88808",
+          "#F8F8F8",
+          "#F8A838"
+        ],
+        "text_color": "#FC840C",
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.0,
+        "styleConfidence": 0.1,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "engineUsed": "layerd",
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_003",
+        "cluster_003",
+        "container_004"
+      ]
+    },
+    {
+      "id": "button_015",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 270.0,
+        "y": 816.0,
+        "width": 109.0,
+        "height": 51.0
+      },
+      "zIndex": 29,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_015.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Item C",
+        "lines": [
+          {
+            "text": "Item C",
+            "bbox": {
+              "x": 270.0,
+              "y": 816.0,
+              "width": 109.0,
+              "height": 51.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 700,
+        "fontSize": 45.9,
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#282828",
+          "#484848"
+        ],
+        "text_color": "#242424",
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Inter",
+          "Hiragino Sans",
+          "Helvetica",
+          "Arial"
+        ],
+        "reconstructionConfidence": 0.18091079226450404,
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.18091079226450404,
+        "styleConfidence": 0.18091079226450404,
+        "pass2Updated": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "engineUsed": "layerd",
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      },
+      "children": [
+        "textgroup_003",
+        "cluster_003",
+        "container_004"
+      ]
+    },
+    {
+      "id": "button_016",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 266.0,
+        "y": 865.0,
+        "width": 134.0,
+        "height": 60.0
+      },
+      "zIndex": 30,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_016.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "￥1,680",
+        "lines": [
+          {
+            "text": "￥1,680",
+            "bbox": {
+              "x": 266.0,
+              "y": 865.0,
+              "width": 134.0,
+              "height": 60.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 700,
+        "fontSize": 54.0,
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#E83848",
+          "#E86878"
+        ],
+        "text_color": "#FCFCFC",
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Arial",
+          "Inter",
+          "Helvetica",
+          "Hiragino Sans"
+        ],
+        "reconstructionConfidence": 0.1664019062748213,
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.1664019062748213,
+        "styleConfidence": 0.1664019062748213,
+        "pass2Updated": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "engineUsed": "layerd",
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      },
+      "children": [
+        "textgroup_003",
+        "cluster_003",
+        "container_004"
+      ]
+    },
+    {
+      "id": "button_017",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 306.0,
+        "y": 929.0,
+        "width": 84.0,
+        "height": 42.0
+      },
+      "zIndex": 31,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_017.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Detail",
+        "lines": [
+          {
+            "text": "Detail",
+            "bbox": {
+              "x": 306.0,
+              "y": 929.0,
+              "width": 84.0,
+              "height": 42.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 900,
+        "fontSize": 37.8,
+        "textAlign": "left",
+        "dominantColors": [
+          "#F87848",
+          "#F8F8F8",
+          "#F89878"
+        ],
+        "text_color": "#FC6C3C",
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.0,
+        "styleConfidence": 0.1,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "engineUsed": "layerd",
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      },
+      "children": [
+        "textgroup_003",
+        "container_009"
+      ]
+    },
+    {
+      "id": "button_018",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 283.0,
+        "y": 1054.0,
+        "width": 74.0,
+        "height": 43.0
+      },
+      "zIndex": 32,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_018.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "NEW",
+        "lines": [
+          {
+            "text": "NEW",
+            "bbox": {
+              "x": 283.0,
+              "y": 1054.0,
+              "width": 74.0,
+              "height": 43.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 900,
+        "fontSize": 38.7,
+        "textAlign": "left",
+        "dominantColors": [
+          "#8828A8",
+          "#F8F8F8",
+          "#E8C8E8"
+        ],
+        "text_color": "#8424B4",
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.0,
+        "styleConfidence": 0.1,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "engineUsed": "layerd",
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      },
+      "children": [
+        "textgroup_004",
+        "cluster_004",
+        "container_005"
+      ]
+    },
+    {
+      "id": "button_019",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 270.0,
+        "y": 1106.0,
+        "width": 110.0,
+        "height": 51.0
+      },
+      "zIndex": 33,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_019.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Item D",
+        "lines": [
+          {
+            "text": "Item D",
+            "bbox": {
+              "x": 270.0,
+              "y": 1106.0,
+              "width": 110.0,
+              "height": 51.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 700,
+        "fontSize": 45.9,
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#282828",
+          "#888888"
+        ],
+        "text_color": "#242424",
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Inter",
+          "Helvetica",
+          "Hiragino Sans",
+          "Arial"
+        ],
+        "reconstructionConfidence": 0.19246861924686193,
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.19246861924686193,
+        "styleConfidence": 0.19246861924686193,
+        "pass2Updated": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "engineUsed": "layerd",
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      },
+      "children": [
+        "textgroup_004",
+        "cluster_004",
+        "container_005"
+      ]
+    },
+    {
+      "id": "button_020",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 267.0,
+        "y": 1155.0,
+        "width": 134.0,
+        "height": 59.0
+      },
+      "zIndex": 34,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_020.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "¥6,500",
+        "lines": [
+          {
+            "text": "¥6,500",
+            "bbox": {
+              "x": 267.0,
+              "y": 1155.0,
+              "width": 134.0,
+              "height": 59.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 700,
+        "fontSize": 53.1,
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#E83848",
+          "#E84858"
+        ],
+        "text_color": "#FCFCFC",
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Arial",
+          "Inter",
+          "Helvetica",
+          "Hiragino Sans"
+        ],
+        "reconstructionConfidence": 0.18206157965194109,
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.18206157965194109,
+        "styleConfidence": 0.18206157965194109,
+        "pass2Updated": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "engineUsed": "layerd",
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      },
+      "children": [
+        "textgroup_004",
+        "cluster_004",
+        "container_005"
+      ]
+    },
+    {
+      "id": "button_021",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 305.0,
+        "y": 1217.0,
+        "width": 84.0,
+        "height": 44.0
+      },
+      "zIndex": 35,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_021.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Detail",
+        "lines": [
+          {
+            "text": "Detail",
+            "bbox": {
+              "x": 305.0,
+              "y": 1217.0,
+              "width": 84.0,
+              "height": 44.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 900,
+        "fontSize": 39.6,
+        "textAlign": "left",
+        "dominantColors": [
+          "#F87848",
+          "#F8F8F8",
+          "#F89878"
+        ],
+        "text_color": "#FC6C3C",
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.0,
+        "styleConfidence": 0.1,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "engineUsed": "layerd",
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      },
+      "children": [
+        "textgroup_004",
+        "cluster_004",
+        "container_005"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "textgroup_001",
+      "name": "NEW\nItem A\n¥2,980\nDetail",
+      "layerIds": [
+        "button_009",
+        "button_010",
+        "button_011",
+        "button_012"
+      ]
+    },
+    {
+      "id": "textgroup_002",
+      "name": "NEW\nItem B\n￥4,200\nDetail",
+      "layerIds": [
+        "button_013",
+        "button_014",
+        "headline_001",
+        "subheadline_001"
+      ]
+    },
+    {
+      "id": "textgroup_003",
+      "name": "NEW\nItem C\n￥1,680\nDetail",
+      "layerIds": [
+        "subheadline_002",
+        "button_015",
+        "button_016",
+        "button_017"
+      ]
+    },
+    {
+      "id": "textgroup_004",
+      "name": "NEW\nItem D\n¥6,500\nDetail",
+      "layerIds": [
+        "button_018",
+        "button_019",
+        "button_020",
+        "button_021"
+      ]
+    },
+    {
+      "id": "container_001",
+      "name": "card",
+      "layerIds": [
+        "card_001",
+        "card_002",
+        "card_003",
+        "card_004",
+        "card_005"
+      ]
+    },
+    {
+      "id": "cluster_001",
+      "name": "cluster (5 button)",
+      "layerIds": [
+        "button_009",
+        "button_007",
+        "button_010",
+        "button_011",
+        "button_004"
+      ]
+    },
+    {
+      "id": "container_002",
+      "name": "card",
+      "layerIds": [
+        "card_002",
+        "image_001",
+        "cluster_001"
+      ]
+    },
+    {
+      "id": "cluster_002",
+      "name": "cluster (5 button)",
+      "layerIds": [
+        "button_013",
+        "button_006",
+        "button_014",
+        "headline_001",
+        "button_001"
+      ]
+    },
+    {
+      "id": "container_003",
+      "name": "card",
+      "layerIds": [
+        "card_003",
+        "image_002",
+        "cluster_002"
+      ]
+    },
+    {
+      "id": "cluster_003",
+      "name": "cluster (5 subheadline)",
+      "layerIds": [
+        "subheadline_002",
+        "button_005",
+        "button_015",
+        "button_016",
+        "button_002"
+      ]
+    },
+    {
+      "id": "container_004",
+      "name": "card",
+      "layerIds": [
+        "card_004",
+        "image_003",
+        "cluster_003"
+      ]
+    },
+    {
+      "id": "cluster_004",
+      "name": "cluster (6 button)",
+      "layerIds": [
+        "button_018",
+        "button_008",
+        "button_019",
+        "button_020",
+        "button_021",
+        "button_003"
+      ]
+    },
+    {
+      "id": "container_005",
+      "name": "card",
+      "layerIds": [
+        "card_005",
+        "image_004",
+        "cluster_004"
+      ]
+    },
+    {
+      "id": "container_006",
+      "name": "card",
+      "layerIds": [
+        "card_006",
+        "body_001"
+      ]
+    },
+    {
+      "id": "container_007",
+      "name": "button",
+      "layerIds": [
+        "button_004",
+        "button_012"
+      ]
+    },
+    {
+      "id": "container_008",
+      "name": "button",
+      "layerIds": [
+        "button_001",
+        "subheadline_001"
+      ]
+    },
+    {
+      "id": "container_009",
+      "name": "button",
+      "layerIds": [
+        "button_002",
+        "button_017"
+      ]
+    }
+  ],
+  "warnings": [],
+  "exports": {
+    "manifest": "manifest.json",
+    "preview": "preview/preview.png"
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "image_type": "illustration",
+  "canvas": {
+    "width": 1000,
+    "height": 700
+  },
+  "layers": [
+    {
+      "role": "background",
+      "bbox": {
+        "x": 0,
+        "y": 0,
+        "width": 1000,
+        "height": 700
+      },
+      "color": "#87CEEB"
+    },
+    {
+      "role": "decoration",
+      "bbox": {
+        "x": 0,
+        "y": 500,
+        "width": 1000,
+        "height": 200
+      },
+      "color": "#6BAE74"
+    },
+    {
+      "role": "illustration",
+      "bbox": {
+        "x": 150,
+        "y": 100,
+        "width": 200,
+        "height": 180
+      },
+      "color": "#FFD93D"
+    },
+    {
+      "role": "decoration",
+      "bbox": {
+        "x": 660,
+        "y": 80,
+        "width": 255,
+        "height": 115
+      },
+      "color": "#FFFFFF"
+    },
+    {
+      "role": "illustration",
+      "bbox": {
+        "x": 300,
+        "y": 300,
+        "width": 240,
+        "height": 200
+      },
+      "color": "#4A7C7E"
+    },
+    {
+      "role": "illustration",
+      "bbox": {
+        "x": 500,
+        "y": 250,
+        "width": 280,
+        "height": 250
+      },
+      "color": "#3A5F61"
+    },
+    {
+      "role": "illustration",
+      "bbox": {
+        "x": 40,
+        "y": 470,
+        "width": 160,
+        "height": 150
+      },
+      "color": "#228B22"
+    },
+    {
+      "role": "headline",
+      "bbox": {
+        "x": 100,
+        "y": 640,
+        "width": 200,
+        "height": 44
+      },
+      "text": "Nature"
+    }
+  ]
+}

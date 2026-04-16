@@ -1,0 +1,538 @@
+{
+  "version": "0.1.0",
+  "projectId": "proj_20260416_011",
+  "createdAt": "2026-04-16T08:12:52Z",
+  "source": {
+    "inputUri": "/Users/hondayushi/workspaece/mcp/imglayers-mcp/eval/images/11_illustration_scene.png",
+    "originalFileName": "11_illustration_scene.png",
+    "mimeType": "image/png",
+    "sha256": "160cf07093834a9a89c539b9054f5a4f4f3f8a722eb5835d49fa9b44503d3ad4",
+    "width": 1000,
+    "height": 700
+  },
+  "canvas": {
+    "width": 1000,
+    "height": 700,
+    "background": "#7BC0BA"
+  },
+  "pipeline": {
+    "imageType": "illustration",
+    "engines": {
+      "decomposition": "layerd",
+      "ocr": "paddleocr",
+      "retrySegmentation": "sam2",
+      "fontClassifier": "known-fonts",
+      "visionReview": "disabled"
+    },
+    "detailLevel": "high",
+    "preprocessing": {
+      "orientationCorrection": false,
+      "unwarping": false
+    },
+    "timingsMs": {
+      "ocr_ms": 2763.4169580014714,
+      "image_type_ms": 13.922083999204915,
+      "decompose_ms": 1263.3438330012723,
+      "text_reconstruction_ms": 3.5277919996588025
+    },
+    "engineRequested": "layerd",
+    "engineInitial": "layerd",
+    "crossEngineRetryUsed": false,
+    "deviceUsed": "cpu"
+  },
+  "stats": {
+    "totalLayers": 10,
+    "textLayers": 1,
+    "imageLayers": 3,
+    "vectorLikeLayers": 0,
+    "lowConfidenceLayers": 7
+  },
+  "assets": {
+    "original": "meta/original.png",
+    "preview": "preview/preview.png",
+    "layersDir": "layers"
+  },
+  "layers": [
+    {
+      "id": "bg_001",
+      "name": "background",
+      "type": "image",
+      "semanticRole": "background",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 1000.0,
+        "height": 700.0
+      },
+      "zIndex": 0,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/bg_001.png",
+        "format": "png",
+        "hasAlpha": false
+      },
+      "style": {
+        "dominantColors": [
+          "#88C8E8",
+          "#68A878",
+          "#385868",
+          "#F8D838"
+        ],
+        "fill": {
+          "type": "linear-gradient",
+          "angle": 90.0,
+          "stops": [
+            {
+              "offset": 0.0,
+              "color": "#81C6CE"
+            },
+            {
+              "offset": 1.0,
+              "color": "#3C5F57"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.6,
+      "engineUsed": "layerd"
+    },
+    {
+      "id": "card_001",
+      "name": "card",
+      "type": "image",
+      "semanticRole": "card",
+      "bbox": {
+        "x": 0.0,
+        "y": 501.0,
+        "width": 1000.0,
+        "height": 199.0
+      },
+      "zIndex": 1,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/card_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "style": {
+        "fontFamily": "Hiragino Sans",
+        "fontCandidates": [
+          "Hiragino Sans",
+          "Helvetica",
+          "Inter",
+          "Arial",
+          "Arial"
+        ],
+        "fontWeight": 400,
+        "color": "#FCFCFC",
+        "textAlign": "left",
+        "reconstructionConfidence": 0.0,
+        "dominantColors": [
+          "#68A878",
+          "#288828",
+          "#884818",
+          "#F8F8F8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.8,
+      "engineUsed": "layerd",
+      "codegenHints": {
+        "componentCandidate": "Card",
+        "containerLikely": true
+      },
+      "retryState": {
+        "attempted": true,
+        "backend": "sam2-prompt",
+        "reason": "alpha_edge_mismatch",
+        "improved": true
+      }
+    },
+    {
+      "id": "image_001",
+      "name": "illustration",
+      "type": "unknown",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 500.0,
+        "y": 250.0,
+        "width": 281.0,
+        "height": 251.0
+      },
+      "zIndex": 2,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.6,
+      "engineUsed": "layerd",
+      "children": [
+        "row_002"
+      ],
+      "retryState": {
+        "attempted": true,
+        "backend": "cc-refine",
+        "reason": "low_quality",
+        "improved": false
+      }
+    },
+    {
+      "id": "image_002",
+      "name": "illustration",
+      "type": "unknown",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 300.0,
+        "y": 300.0,
+        "width": 220.0,
+        "height": 201.0
+      },
+      "zIndex": 3,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.6,
+      "engineUsed": "layerd",
+      "children": [
+        "row_002"
+      ],
+      "retryState": {
+        "attempted": true,
+        "backend": "cc-refine",
+        "reason": "low_quality",
+        "improved": false
+      }
+    },
+    {
+      "id": "image_003",
+      "name": "illustration",
+      "type": "unknown",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 150.0,
+        "y": 100.0,
+        "width": 201.0,
+        "height": 181.0
+      },
+      "zIndex": 4,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_003.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.8,
+      "engineUsed": "layerd",
+      "children": [
+        "row_001"
+      ],
+      "retryState": {
+        "attempted": true,
+        "backend": "cc-refine",
+        "reason": "alpha_edge_mismatch",
+        "improved": true
+      }
+    },
+    {
+      "id": "image_004",
+      "name": "illustration",
+      "type": "unknown",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 745.0,
+        "y": 95.0,
+        "width": 171.0,
+        "height": 121.0
+      },
+      "zIndex": 5,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_004.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.8,
+      "engineUsed": "layerd",
+      "children": [
+        "row_001"
+      ],
+      "retryState": {
+        "attempted": true,
+        "backend": "cc-refine",
+        "reason": "alpha_edge_mismatch",
+        "improved": true
+      }
+    },
+    {
+      "id": "icon_001",
+      "name": "icon",
+      "type": "unknown",
+      "semanticRole": "icon",
+      "bbox": {
+        "x": 24.0,
+        "y": 460.0,
+        "width": 193.0,
+        "height": 121.0
+      },
+      "zIndex": 6,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/icon_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.8,
+      "engineUsed": "layerd",
+      "children": [
+        "row_002"
+      ],
+      "retryState": {
+        "attempted": true,
+        "backend": "cc-refine",
+        "reason": "alpha_edge_mismatch",
+        "improved": true
+      }
+    },
+    {
+      "id": "icon_002",
+      "name": "icon",
+      "type": "unknown",
+      "semanticRole": "icon",
+      "bbox": {
+        "x": 660.0,
+        "y": 80.0,
+        "width": 81.0,
+        "height": 81.0
+      },
+      "zIndex": 7,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/icon_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.8,
+      "engineUsed": "layerd",
+      "children": [
+        "row_001"
+      ],
+      "retryState": {
+        "attempted": true,
+        "backend": "cc-refine",
+        "reason": "alpha_edge_mismatch",
+        "improved": true
+      }
+    },
+    {
+      "id": "image_005",
+      "name": "illustration",
+      "type": "image",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 72.0,
+        "y": 558.0,
+        "width": 97.0,
+        "height": 63.0
+      },
+      "zIndex": 8,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_005.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "style": {
+        "dominantColors": [
+          "#884818",
+          "#288828"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.8,
+      "engineUsed": "layerd",
+      "children": [
+        "container_001"
+      ],
+      "retryState": {
+        "attempted": true,
+        "backend": "cc-refine",
+        "reason": "alpha_edge_mismatch",
+        "improved": true
+      }
+    },
+    {
+      "id": "headline_001",
+      "name": "headline",
+      "type": "text",
+      "semanticRole": "headline",
+      "bbox": {
+        "x": 93.0,
+        "y": 629.0,
+        "width": 109.0,
+        "height": 49.0
+      },
+      "zIndex": 9,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/headline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Nature",
+        "lines": [
+          {
+            "text": "Nature",
+            "bbox": {
+              "x": 93.0,
+              "y": 629.0,
+              "width": 109.0,
+              "height": 49.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 900,
+        "fontSize": 44.1,
+        "textAlign": "left",
+        "dominantColors": [
+          "#68A878",
+          "#F8F8F8",
+          "#E8F8E8"
+        ],
+        "text_color": "#6CB46C",
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.0,
+        "styleConfidence": 0.1,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "engineUsed": "layerd",
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "container_001"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "container_001",
+      "name": "card",
+      "layerIds": [
+        "card_001",
+        "image_005",
+        "headline_001"
+      ]
+    },
+    {
+      "id": "row_001",
+      "name": "row (3 icon)",
+      "layerIds": [
+        "icon_002",
+        "image_004",
+        "image_003"
+      ]
+    },
+    {
+      "id": "row_002",
+      "name": "row (3 illustration)",
+      "layerIds": [
+        "image_001",
+        "image_002",
+        "icon_001"
+      ]
+    }
+  ],
+  "warnings": [],
+  "exports": {
+    "manifest": "manifest.json",
+    "preview": "preview/preview.png"
+  }
+}

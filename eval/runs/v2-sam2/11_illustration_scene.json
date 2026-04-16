@@ -1,0 +1,374 @@
+{
+  "version": "0.1.0",
+  "projectId": "proj_20260416_011",
+  "createdAt": "2026-04-16T08:04:44Z",
+  "source": {
+    "inputUri": "/Users/hondayushi/workspaece/mcp/imglayers-mcp/eval/images/11_illustration_scene.png",
+    "originalFileName": "11_illustration_scene.png",
+    "mimeType": "image/png",
+    "sha256": "160cf07093834a9a89c539b9054f5a4f4f3f8a722eb5835d49fa9b44503d3ad4",
+    "width": 1000,
+    "height": 700
+  },
+  "canvas": {
+    "width": 1000,
+    "height": 700,
+    "background": "#7BC0BA"
+  },
+  "pipeline": {
+    "imageType": "illustration",
+    "engines": {
+      "decomposition": "sam2",
+      "ocr": "paddleocr",
+      "retrySegmentation": "sam2",
+      "fontClassifier": "known-fonts",
+      "visionReview": "disabled"
+    },
+    "detailLevel": "high",
+    "preprocessing": {
+      "orientationCorrection": false,
+      "unwarping": false
+    },
+    "timingsMs": {
+      "ocr_ms": 3591.814790997887,
+      "image_type_ms": 15.679667001677444,
+      "decompose_ms": 30351.174666997395,
+      "text_reconstruction_ms": 44.457916999817826
+    },
+    "engineRequested": "sam2",
+    "engineInitial": "sam2",
+    "crossEngineRetryUsed": false,
+    "deviceUsed": "mps",
+    "sam2Checkpoint": "small"
+  },
+  "stats": {
+    "totalLayers": 7,
+    "textLayers": 3,
+    "imageLayers": 0,
+    "vectorLikeLayers": 0,
+    "lowConfidenceLayers": 3
+  },
+  "assets": {
+    "original": "meta/original.png",
+    "preview": "preview/preview.png",
+    "layersDir": "layers"
+  },
+  "layers": [
+    {
+      "id": "image_001",
+      "name": "illustration",
+      "type": "unknown",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 304.0,
+        "y": 252.0,
+        "width": 476.0,
+        "height": 250.0
+      },
+      "zIndex": 0,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9925328195095062,
+      "engineUsed": "sam2",
+      "maskQuality": 0.9925328195095062,
+      "alphaEdgeQuality": 0.5271391868591309,
+      "children": [
+        "cluster_002",
+        "container_001"
+      ]
+    },
+    {
+      "id": "icon_001",
+      "name": "icon",
+      "type": "unknown",
+      "semanticRole": "icon",
+      "bbox": {
+        "x": 300.0,
+        "y": 301.0,
+        "width": 219.0,
+        "height": 201.0
+      },
+      "zIndex": 1,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/icon_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9951364099979401,
+      "engineUsed": "sam2",
+      "maskQuality": 0.9951364099979401,
+      "alphaEdgeQuality": 0.41536110639572144,
+      "children": [
+        "cluster_002",
+        "container_001"
+      ]
+    },
+    {
+      "id": "icon_002",
+      "name": "icon",
+      "type": "unknown",
+      "semanticRole": "icon",
+      "bbox": {
+        "x": 150.0,
+        "y": 100.0,
+        "width": 201.0,
+        "height": 181.0
+      },
+      "zIndex": 2,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/icon_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 1.0,
+      "engineUsed": "sam2",
+      "maskQuality": 0.9971718788146973,
+      "alphaEdgeQuality": 0.6551574468612671,
+      "children": [
+        "cluster_001",
+        "container_001"
+      ],
+      "retryState": {
+        "attempted": true,
+        "backend": "cc-refine",
+        "reason": "alpha_edge_mismatch",
+        "improved": true
+      }
+    },
+    {
+      "id": "icon_003",
+      "name": "icon",
+      "type": "unknown",
+      "semanticRole": "icon",
+      "bbox": {
+        "x": 659.0,
+        "y": 79.0,
+        "width": 258.0,
+        "height": 138.0
+      },
+      "zIndex": 3,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/icon_003.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9906581044197083,
+      "engineUsed": "sam2",
+      "maskQuality": 0.9906581044197083,
+      "alphaEdgeQuality": 0.6001087427139282,
+      "children": [
+        "cluster_001",
+        "container_001"
+      ]
+    },
+    {
+      "id": "headline_001",
+      "name": "headline",
+      "type": "text",
+      "semanticRole": "headline",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 1000.0,
+        "height": 684.0
+      },
+      "zIndex": 4,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/headline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9980538785457611,
+      "engineUsed": "sam2",
+      "children": [
+        "textgroup_001"
+      ]
+    },
+    {
+      "id": "subheadline_001",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 38.0,
+        "y": 469.0,
+        "width": 164.0,
+        "height": 198.0
+      },
+      "zIndex": 5,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.8630329370498657,
+      "engineUsed": "sam2",
+      "children": [
+        "container_001"
+      ]
+    },
+    {
+      "id": "subheadline_002",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 0.0,
+        "y": 499.0,
+        "width": 1000.0,
+        "height": 201.0
+      },
+      "zIndex": 6,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Nature",
+        "lines": [
+          {
+            "text": "Nature",
+            "bbox": {
+              "x": 0.0,
+              "y": 499.0,
+              "width": 1000.0,
+              "height": 201.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 900,
+        "fontSize": 180.9,
+        "textAlign": "center",
+        "dominantColors": [
+          "#68A878",
+          "#288828",
+          "#884818"
+        ],
+        "text_color": "#6CB46C",
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.0,
+        "styleConfidence": 0.1,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "sam2"
+        ]
+      },
+      "confidence": 0.9961783289909363,
+      "engineUsed": "sam2",
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "textgroup_001",
+      "name": "\nNature",
+      "layerIds": [
+        "headline_001",
+        "subheadline_002"
+      ]
+    },
+    {
+      "id": "cluster_001",
+      "name": "cluster (2 icon)",
+      "layerIds": [
+        "icon_003",
+        "icon_002"
+      ]
+    },
+    {
+      "id": "cluster_002",
+      "name": "cluster (2 illustration)",
+      "layerIds": [
+        "image_001",
+        "icon_001"
+      ]
+    },
+    {
+      "id": "container_001",
+      "name": "headline",
+      "layerIds": [
+        "headline_001",
+        "cluster_001",
+        "cluster_002",
+        "subheadline_001"
+      ]
+    }
+  ],
+  "warnings": [],
+  "exports": {
+    "manifest": "manifest.json",
+    "preview": "preview/preview.png"
+  }
+}
