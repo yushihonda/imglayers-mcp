@@ -17,6 +17,9 @@ htmlcov/
 # Runtime project output (see IMGLAYERS_PROJECT_ROOT)
 projects/
 
+# Model weights (download via imglayers-download-weights)
+weights/
+
 .DS_Store
 
 # Local tooling

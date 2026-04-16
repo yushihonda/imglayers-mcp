@@ -10,7 +10,7 @@ from ..core.orchestrator import Orchestrator
 def decompose_image(orchestrator: Orchestrator, raw: dict[str, Any]) -> dict[str, Any]:
     result = orchestrator.decompose(
         input_uri=raw["input_uri"],
-        engine=raw.get("engine", "layerd"),
+        engine=raw.get("engine", "hybrid"),
         device_preference=raw.get("device_preference", "auto"),
         sam2_checkpoint=raw.get("sam2_checkpoint", "auto"),
         allow_cross_engine_retry=raw.get("allow_cross_engine_retry", True),

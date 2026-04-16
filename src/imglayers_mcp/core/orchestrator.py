@@ -124,7 +124,7 @@ class Orchestrator:
         enable_ocr: bool = True,
         export_formats: list[str] | None = None,
         open_in_browser: bool = False,
-        engine: str = "layerd",
+        engine: str = "hybrid",
         device_preference: str = "auto",
         sam2_checkpoint: str = "auto",
         allow_cross_engine_retry: bool = True,

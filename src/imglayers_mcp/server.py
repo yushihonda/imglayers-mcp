@@ -60,7 +60,7 @@ def _build_tool_specs(orchestrator: Orchestrator, store: ProjectStore) -> list[T
                 "required": ["input_uri"],
                 "properties": {
                     "input_uri": {"type": "string"},
-                    "engine": {"type": "string", "enum": ["layerd", "sam2", "hybrid"], "default": "layerd"},
+                    "engine": {"type": "string", "enum": ["layerd", "sam2", "hybrid"], "default": "hybrid"},
                     "device_preference": {"type": "string", "enum": ["auto", "cuda", "mps", "cpu"], "default": "auto"},
                     "sam2_checkpoint": {"type": "string", "enum": ["auto", "tiny", "small", "base_plus", "large"], "default": "auto"},
                     "allow_cross_engine_retry": {"type": "boolean", "default": True},

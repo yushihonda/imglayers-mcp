@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "imglayers-mcp"
-version = "0.2.0"
-description = "MCP server that decomposes design images into editable layers from a vision LLM's element list."
+version = "0.3.0"
+description = "MCP server that decomposes design images into editable layers using SAM2 + PaddleOCR + LayerD."
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "Apache-2.0" }
 authors = [{ name = "imglayers-mcp" }]
-keywords = ["mcp", "image", "layer", "decomposition", "vision-llm", "figma"]
+keywords = ["mcp", "image", "layer", "decomposition", "sam2", "paddleocr", "figma"]
 dependencies = [
     "mcp>=1.0.0",
     "pydantic>=2.6",
@@ -18,38 +18,22 @@ dependencies = [
     "pillow>=10.2",
     "typer>=0.12",
     "rich>=13.7",
+    "torch>=2.3.1",
+    "torchvision>=0.18.1",
+    "opencv-python>=4.8",
+    "scikit-image>=0.22",
+    "hydra-core>=1.3",
+    "iopath>=0.1.10",
+    "paddleocr>=2.7",
+    "sam-2 @ git+https://github.com/facebookresearch/sam2.git",
 ]
 
 [project.optional-dependencies]
-ocr = [
-    "paddleocr>=2.7",
-]
 export = [
     "psd-tools>=1.9",
 ]
-sam2 = [
-    "torch>=2.3.1",
-    "torchvision>=0.18.1",
-    "opencv-python>=4.8",
-    "scikit-image>=0.22",
-]
 grounded_sam2 = [
-    "torch>=2.3.1",
-    "torchvision>=0.18.1",
-    "opencv-python>=4.8",
-    "scikit-image>=0.22",
-]
-hybrid = [
-    "paddleocr>=2.7",
-    "psd-tools>=1.9",
-    "torch>=2.3.1",
-    "torchvision>=0.18.1",
-    "opencv-python>=4.8",
-    "scikit-image>=0.22",
-]
-recommended = [
-    "paddleocr>=2.7",
-    "psd-tools>=1.9",
+    "groundingdino-py>=0.4",
 ]
 dev = [
     "pytest>=8.0",
@@ -59,6 +43,7 @@ dev = [
 
 [project.scripts]
 imglayers-mcp = "imglayers_mcp.server:main"
+imglayers-download-weights = "imglayers_mcp.scripts.download_sam2_weights:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

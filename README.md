@@ -9,18 +9,36 @@ The **source of truth** is `manifest.json`. Layer assets are PNG files reference
 ## Install
 
 ```bash
+# 1. Install the package and all required dependencies
+#    (torch, torchvision, opencv-python, scikit-image, hydra-core, iopath,
+#     paddleocr, sam2 from facebookresearch/sam2)
 pip install -e .
-# Optional engines:
-pip install -e '.[ocr]'          # PaddleOCR for text promotion
-pip install -e '.[sam2]'         # SAM2 mask backbone (CUDA / MPS)
-pip install -e '.[grounded_sam2]' # Grounded-SAM-2 semantic retry (optional)
-pip install -e '.[hybrid]'       # ocr + sam2 together
-pip install -e '.[recommended]'  # PaddleOCR + psd-tools
+
+# 2. Download SAM2 checkpoints into ./weights/sam2/
+#    (override location with SAM2_WEIGHTS_DIR)
+imglayers-download-weights                # small + base_plus (~560 MB)
+imglayers-download-weights --all          # all four checkpoints (~1.2 GB)
+imglayers-download-weights --only tiny    # just the smallest one
+
+# 3. Optional extras
+pip install -e '.[export]'         # psd-tools for PSD export
+pip install -e '.[grounded_sam2]'  # Grounded-SAM-2 semantic retry
 ```
 
-SAM2 weights live under `./weights/sam2/` by default (override via
-`SAM2_WEIGHTS_DIR`). Download `sam2.1_hiera_{tiny,small,base_plus,large}.pt`
-from the official SAM2 release into that directory.
+### Checkpoint selection
+
+SAM2 picks a checkpoint based on the resolved runtime device:
+
+| Device | Default | Recommended |
+|---|---|---|
+| CUDA  | `base_plus` | `large` for HQ |
+| MPS (Apple Silicon) | `small` | `tiny` when memory is tight |
+| CPU   | `tiny`  | debug only |
+
+Override explicitly:
+```json
+{"engine": "hybrid", "sam2_checkpoint": "base_plus", "device_preference": "cuda"}
+```
 
 ## Run
 
