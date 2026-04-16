@@ -1,0 +1,971 @@
+{
+  "version": "0.1.0",
+  "projectId": "proj_20260416_294",
+  "createdAt": "2026-04-16T05:53:59Z",
+  "source": {
+    "inputUri": "/Users/hondayushi/workspaece/mcp/imglayers-mcp/eval/images/07_app_screen.png",
+    "originalFileName": "07_app_screen.png",
+    "mimeType": "image/png",
+    "sha256": "b54a80ad466da05621c8f62de0338398d1cf76e254bf2548965d0b033770dfd5",
+    "width": 400,
+    "height": 800
+  },
+  "canvas": {
+    "width": 400,
+    "height": 800,
+    "background": "#FBFBFC"
+  },
+  "pipeline": {
+    "imageType": "poster",
+    "engines": {
+      "decomposition": "layerd",
+      "ocr": "paddleocr",
+      "fontClassifier": "known-fonts",
+      "visionReview": "disabled"
+    },
+    "detailLevel": "high",
+    "preprocessing": {
+      "orientationCorrection": false,
+      "unwarping": false
+    },
+    "timingsMs": {
+      "image_type_ms": 5.742416000430239,
+      "ocr_ms": 1601.648625000962,
+      "decompose_ms": 368.2732919987757,
+      "text_reconstruction_ms": 18.10858300086693
+    }
+  },
+  "stats": {
+    "totalLayers": 15,
+    "textLayers": 8,
+    "imageLayers": 7,
+    "vectorLikeLayers": 0,
+    "lowConfidenceLayers": 0
+  },
+  "assets": {
+    "original": "meta/original.png",
+    "preview": "preview/preview.png",
+    "layersDir": "layers"
+  },
+  "layers": [
+    {
+      "id": "bg_001",
+      "name": "background",
+      "type": "image",
+      "semanticRole": "background",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 400.0,
+        "height": 800.0
+      },
+      "zIndex": 0,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/bg_001.png",
+        "format": "png",
+        "hasAlpha": false
+      },
+      "style": {
+        "dominantColors": [
+          "#F8F8F8",
+          "#F8B8C8",
+          "#88C8E8",
+          "#282828"
+        ],
+        "fill": {
+          "type": "linear-gradient",
+          "angle": 90.0,
+          "stops": [
+            {
+              "offset": 0.0,
+              "color": "#FCFCFC"
+            },
+            {
+              "offset": 1.0,
+              "color": "#7E7E7F"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.6
+    },
+    {
+      "id": "card_001",
+      "name": "card",
+      "type": "image",
+      "semanticRole": "card",
+      "bbox": {
+        "x": 19.0,
+        "y": 99.0,
+        "width": 363.0,
+        "height": 253.0
+      },
+      "zIndex": 1,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/card_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "style": {
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Inter",
+          "Hiragino Sans",
+          "Helvetica",
+          "Arial"
+        ],
+        "fontWeight": 700,
+        "color": "#242424",
+        "textAlign": "left",
+        "reconstructionConfidence": 0.326,
+        "dominantColors": [
+          "#F8F8F8",
+          "#F8B8C8",
+          "#282828",
+          "#E83848"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.55,
+      "codegenHints": {
+        "componentCandidate": "Card",
+        "containerLikely": true
+      }
+    },
+    {
+      "id": "card_002",
+      "name": "card",
+      "type": "image",
+      "semanticRole": "card",
+      "bbox": {
+        "x": 19.0,
+        "y": 379.0,
+        "width": 363.0,
+        "height": 253.0
+      },
+      "zIndex": 2,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/card_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "style": {
+        "fontFamily": "Helvetica",
+        "fontCandidates": [
+          "Helvetica",
+          "Arial",
+          "Inter",
+          "Hiragino Sans",
+          "Arial"
+        ],
+        "fontWeight": 400,
+        "color": "#242424",
+        "textAlign": "left",
+        "reconstructionConfidence": 0.287,
+        "dominantColors": [
+          "#F8F8F8",
+          "#88C8E8",
+          "#282828",
+          "#E83848"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.55,
+      "codegenHints": {
+        "componentCandidate": "Card",
+        "containerLikely": true
+      }
+    },
+    {
+      "id": "image_001",
+      "name": "illustration",
+      "type": "image",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 30.0,
+        "y": 390.0,
+        "width": 341.0,
+        "height": 131.0
+      },
+      "zIndex": 3,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "style": {
+        "fontFamily": "Inter",
+        "fontCandidates": [
+          "Inter",
+          "Arial",
+          "Helvetica",
+          "Hiragino Sans",
+          "Arial"
+        ],
+        "fontWeight": 400,
+        "color": "#E43C3C",
+        "textAlign": "left",
+        "reconstructionConfidence": 0.241,
+        "dominantColors": [
+          "#88C8E8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.6,
+      "children": [
+        "container_001"
+      ]
+    },
+    {
+      "id": "image_002",
+      "name": "illustration",
+      "type": "image",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 30.0,
+        "y": 110.0,
+        "width": 341.0,
+        "height": 131.0
+      },
+      "zIndex": 4,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "style": {
+        "fontFamily": "Helvetica",
+        "fontCandidates": [
+          "Helvetica",
+          "Arial",
+          "Hiragino Sans",
+          "Inter",
+          "Arial"
+        ],
+        "fontWeight": 400,
+        "color": "#242424",
+        "textAlign": "left",
+        "reconstructionConfidence": 0.648,
+        "dominantColors": [
+          "#F8B8C8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.6,
+      "children": [
+        "container_002"
+      ]
+    },
+    {
+      "id": "card_003",
+      "name": "card",
+      "type": "image",
+      "semanticRole": "card",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 400.0,
+        "height": 82.0
+      },
+      "zIndex": 5,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/card_003.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "style": {
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Inter",
+          "Helvetica",
+          "Hiragino Sans",
+          "Arial"
+        ],
+        "fontWeight": 700,
+        "color": "#E43C3C",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.257,
+        "dominantColors": [
+          "#F8F8F8",
+          "#282828",
+          "#E8E8E8",
+          "#B8B8B8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.55,
+      "codegenHints": {
+        "componentCandidate": "Card",
+        "containerLikely": true
+      }
+    },
+    {
+      "id": "card_004",
+      "name": "card",
+      "type": "image",
+      "semanticRole": "card",
+      "bbox": {
+        "x": 0.0,
+        "y": 719.0,
+        "width": 400.0,
+        "height": 81.0
+      },
+      "zIndex": 6,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/card_004.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "style": {
+        "fontFamily": "Inter",
+        "fontCandidates": [
+          "Inter",
+          "Helvetica",
+          "Arial",
+          "Hiragino Sans",
+          "Arial"
+        ],
+        "fontWeight": 400,
+        "color": "#6C6C84",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.26,
+        "dominantColors": [
+          "#F8F8F8",
+          "#E8E8E8",
+          "#687878",
+          "#D8D8D8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.55,
+      "codegenHints": {
+        "componentCandidate": "Card",
+        "containerLikely": true
+      }
+    },
+    {
+      "id": "headline_001",
+      "name": "headline",
+      "type": "text",
+      "semanticRole": "headline",
+      "bbox": {
+        "x": 10.0,
+        "y": 17.0,
+        "width": 113.0,
+        "height": 50.0
+      },
+      "zIndex": 7,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/headline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Explore",
+        "lines": [
+          {
+            "text": "Explore",
+            "bbox": {
+              "x": 10.0,
+              "y": 17.0,
+              "width": 113.0,
+              "height": 50.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Helvetica",
+        "fontCandidates": [
+          "Helvetica",
+          "Inter",
+          "Arial",
+          "Arial",
+          "Hiragino Sans"
+        ],
+        "fontWeight": 400,
+        "fontSize": 45.0,
+        "color": "#3C3C3C",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.243,
+        "dominantColors": [
+          "#F8F8F8",
+          "#282828",
+          "#E8E8E8"
+        ],
+        "text_color": "#242424"
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "container_003"
+      ]
+    },
+    {
+      "id": "body_001",
+      "name": "body_text",
+      "type": "text",
+      "semanticRole": "headline",
+      "bbox": {
+        "x": 24.0,
+        "y": 252.0,
+        "width": 164.0,
+        "height": 32.0
+      },
+      "zIndex": 8,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/body_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Beach Paradise",
+        "lines": [
+          {
+            "text": "Beach Paradise",
+            "bbox": {
+              "x": 24.0,
+              "y": 252.0,
+              "width": 164.0,
+              "height": 32.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Helvetica",
+          "Hiragino Sans",
+          "Inter",
+          "Arial"
+        ],
+        "fontWeight": 700,
+        "fontSize": 28.8,
+        "color": "#6C6C84",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.226,
+        "dominantColors": [
+          "#F8F8F8",
+          "#282828",
+          "#383838"
+        ],
+        "text_color": "#242424"
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "codegenHints": {
+        "componentCandidate": "Paragraph",
+        "textRole": "paragraph"
+      },
+      "children": [
+        "textgroup_001",
+        "container_002"
+      ]
+    },
+    {
+      "id": "button_001",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 23.0,
+        "y": 280.0,
+        "width": 98.0,
+        "height": 32.0
+      },
+      "zIndex": 9,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "From $299",
+        "lines": [
+          {
+            "text": "From $299",
+            "bbox": {
+              "x": 23.0,
+              "y": 280.0,
+              "width": 98.0,
+              "height": 32.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 400,
+        "fontSize": 28.8,
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#E83848",
+          "#F8C8C8"
+        ],
+        "text_color": "#E43C3C"
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      },
+      "children": [
+        "textgroup_001",
+        "container_002"
+      ]
+    },
+    {
+      "id": "body_002",
+      "name": "body_text",
+      "type": "text",
+      "semanticRole": "headline",
+      "bbox": {
+        "x": 26.0,
+        "y": 535.0,
+        "width": 177.0,
+        "height": 26.0
+      },
+      "zIndex": 10,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/body_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Mountain Retreat",
+        "lines": [
+          {
+            "text": "Mountain Retreat",
+            "bbox": {
+              "x": 26.0,
+              "y": 535.0,
+              "width": 177.0,
+              "height": 26.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 400,
+        "fontSize": 23.4,
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#282828",
+          "#585858"
+        ],
+        "text_color": "#242424"
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "codegenHints": {
+        "componentCandidate": "Paragraph",
+        "textRole": "paragraph"
+      },
+      "children": [
+        "textgroup_002",
+        "container_001"
+      ]
+    },
+    {
+      "id": "button_002",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 24.0,
+        "y": 563.0,
+        "width": 97.0,
+        "height": 27.0
+      },
+      "zIndex": 11,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "From $399",
+        "lines": [
+          {
+            "text": "From $399",
+            "bbox": {
+              "x": 24.0,
+              "y": 563.0,
+              "width": 97.0,
+              "height": 27.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 400,
+        "fontSize": 24.3,
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#E83848",
+          "#F8C8C8"
+        ],
+        "text_color": "#E43C3C"
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      },
+      "children": [
+        "textgroup_002",
+        "container_001"
+      ]
+    },
+    {
+      "id": "button_003",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 33.0,
+        "y": 737.0,
+        "width": 50.0,
+        "height": 26.0
+      },
+      "zIndex": 12,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_003.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Home",
+        "lines": [
+          {
+            "text": "Home",
+            "bbox": {
+              "x": 33.0,
+              "y": 737.0,
+              "width": 50.0,
+              "height": 26.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 400,
+        "fontSize": 23.4,
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#687878",
+          "#788888"
+        ],
+        "text_color": "#6C6C84"
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      },
+      "children": [
+        "container_004"
+      ]
+    },
+    {
+      "id": "button_004",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 285.0,
+        "y": 738.0,
+        "width": 48.0,
+        "height": 24.0
+      },
+      "zIndex": 13,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_004.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Profile",
+        "lines": [
+          {
+            "text": "Profile",
+            "bbox": {
+              "x": 285.0,
+              "y": 738.0,
+              "width": 48.0,
+              "height": 24.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 400,
+        "fontSize": 21.6,
+        "textAlign": "right",
+        "dominantColors": [
+          "#F8F8F8",
+          "#687878",
+          "#E8E8E8"
+        ],
+        "text_color": "#6C6C84"
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      },
+      "children": [
+        "container_004"
+      ]
+    },
+    {
+      "id": "button_005",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 156.0,
+        "y": 741.0,
+        "width": 51.0,
+        "height": 19.0
+      },
+      "zIndex": 14,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_005.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Search",
+        "lines": [
+          {
+            "text": "Search",
+            "bbox": {
+              "x": 156.0,
+              "y": 741.0,
+              "width": 51.0,
+              "height": 19.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 400,
+        "fontSize": 17.1,
+        "textAlign": "center",
+        "dominantColors": [
+          "#F8F8F8",
+          "#E8E8E8",
+          "#383838"
+        ],
+        "text_color": "#3C3C3C"
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      },
+      "children": [
+        "container_004"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "textgroup_001",
+      "name": "Beach Paradise\nFrom $299",
+      "layerIds": [
+        "body_001",
+        "button_001"
+      ]
+    },
+    {
+      "id": "textgroup_002",
+      "name": "Mountain Retreat\nFrom $399",
+      "layerIds": [
+        "body_002",
+        "button_002"
+      ]
+    },
+    {
+      "id": "container_001",
+      "name": "card",
+      "layerIds": [
+        "card_002",
+        "image_001",
+        "body_002",
+        "button_002"
+      ]
+    },
+    {
+      "id": "container_002",
+      "name": "card",
+      "layerIds": [
+        "card_001",
+        "image_002",
+        "body_001",
+        "button_001"
+      ]
+    },
+    {
+      "id": "container_003",
+      "name": "card",
+      "layerIds": [
+        "card_003",
+        "headline_001"
+      ]
+    },
+    {
+      "id": "container_004",
+      "name": "card",
+      "layerIds": [
+        "card_004",
+        "button_003",
+        "button_004",
+        "button_005"
+      ]
+    }
+  ],
+  "warnings": [],
+  "exports": {
+    "manifest": "manifest.json",
+    "preview": "preview/preview.png"
+  }
+}

@@ -37,6 +37,7 @@ def estimate_style(
     canvas_width: int | None = None,
     line_bbox_x: float | None = None,
     line_bbox_w: float | None = None,
+    semantic_role: str | None = None,
 ) -> ReconstructedTextStyle:
     if classifier is None:
         classifier = HeuristicBackend()
@@ -58,9 +59,13 @@ def estimate_style(
     # Weight: rough stroke density.
     weight = _estimate_weight(crop_rgb, color)
 
-    # Alignment: bbox center relative to canvas.
-    text_align: str | None = None
-    if canvas_width and line_bbox_x is not None and line_bbox_w is not None:
+    # Role-aware weight/alignment priors.
+    weight, text_align_prior = _apply_role_priors(semantic_role, weight, crop_rgb)
+
+    # Alignment: bbox center relative to canvas (overridden by role prior
+    # when role is "button" or "badge" which are typically centered).
+    text_align: str | None = text_align_prior
+    if text_align is None and canvas_width and line_bbox_x is not None and line_bbox_w is not None:
         cx = line_bbox_x + line_bbox_w / 2
         rel = cx / canvas_width
         if rel < 0.4:
@@ -72,6 +77,11 @@ def estimate_style(
 
     best = candidates[0] if candidates else None
     confidence = best.score if best else 0.1
+    # Role-aware confidence: boost when font choice matches role prior.
+    if semantic_role in ("headline", "subheadline") and best and best.weight >= 600:
+        confidence = min(1.0, confidence + 0.1)
+    if semantic_role == "body_text" and best and 400 <= best.weight <= 500:
+        confidence = min(1.0, confidence + 0.1)
 
     return ReconstructedTextStyle(
         font_family=best.family if best else None,
@@ -82,6 +92,30 @@ def estimate_style(
         text_align=text_align,
         reconstruction_confidence=round(confidence, 3),
     )
+
+
+def _apply_role_priors(
+    role: str | None, base_weight: int, crop: np.ndarray
+) -> tuple[int, str | None]:
+    """Adjust weight + default alignment based on semantic role."""
+    if role in ("headline", "subheadline"):
+        # Headlines are usually bold; bias up unless stroke density is very low.
+        weight = max(base_weight, 700 if role == "headline" else 600)
+        return weight, None
+    if role == "button":
+        # Button labels: medium/bold and centered.
+        weight = max(base_weight, 600)
+        return weight, "center"
+    if role == "badge":
+        weight = max(base_weight, 700)
+        return weight, "center"
+    if role == "body_text":
+        # Body stays near the measured value (usually 400).
+        return base_weight, None
+    if role == "logo":
+        weight = max(base_weight, 700)
+        return weight, None
+    return base_weight, None
 
 
 def _estimate_weight(crop: np.ndarray, text_color: str | None) -> int:

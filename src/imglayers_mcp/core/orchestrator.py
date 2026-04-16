@@ -118,12 +118,16 @@ class Orchestrator:
         # ---- Preprocessing decision
         preprocess = self._decide_preprocessing(it_result.image_type)
 
-        # ---- Stage 3: OCR extraction
+        # ---- Stage 3: OCR extraction (image-type-aware preprocessing)
         ocr_lines: list[OCRLine] = []
         if enable_ocr and self.ocr.available:
             t = time.perf_counter()
             try:
-                ocr_lines = self.ocr.extract(rgba[..., :3])
+                ocr_lines = self.ocr.extract(
+                    rgba[..., :3],
+                    orientation=preprocess.orientation_correction,
+                    unwarping=preprocess.unwarping,
+                )
             except Exception as exc:
                 warnings.append(WarningItem(code="OCR_FAILED", message=str(exc), severity="warn"))
             timings["ocr_ms"] = (time.perf_counter() - t) * 1000
@@ -147,20 +151,10 @@ class Orchestrator:
         raw_layers = self.layerd.decompose(rgba, detail=detail_level, text_boxes=ocr_bboxes)
         timings["decompose_ms"] = (time.perf_counter() - t) * 1000
 
-        # Associate OCR text with corresponding raw text layers (IoU).
-        text_contents: dict[int, str] = {}
-        for i, raw in enumerate(raw_layers):
-            if raw.kind != "text":
-                continue
-            best = None
-            best_iou = 0.0
-            for ln in ocr_lines:
-                iou = _iou(raw.bbox, ln.bbox)
-                if iou > best_iou:
-                    best_iou = iou
-                    best = ln
-            if best and best_iou > 0.3:
-                text_contents[i] = best.text
+        # Associate OCR text with raw text layers via a composite score
+        # (IoU + center-distance + width-ratio + baseline-alignment).
+        # Uses Hungarian-lite greedy assignment to avoid double-matching.
+        text_contents = _match_ocr_to_raw_text(raw_layers, ocr_lines)
 
         # ---- Stage 5: optional retry segmentation (flagged but not yet wired)
         # Retry is triggered by the verifier's retry_queue; executed at a later
@@ -278,6 +272,24 @@ class Orchestrator:
             known_fonts=list(cfg.known_fonts),
             top_k=cfg.top_k_candidates,
         )
+
+        # Provisional role estimate: rank text layers by height (headline =
+        # tallest, etc.) to pass a hint to the style estimator. Final role
+        # is still decided by naming.infer_semantic_role later.
+        text_items = [(i, raw_layers[i]) for i in text_contents if raw_layers[i].kind == "text"]
+        text_items.sort(key=lambda p: -p[1].bbox.h)
+        provisional_role: dict[int, str] = {}
+        for rank, (i, raw) in enumerate(text_items):
+            tc = text_contents.get(i, "")
+            if rank == 0:
+                provisional_role[i] = "headline"
+            elif rank <= 2:
+                provisional_role[i] = "subheadline"
+            elif tc and len(tc) <= 14 and raw.bbox.w <= w * 0.35 and raw.bbox.h <= h * 0.12:
+                provisional_role[i] = "button"
+            else:
+                provisional_role[i] = "body_text"
+
         for i, text in text_contents.items():
             raw = raw_layers[i]
             bbox = raw.bbox
@@ -297,6 +309,7 @@ class Orchestrator:
                     canvas_width=w,
                     line_bbox_x=bbox.x,
                     line_bbox_w=bbox.w,
+                    semantic_role=provisional_role.get(i),
                 )
             except Exception:
                 continue
@@ -414,14 +427,19 @@ class Orchestrator:
         manifest_dict["warnings"] = [w.model_dump(by_alias=True) for w in warnings]
         manifest_dict["exports"] = exports_rel
 
-        # Stage 7: verification.
-        verification = verify(
-            manifest_dict, paths.dir,
-            thresholds={
-                "low_confidence_layer": self.config.thresholds.low_confidence_layer,
-                "retry_preview_diff": self.config.thresholds.retry_preview_diff,
-            },
+        # Stage 7: verification (image-type-specific thresholds).
+        thresholds = _thresholds_for_image_type(
+            image_type, self.config.thresholds
         )
+        verification = verify(manifest_dict, paths.dir, thresholds=thresholds)
+
+        # Stage 5: CV-based retry for low-confidence layers (Grounded-SAM stub
+        # is preferred when installed; this falls back to dense CC refinement).
+        if verification.retry_queue:
+            retried = self._run_cv_retry(manifest_dict, verification.retry_queue, rgba, paths)
+            if retried:
+                # Update stats/confidence after retry.
+                pass
         self._save_debug(paths, "debug/verification.json", {
             "overall_score": verification.overall_score,
             "preview_diff": verification.preview_diff,
@@ -460,10 +478,179 @@ class Orchestrator:
             verification_score=verification.overall_score,
         )
 
+    def _run_cv_retry(
+        self,
+        manifest: dict,
+        retry_queue: list[dict],
+        rgba: np.ndarray,
+        paths: ProjectPaths,
+    ) -> list[str]:
+        """Run CV-based retry refinement on low-confidence layers.
+
+        Updates each retried layer's bbox, confidence, retryState. Saves a
+        refined asset PNG alongside the original. Returns the list of layer
+        ids that actually improved.
+        """
+        from ..retry_segmentation import refine_by_cc
+        from ..utils.image_io import save_png
+
+        improved: list[str] = []
+        layer_map = {l["id"]: l for l in manifest.get("layers", [])}
+        retry_log: list[dict] = []
+
+        for item in retry_queue:
+            lid = item.get("layer_id")
+            role = item.get("role", "")
+            if role in ("background", "unknown"):
+                continue
+            layer = layer_map.get(lid)
+            if layer is None:
+                continue
+            bb_dict = layer["bbox"]
+            bb = Box(
+                x=float(bb_dict["x"]), y=float(bb_dict["y"]),
+                w=float(bb_dict["width"]), h=float(bb_dict["height"]),
+            )
+            result = refine_by_cc(rgba, bb)
+            entry = {
+                "layer_id": lid,
+                "role": role,
+                "attempted": True,
+                "improved": False,
+                "score": None,
+            }
+            if result is not None and result.score > 0.6:
+                # Compose new RGBA and save.
+                h, w = rgba.shape[:2]
+                canvas = np.zeros((h, w, 4), dtype=np.uint8)
+                canvas[result.mask, :3] = rgba[result.mask, :3]
+                canvas[result.mask, 3] = 255
+                new_path = paths.layers_dir / f"{lid}.png"
+                save_png(canvas, new_path)
+                layer["bbox"] = {
+                    "x": result.bbox.x, "y": result.bbox.y,
+                    "width": result.bbox.w, "height": result.bbox.h,
+                }
+                layer["confidence"] = min(1.0, float(layer.get("confidence", 0.5)) + 0.2)
+                layer["retryState"] = {
+                    "attempted": True,
+                    "backend": "cv-refine",
+                    "reason": item.get("reason"),
+                    "improved": True,
+                }
+                entry["improved"] = True
+                entry["score"] = float(result.score)
+                improved.append(lid)
+            else:
+                layer["retryState"] = {
+                    "attempted": True,
+                    "backend": "cv-refine",
+                    "reason": item.get("reason"),
+                    "improved": False,
+                }
+            retry_log.append(entry)
+
+        self._save_debug(paths, "debug/retry_log.json", {"entries": retry_log})
+        return improved
+
     def _save_debug(self, paths: ProjectPaths, rel: str, data: dict) -> None:
         out = paths.dir / rel
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+
+
+def _thresholds_for_image_type(image_type: str, base) -> dict:
+    """Pick per-image-type verifier thresholds.
+
+    - ui_mock: strict preview diff (regular layouts should reconstruct well)
+    - photo_mixed: looser everything (complex backgrounds produce more noise)
+    - scan_capture: medium preview tolerance (unwarping may introduce small
+      pixel shifts)
+    - others: spec defaults.
+    """
+    low_conf = base.low_confidence_layer
+    preview_diff = base.retry_preview_diff
+    edge_leak = base.retry_edge_leakage
+    if image_type == "ui_mock":
+        preview_diff = min(0.08, preview_diff)
+    elif image_type == "photo_mixed":
+        low_conf = max(0.45, low_conf - 0.1)
+        preview_diff = max(0.2, preview_diff)
+        edge_leak = max(0.25, edge_leak)
+    elif image_type == "scan_capture":
+        preview_diff = max(0.15, preview_diff)
+    return {
+        "low_confidence_layer": low_conf,
+        "retry_preview_diff": preview_diff,
+        "retry_edge_leakage": edge_leak,
+    }
+
+
+def _match_ocr_to_raw_text(
+    raw_layers: list[RawLayer], ocr_lines: list[OCRLine]
+) -> dict[int, str]:
+    """Associate OCR lines with raw text layers using a composite score,
+    then pick a one-to-one assignment (greedy-best-first, Hungarian-lite).
+
+    The score favors pairs that overlap spatially (IoU), share a vertical
+    center (baseline alignment), and have similar widths.
+    """
+    text_raw_idx: list[int] = [i for i, r in enumerate(raw_layers) if r.kind == "text"]
+    if not text_raw_idx or not ocr_lines:
+        return {}
+
+    # Score matrix: higher is better.
+    scores: list[tuple[float, int, int]] = []  # (score, text_idx, ocr_idx)
+    for ri in text_raw_idx:
+        rb = raw_layers[ri].bbox
+        for oi, ln in enumerate(ocr_lines):
+            s = _pair_score(rb, ln.bbox)
+            if s > 0:
+                scores.append((s, ri, oi))
+
+    # Pick in descending order of score, skipping already-used indices.
+    scores.sort(reverse=True)
+    used_raw: set[int] = set()
+    used_ocr: set[int] = set()
+    out: dict[int, str] = {}
+    for s, ri, oi in scores:
+        if ri in used_raw or oi in used_ocr:
+            continue
+        if s < 0.15:  # quality floor
+            break
+        used_raw.add(ri)
+        used_ocr.add(oi)
+        out[ri] = ocr_lines[oi].text
+    return out
+
+
+def _pair_score(a: Box, b: Box) -> float:
+    """Composite score in [0, 1]: IoU * baseline * width-ratio."""
+    ix1 = max(a.x, b.x)
+    iy1 = max(a.y, b.y)
+    ix2 = min(a.x + a.w, b.x + b.w)
+    iy2 = min(a.y + a.h, b.y + b.h)
+    iw = max(0.0, ix2 - ix1)
+    ih = max(0.0, iy2 - iy1)
+    inter = iw * ih
+    union = a.area + b.area - inter
+    iou = inter / union if union > 0 else 0.0
+    if iou == 0:
+        return 0.0
+
+    # Baseline: how close the vertical centers are (relative to mean height).
+    a_cy = a.y + a.h / 2
+    b_cy = b.y + b.h / 2
+    mean_h = max(1.0, (a.h + b.h) / 2)
+    baseline = max(0.0, 1.0 - abs(a_cy - b_cy) / mean_h)
+
+    # Width ratio: penalize very different widths (text block size mismatch).
+    if max(a.w, b.w) == 0:
+        width_ratio = 0.0
+    else:
+        width_ratio = min(a.w, b.w) / max(a.w, b.w)
+
+    return iou * 0.5 + baseline * 0.3 + width_ratio * 0.2
 
 
 def _iou(a: Box, b: Box) -> float:

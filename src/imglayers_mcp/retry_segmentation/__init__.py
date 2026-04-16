@@ -9,9 +9,11 @@ from .grounded_sam_engine import (
     RefinedMaskResult,
     RetrySegmentationBackend,
 )
+from .cv_refinement import refine_by_cc
 
 __all__ = [
     "GroundedSAMEngine",
     "RefinedMaskResult",
     "RetrySegmentationBackend",
+    "refine_by_cc",
 ]

@@ -22,52 +22,75 @@ class OCRLine:
 
 
 class PaddleOCRAdapter:
+    """PaddleOCR wrapper with optional document preprocessing (orientation +
+    unwarping). Instances are lazily initialized and cached per preprocess
+    configuration — the same process can hold both the "flat design" engine
+    and the "scan capture" engine.
+    """
+
     def __init__(self, lang: str = "japan") -> None:
         self._lang = lang
-        self._ocr: Any = None
-        self._available = False
+        # key: (orientation, unwarping) -> PaddleOCR instance
+        self._engines: dict[tuple[bool, bool], Any] = {}
         self._init_error: str | None = None
 
-    def _ensure(self) -> None:
-        if self._ocr is not None or self._init_error is not None:
-            return
+    def _ensure(self, orientation: bool = False, unwarping: bool = False) -> Any:
+        key = (orientation, unwarping)
+        if key in self._engines:
+            return self._engines[key]
+        if self._init_error is not None:
+            return None
         try:
             from paddleocr import PaddleOCR  # type: ignore
-            # Note: we keep doc_orientation_classify + doc_unwarping OFF because
-            # they can subtly warp bboxes on flat design images (introducing
-            # e.g. x=0 offsets). Turn them on only via env flag if needed.
             try:
-                self._ocr = PaddleOCR(
-                    use_doc_orientation_classify=False,
-                    use_doc_unwarping=False,
+                engine = PaddleOCR(
+                    use_doc_orientation_classify=orientation,
+                    use_doc_unwarping=unwarping,
                     use_textline_orientation=True,
                     lang=self._lang,
                 )
             except TypeError:
                 try:
-                    self._ocr = PaddleOCR(use_textline_orientation=True, lang=self._lang)
+                    engine = PaddleOCR(use_textline_orientation=True, lang=self._lang)
                 except TypeError:
-                    self._ocr = PaddleOCR(use_angle_cls=True, lang=self._lang, show_log=False)
-            self._available = True
-            log.info("PaddleOCR adapter ready (lang=%s)", self._lang)
+                    engine = PaddleOCR(use_angle_cls=True, lang=self._lang, show_log=False)
+            self._engines[key] = engine
+            log.info(
+                "PaddleOCR engine ready (lang=%s, orientation=%s, unwarping=%s)",
+                self._lang, orientation, unwarping,
+            )
+            return engine
         except Exception as exc:
             self._init_error = str(exc)
             log.info("PaddleOCR unavailable: %s", exc)
+            return None
 
     @property
     def available(self) -> bool:
-        self._ensure()
-        return self._available
+        # Probe the default (no-preprocess) engine.
+        return self._ensure(False, False) is not None
 
-    def extract(self, rgb: np.ndarray) -> list[OCRLine]:
-        self._ensure()
-        if not self._available:
+    def extract(
+        self,
+        rgb: np.ndarray,
+        *,
+        orientation: bool = False,
+        unwarping: bool = False,
+    ) -> list[OCRLine]:
+        """Run OCR with optional orientation classification and unwarping.
+
+        For flat design images (banners, UI mocks) keep both off — the
+        geometric correction subtly shifts bboxes on already-flat inputs.
+        For scan/capture images, turn them on to fix rotation/distortion.
+        """
+        ocr = self._ensure(orientation, unwarping)
+        if ocr is None:
             return []
         try:
             try:
-                result = self._ocr.predict(rgb)
+                result = ocr.predict(rgb)
             except (AttributeError, TypeError):
-                result = self._ocr.ocr(rgb, cls=True)
+                result = ocr.ocr(rgb, cls=True)
         except Exception as exc:
             log.warning("PaddleOCR extract failed: %s", exc)
             return []
