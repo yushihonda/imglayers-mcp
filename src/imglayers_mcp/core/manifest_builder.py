@@ -110,13 +110,12 @@ def build_manifest(
         asset_rel = f"layers/{layer_id}.png"
         asset_abs = project_paths.layer_path(layer_id)
 
-        # If this is a container (card/button/badge) that wraps text, inpaint
-        # the text regions with the container's background color so the saved
-        # RGBA is a "pure" container shape without text holes.
+        # WS4: container hole-fill via background model.
         rgba_to_save = layer.rgba
         if role in ("card", "button", "badge") and layer.kind != "text" and text_bboxes:
-            rgba_to_save = _inpaint_text_holes(
-                layer.rgba, layer.bbox, text_bboxes, canvas.width, canvas.height
+            rgba_to_save = _inpaint_text_holes_v2(
+                layer.rgba, layer.bbox, text_bboxes, canvas.width, canvas.height,
+                original_rgb=original_rgb,
             )
 
         _save_layer_png(rgba_to_save, asset_abs)
@@ -234,6 +233,90 @@ def build_manifest(
         exports=exports or ExportIndex(manifest="manifest.json"),
     )
     return manifest
+
+
+def _inpaint_text_holes_v2(
+    rgba: np.ndarray,
+    container_bbox: Box,
+    text_bboxes: list[Box],
+    canvas_w: int,
+    canvas_h: int,
+    original_rgb: np.ndarray,
+) -> np.ndarray:
+    """Background-model-aware hole fill (WS4).
+
+    Classifies the container's bg (solid / linear / radial / texture / photo)
+    and uses the matching fill strategy. Falls back to texture-tile on
+    low-confidence classifications.
+    """
+    from .background_model import classify_region, fill_hole
+
+    h, w = rgba.shape[:2]
+    out = rgba.copy()
+
+    # Crop the container region from the ORIGINAL (full source) so the bg
+    # classifier sees the actual surrounding colors — the layer's alpha-cut
+    # rgba can be mostly transparent.
+    cx1 = max(0, int(round(container_bbox.x)))
+    cy1 = max(0, int(round(container_bbox.y)))
+    cx2 = min(w, int(round(container_bbox.x + container_bbox.w)))
+    cy2 = min(h, int(round(container_bbox.y + container_bbox.h)))
+    if cx2 <= cx1 or cy2 <= cy1:
+        return out
+
+    container_rgb = original_rgb[cy1:cy2, cx1:cx2]
+
+    # Build a "clean bg mask" for classification: container pixels that
+    # are NOT inside a text bbox.
+    mask_bg = np.ones(container_rgb.shape[:2], dtype=bool)
+    for tb in text_bboxes:
+        if not _contains(container_bbox, tb):
+            continue
+        tx1 = max(0, int(round(tb.x - container_bbox.x)))
+        ty1 = max(0, int(round(tb.y - container_bbox.y)))
+        tx2 = min(container_rgb.shape[1], int(round(tb.x + tb.w - container_bbox.x)))
+        ty2 = min(container_rgb.shape[0], int(round(tb.y + tb.h - container_bbox.y)))
+        if tx2 > tx1 and ty2 > ty1:
+            mask_bg[ty1:ty2, tx1:tx2] = False
+
+    if not mask_bg.any():
+        return out
+
+    # Build classification region by flattening (background pixels only).
+    bg_pixels_flat = container_rgb[mask_bg]
+    # We pass a fabricated 2D view: reshape to 1xN for the classifier.
+    # classify_region expects HxWx3, so give it the full container with bg
+    # pixels; text regions will leak but we compensate by ignoring std
+    # contributions (classifier uses medians / edges on the sample).
+    sample = container_rgb.copy()
+    # Replace text-region with median of bg pixels so classifier isn't fooled.
+    med = np.median(bg_pixels_flat.reshape(-1, 3), axis=0).astype(np.uint8)
+    sample[~mask_bg] = med
+    model = classify_region(sample)
+
+    # Fill each text bbox using the model.
+    for tb in text_bboxes:
+        if not _contains(container_bbox, tb):
+            continue
+        tx1 = max(0, int(round(tb.x)))
+        ty1 = max(0, int(round(tb.y)))
+        tx2 = min(w, int(round(tb.x + tb.w)))
+        ty2 = min(h, int(round(tb.y + tb.h)))
+        if tx2 <= tx1 or ty2 <= ty1:
+            continue
+        hole_in_container = np.zeros_like(mask_bg)
+        hole_in_container[
+            max(0, ty1 - cy1):min(mask_bg.shape[0], ty2 - cy1),
+            max(0, tx1 - cx1):min(mask_bg.shape[1], tx2 - cx1),
+        ] = True
+        filled_container = fill_hole(model, container_rgb, hole_in_container)
+        out[ty1:ty2, tx1:tx2, :3] = filled_container[
+            max(0, ty1 - cy1):min(filled_container.shape[0], ty2 - cy1),
+            max(0, tx1 - cx1):min(filled_container.shape[1], tx2 - cx1),
+        ]
+        out[ty1:ty2, tx1:tx2, 3] = 255
+
+    return out
 
 
 def _inpaint_text_holes(

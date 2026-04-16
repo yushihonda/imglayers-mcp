@@ -25,6 +25,11 @@ class ReconstructedTextStyle:
     color: str | None = None
     text_align: str | None = None
     reconstruction_confidence: float = 0.0
+    # WS2: 2-pass fitting diagnostics
+    fit_score_pass1: float | None = None
+    fit_score_pass2: float | None = None
+    style_confidence: float | None = None
+    pass2_updated: bool = False
 
 
 def estimate_style(
@@ -92,6 +97,75 @@ def estimate_style(
         text_align=text_align,
         reconstruction_confidence=round(confidence, 3),
     )
+
+
+def refine_with_final_role(
+    *,
+    pass1_style: ReconstructedTextStyle,
+    crop_rgb: np.ndarray,
+    text: str,
+    cfg: FontConfig,
+    classifier: FontClassifier | None,
+    final_role: str | None,
+) -> ReconstructedTextStyle:
+    """Pass-2 fitting: re-rank candidates using the confirmed semantic role.
+
+    Keeps the pass-1 result when pass-2's best candidate does not improve
+    the rerender fit score.
+    """
+    if classifier is None:
+        classifier = HeuristicBackend()
+
+    # Re-rank.
+    try:
+        candidates = classifier.rank_candidates(crop_rgb, text, cfg)
+    except Exception:
+        candidates = []
+
+    # Apply role priors to pick top candidate.
+    if final_role in ("headline", "subheadline"):
+        candidates_sorted = sorted(
+            candidates,
+            key=lambda c: (-(1.0 if c.weight >= 600 else 0.0), -c.score),
+        )
+    elif final_role == "button":
+        candidates_sorted = sorted(
+            candidates,
+            key=lambda c: (-(1.0 if 500 <= c.weight <= 700 else 0.0), -c.score),
+        )
+    elif final_role == "body_text":
+        candidates_sorted = sorted(
+            candidates,
+            key=lambda c: (-(1.0 if 400 <= c.weight <= 500 else 0.0), -c.score),
+        )
+    else:
+        candidates_sorted = sorted(candidates, key=lambda c: -c.score)
+
+    best2 = candidates_sorted[0] if candidates_sorted else None
+    pass2_score = best2.score if best2 else 0.0
+    pass1_score = pass1_style.fit_score_pass1 or pass1_style.reconstruction_confidence
+
+    out = ReconstructedTextStyle(
+        font_family=pass1_style.font_family,
+        font_candidates=list(pass1_style.font_candidates),
+        font_weight=pass1_style.font_weight,
+        font_size=pass1_style.font_size,
+        color=pass1_style.color,
+        text_align=pass1_style.text_align,
+        reconstruction_confidence=pass1_style.reconstruction_confidence,
+        fit_score_pass1=pass1_score,
+        fit_score_pass2=pass2_score,
+    )
+
+    if best2 and pass2_score > pass1_score + 0.02:
+        out.font_family = best2.family
+        out.font_weight = best2.weight
+        out.font_candidates = [c.family for c in candidates_sorted[: cfg.top_k]]
+        out.reconstruction_confidence = pass2_score
+        out.pass2_updated = True
+
+    out.style_confidence = max(pass1_score, pass2_score)
+    return out
 
 
 def _apply_role_priors(

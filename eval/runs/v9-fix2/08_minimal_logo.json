@@ -1,0 +1,392 @@
+{
+  "version": "0.1.0",
+  "projectId": "proj_20260416_336",
+  "createdAt": "2026-04-16T06:16:48Z",
+  "source": {
+    "inputUri": "/Users/hondayushi/workspaece/mcp/imglayers-mcp/eval/images/08_minimal_logo.png",
+    "originalFileName": "08_minimal_logo.png",
+    "mimeType": "image/png",
+    "sha256": "558fdab22f96824c04916036e09abc6c8fa4afa46cd0e31ffddeefca8e45bc55",
+    "width": 800,
+    "height": 600
+  },
+  "canvas": {
+    "width": 800,
+    "height": 600,
+    "background": "#000000"
+  },
+  "pipeline": {
+    "imageType": "illustration",
+    "engines": {
+      "decomposition": "layerd",
+      "ocr": "paddleocr",
+      "fontClassifier": "known-fonts",
+      "visionReview": "disabled"
+    },
+    "detailLevel": "high",
+    "preprocessing": {
+      "orientationCorrection": false,
+      "unwarping": false
+    },
+    "timingsMs": {
+      "image_type_ms": 8.357209000678267,
+      "ocr_ms": 1962.8435829981754,
+      "decompose_ms": 753.802707997238,
+      "text_reconstruction_ms": 11.675333000312094
+    }
+  },
+  "stats": {
+    "totalLayers": 6,
+    "textLayers": 3,
+    "imageLayers": 2,
+    "vectorLikeLayers": 0,
+    "lowConfidenceLayers": 4
+  },
+  "assets": {
+    "original": "meta/original.png",
+    "preview": "preview/preview.png",
+    "layersDir": "layers"
+  },
+  "layers": [
+    {
+      "id": "bg_001",
+      "name": "background",
+      "type": "image",
+      "semanticRole": "background",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 800.0,
+        "height": 600.0
+      },
+      "zIndex": 0,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/bg_001.png",
+        "format": "png",
+        "hasAlpha": false
+      },
+      "style": {
+        "dominantColors": [
+          "#080808",
+          "#F86838",
+          "#F8F8F8",
+          "#B8B8B8"
+        ],
+        "fill": {
+          "type": "solid",
+          "color": "#000000"
+        }
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.6
+    },
+    {
+      "id": "bg_002",
+      "name": "background",
+      "type": "image",
+      "semanticRole": "background",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 800.0,
+        "height": 600.0
+      },
+      "zIndex": 1,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/bg_002.png",
+        "format": "png",
+        "hasAlpha": false
+      },
+      "style": {
+        "fontFamily": "Hiragino Sans",
+        "fontCandidates": [
+          "Hiragino Sans",
+          "Helvetica",
+          "Inter",
+          "Arial",
+          "Arial"
+        ],
+        "fontWeight": 400,
+        "color": "#FCFCFC",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.0,
+        "dominantColors": [
+          "#080808",
+          "#F86838",
+          "#F8F8F8",
+          "#B8B8B8"
+        ],
+        "fill": {
+          "type": "solid",
+          "color": "#000000"
+        }
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.55
+    },
+    {
+      "id": "icon_001",
+      "name": "icon",
+      "type": "unknown",
+      "semanticRole": "icon",
+      "bbox": {
+        "x": 300.0,
+        "y": 150.0,
+        "width": 201.0,
+        "height": 201.0
+      },
+      "zIndex": 2,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/icon_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.8,
+      "retryState": {
+        "attempted": true,
+        "backend": "mask-morph",
+        "reason": "alpha_edge_mismatch",
+        "improved": true
+      }
+    },
+    {
+      "id": "headline_001",
+      "name": "headline",
+      "type": "text",
+      "semanticRole": "headline",
+      "bbox": {
+        "x": 347.0,
+        "y": 179.0,
+        "width": 109.0,
+        "height": 141.0
+      },
+      "zIndex": 3,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/headline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "N",
+        "lines": [
+          {
+            "text": "N",
+            "bbox": {
+              "x": 347.0,
+              "y": 179.0,
+              "width": 109.0,
+              "height": 141.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontFamily": "Hiragino Sans",
+        "fontCandidates": [
+          "Hiragino Sans",
+          "Helvetica",
+          "Inter",
+          "Arial",
+          "Arial"
+        ],
+        "fontWeight": 400,
+        "fontSize": 126.9,
+        "color": "#B4B4B4",
+        "textAlign": "center",
+        "reconstructionConfidence": 0.0,
+        "dominantColors": [
+          "#F86838",
+          "#F8F8F8",
+          "#F8E8E8"
+        ],
+        "text_color": "#FC6C3C",
+        "fitScorePass1": 0.0,
+        "fitScorePass2": 0.0,
+        "styleConfidence": 0.0,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      }
+    },
+    {
+      "id": "subheadline_001",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 270.0,
+        "y": 382.0,
+        "width": 212.0,
+        "height": 90.0
+      },
+      "zIndex": 4,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "NOVA",
+        "lines": [
+          {
+            "text": "NOVA",
+            "bbox": {
+              "x": 270.0,
+              "y": 382.0,
+              "width": 212.0,
+              "height": 90.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 400,
+        "fontSize": 81.0,
+        "textAlign": "center",
+        "dominantColors": [
+          "#080808",
+          "#F8F8F8",
+          "#D8D8D8"
+        ],
+        "text_color": "#FCFCFC",
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.0,
+        "styleConfidence": 0.1,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    },
+    {
+      "id": "subheadline_002",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 216.0,
+        "y": 482.0,
+        "width": 247.0,
+        "height": 40.0
+      },
+      "zIndex": 5,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Redefining tomorrow",
+        "lines": [
+          {
+            "text": "Redefining tomorrow",
+            "bbox": {
+              "x": 216.0,
+              "y": 482.0,
+              "width": 247.0,
+              "height": 40.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 400,
+        "fontSize": 36.0,
+        "textAlign": "center",
+        "dominantColors": [
+          "#080808",
+          "#B8B8B8",
+          "#383838"
+        ],
+        "text_color": "#B4B4B4",
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.0,
+        "styleConfidence": 0.1,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "textgroup_001",
+      "name": "NOVA\nRedefining tomorrow",
+      "layerIds": [
+        "subheadline_001",
+        "subheadline_002"
+      ]
+    }
+  ],
+  "warnings": [],
+  "exports": {
+    "manifest": "manifest.json",
+    "preview": "preview/preview.png"
+  }
+}

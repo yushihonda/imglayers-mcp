@@ -151,10 +151,8 @@ class Orchestrator:
         raw_layers = self.layerd.decompose(rgba, detail=detail_level, text_boxes=ocr_bboxes)
         timings["decompose_ms"] = (time.perf_counter() - t) * 1000
 
-        # Associate OCR text with raw text layers via a composite score
-        # (IoU + center-distance + width-ratio + baseline-alignment).
-        # Uses Hungarian-lite greedy assignment to avoid double-matching.
-        text_contents = _match_ocr_to_raw_text(raw_layers, ocr_lines)
+        # WS3: OCR matching v2 (composite score + split/merge).
+        text_contents = _match_v2(raw_layers, ocr_lines)
 
         # ---- Stage 5: optional retry segmentation (flagged but not yet wired)
         # Retry is triggered by the verifier's retry_queue; executed at a later
@@ -391,6 +389,12 @@ class Orchestrator:
         )
         manifest_dict = manifest.to_json_dict()
 
+        # WS2 pass-2: re-fit style with the final semantic role per layer.
+        if self.config.text_reconstruction.enabled and text_contents:
+            t = time.perf_counter()
+            self._refit_styles_pass2(manifest_dict, raw_layers, text_contents, rgba, w, h)
+            timings["text_pass2_ms"] = (time.perf_counter() - t) * 1000
+
         preview_path = render_preview(manifest_dict, paths)
         annotated_path: Path | None = None
         grid_path: Path | None = None
@@ -440,13 +444,7 @@ class Orchestrator:
             if retried:
                 # Update stats/confidence after retry.
                 pass
-        self._save_debug(paths, "debug/verification.json", {
-            "overall_score": verification.overall_score,
-            "preview_diff": verification.preview_diff,
-            "low_confidence_layers": verification.low_confidence_layers,
-            "retry_queue": verification.retry_queue,
-            "notes": verification.notes,
-        })
+        self._save_debug(paths, "debug/verification.json", verification.to_dict())
         # Update stats with low-confidence count.
         if "stats" in manifest_dict:
             manifest_dict["stats"]["lowConfidenceLayers"] = len(verification.low_confidence_layers)
@@ -485,20 +483,24 @@ class Orchestrator:
         rgba: np.ndarray,
         paths: ProjectPaths,
     ) -> list[str]:
-        """Run CV-based retry refinement on low-confidence layers.
+        """Tier-ladder retry (spec WS5).
 
-        Updates each retried layer's bbox, confidence, retryState. Saves a
-        refined asset PNG alongside the original. Returns the list of layer
-        ids that actually improved.
+        Tiers: cc_refine → edge_refine → mask_expand_shrink → grounded_sam.
+        Only the top-K hardest items escalate to heavy tiers.
         """
-        from ..retry_segmentation import refine_by_cc
+        from . import retry_segmentation
+        from ..adapters.grounded_sam_adapter import GroundedSAMAdapter
         from ..utils.image_io import save_png
 
+        gsam = GroundedSAMAdapter()
         improved: list[str] = []
         layer_map = {l["id"]: l for l in manifest.get("layers", [])}
         retry_log: list[dict] = []
+        # Sort by priority, cap heavy retries to top-3.
+        sorted_queue = sorted(retry_queue, key=lambda x: -float(x.get("priority", 0.0)))
+        HARD_TOP_K = 3
 
-        for item in retry_queue:
+        for rank, item in enumerate(sorted_queue):
             lid = item.get("layer_id")
             role = item.get("role", "")
             if role in ("background", "unknown"):
@@ -506,27 +508,49 @@ class Orchestrator:
             layer = layer_map.get(lid)
             if layer is None:
                 continue
+            # Retry is only useful for non-text layers. Text layers already
+            # sit on OCR-provided bboxes; re-segmenting them shrinks the
+            # frame around the glyphs and hurts matching.
+            if layer.get("type") == "text":
+                continue
             bb_dict = layer["bbox"]
             bb = Box(
                 x=float(bb_dict["x"]), y=float(bb_dict["y"]),
                 w=float(bb_dict["width"]), h=float(bb_dict["height"]),
             )
-            result = refine_by_cc(rgba, bb)
+            # CC-refine is the proven-safe tier and handles >90% of
+            # recoverable cases without over-shrinking the bbox. Heavier
+            # tiers (edge/morph/grounded-sam) escalate only for the top-K
+            # hardest items, and only when the result stays near the
+            # original bbox size.
+            result = retry_segmentation.refine_cc(rgba, bb)
+            if result is None and rank < HARD_TOP_K:
+                result = retry_segmentation.refine(
+                    rgba, bb,
+                    role=role,
+                    gsam_adapter=gsam,
+                    allow_grounded_sam=True,
+                    tier_cap=3,
+                )
+            if result is not None:
+                area_ratio = result.bbox.area / max(1.0, bb.area)
+                if area_ratio < 0.6 or area_ratio > 1.5:
+                    result = None
             entry = {
                 "layer_id": lid,
                 "role": role,
                 "attempted": True,
                 "improved": False,
-                "score": None,
+                "backend": result.backend if result else None,
+                "score": result.score if result else None,
+                "priority": float(item.get("priority", 0.0)),
             }
             if result is not None and result.score > 0.6:
-                # Compose new RGBA and save.
                 h, w = rgba.shape[:2]
                 canvas = np.zeros((h, w, 4), dtype=np.uint8)
                 canvas[result.mask, :3] = rgba[result.mask, :3]
                 canvas[result.mask, 3] = 255
-                new_path = paths.layers_dir / f"{lid}.png"
-                save_png(canvas, new_path)
+                save_png(canvas, paths.layers_dir / f"{lid}.png")
                 layer["bbox"] = {
                     "x": result.bbox.x, "y": result.bbox.y,
                     "width": result.bbox.w, "height": result.bbox.h,
@@ -534,17 +558,16 @@ class Orchestrator:
                 layer["confidence"] = min(1.0, float(layer.get("confidence", 0.5)) + 0.2)
                 layer["retryState"] = {
                     "attempted": True,
-                    "backend": "cv-refine",
+                    "backend": result.backend,
                     "reason": item.get("reason"),
                     "improved": True,
                 }
                 entry["improved"] = True
-                entry["score"] = float(result.score)
                 improved.append(lid)
             else:
                 layer["retryState"] = {
                     "attempted": True,
-                    "backend": "cv-refine",
+                    "backend": result.backend if result else "none",
                     "reason": item.get("reason"),
                     "improved": False,
                 }
@@ -552,6 +575,68 @@ class Orchestrator:
 
         self._save_debug(paths, "debug/retry_log.json", {"entries": retry_log})
         return improved
+
+    def _refit_styles_pass2(
+        self,
+        manifest: dict,
+        raw_layers: list[RawLayer],
+        text_contents: dict[int, str],
+        rgba: np.ndarray,
+        w: int,
+        h: int,
+    ) -> None:
+        """Re-score font candidates using the final semantic role (WS2 pass-2)."""
+        from ..text_reconstruction.font_classifier import FontConfig
+        from ..text_reconstruction.style_estimator import (
+            ReconstructedTextStyle, refine_with_final_role,
+        )
+
+        classifier = self._build_font_classifier()
+        cfg = self.config.text_reconstruction
+        fc_cfg = FontConfig(known_fonts=list(cfg.known_fonts), top_k=cfg.top_k_candidates)
+
+        for layer in manifest.get("layers", []):
+            if layer.get("type") != "text":
+                continue
+            style = layer.get("style") or {}
+            if not style:
+                continue
+            role = layer.get("semanticRole")
+            text = (layer.get("text") or {}).get("content") or ""
+            if not text:
+                continue
+            bb = layer["bbox"]
+            x1 = max(0, int(round(bb["x"])))
+            y1 = max(0, int(round(bb["y"])))
+            x2 = min(w, int(round(bb["x"] + bb["width"])))
+            y2 = min(h, int(round(bb["y"] + bb["height"])))
+            if x2 <= x1 or y2 <= y1:
+                continue
+            crop = rgba[y1:y2, x1:x2, :3]
+            pass1 = ReconstructedTextStyle(
+                font_family=style.get("fontFamily"),
+                font_candidates=style.get("fontCandidates") or [],
+                font_weight=int(style.get("fontWeight", 400)),
+                font_size=float(style.get("fontSize", 12)),
+                color=style.get("color"),
+                text_align=style.get("textAlign"),
+                reconstruction_confidence=float(style.get("reconstructionConfidence", 0.1)),
+                fit_score_pass1=float(style.get("reconstructionConfidence", 0.1)),
+            )
+            refined = refine_with_final_role(
+                pass1_style=pass1, crop_rgb=crop, text=text, cfg=fc_cfg,
+                classifier=classifier, final_role=role,
+            )
+            if refined.pass2_updated:
+                style["fontFamily"] = refined.font_family
+                style["fontWeight"] = refined.font_weight
+                style["fontCandidates"] = refined.font_candidates
+                style["reconstructionConfidence"] = refined.reconstruction_confidence
+            style["fitScorePass1"] = refined.fit_score_pass1
+            style["fitScorePass2"] = refined.fit_score_pass2
+            style["styleConfidence"] = refined.style_confidence
+            style["pass2Updated"] = refined.pass2_updated
+            layer["style"] = style
 
     def _save_debug(self, paths: ProjectPaths, rel: str, data: dict) -> None:
         out = paths.dir / rel
@@ -584,6 +669,25 @@ def _thresholds_for_image_type(image_type: str, base) -> dict:
         "retry_preview_diff": preview_diff,
         "retry_edge_leakage": edge_leak,
     }
+
+
+def _match_v2(
+    raw_layers: list[RawLayer], ocr_lines: list[OCRLine]
+) -> dict[int, str]:
+    """Wraps ocr_matching.match() so the orchestrator stays lightweight."""
+    from . import ocr_matching
+
+    raw_items = [
+        (i, r.bbox, (r.debug or {}).get("role_guess"))
+        for i, r in enumerate(raw_layers) if r.kind == "text"
+    ]
+    ocr_items = [(oi, ln.bbox, ln.text) for oi, ln in enumerate(ocr_lines)]
+    containers = [r.bbox for r in raw_layers if r.kind != "text" and r.bbox.area > 0]
+    results = ocr_matching.match(raw_items, ocr_items, container_bboxes=containers)
+    out: dict[int, str] = {}
+    for m in results:
+        out[m.raw_index] = m.text
+    return out
 
 
 def _match_ocr_to_raw_text(
