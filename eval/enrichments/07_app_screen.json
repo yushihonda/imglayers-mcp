@@ -1,0 +1,33 @@
+{
+  "layer_updates": [
+    {
+      "layer_id": "button_001",
+      "semantic_role": "body_text"
+    },
+    {
+      "layer_id": "button_002",
+      "semantic_role": "body_text"
+    },
+    {
+      "layer_id": "button_003",
+      "semantic_role": "body_text"
+    },
+    {
+      "layer_id": "button_004",
+      "semantic_role": "body_text"
+    },
+    {
+      "layer_id": "button_005",
+      "semantic_role": "body_text"
+    },
+    {
+      "layer_id": "body_001",
+      "semantic_role": "headline"
+    },
+    {
+      "layer_id": "body_002",
+      "semantic_role": "headline"
+    }
+  ],
+  "groups": []
+}

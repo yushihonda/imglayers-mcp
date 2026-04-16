@@ -1,0 +1,109 @@
+{
+  "image_type": "ui-banner",
+  "canvas": {
+    "width": 900,
+    "height": 600
+  },
+  "layers": [
+    {
+      "role": "background",
+      "bbox": {
+        "x": 0,
+        "y": 0,
+        "width": 900,
+        "height": 600
+      },
+      "color": "#EEEEEE"
+    },
+    {
+      "role": "card",
+      "bbox": {
+        "x": 50,
+        "y": 50,
+        "width": 800,
+        "height": 500
+      },
+      "color": "#FFFFFF"
+    },
+    {
+      "role": "badge",
+      "bbox": {
+        "x": 100,
+        "y": 100,
+        "width": 250,
+        "height": 250
+      },
+      "color": "#FF4757"
+    },
+    {
+      "role": "headline",
+      "bbox": {
+        "x": 150,
+        "y": 160,
+        "width": 180,
+        "height": 80
+      },
+      "text": "70%"
+    },
+    {
+      "role": "subheadline",
+      "bbox": {
+        "x": 180,
+        "y": 230,
+        "width": 120,
+        "height": 60
+      },
+      "text": "OFF"
+    },
+    {
+      "role": "headline",
+      "bbox": {
+        "x": 420,
+        "y": 140,
+        "width": 400,
+        "height": 70
+      },
+      "text": "Flash Sale"
+    },
+    {
+      "role": "body_text",
+      "bbox": {
+        "x": 420,
+        "y": 220,
+        "width": 350,
+        "height": 40
+      },
+      "text": "Limited time only"
+    },
+    {
+      "role": "body_text",
+      "bbox": {
+        "x": 420,
+        "y": 270,
+        "width": 280,
+        "height": 40
+      },
+      "text": "Until midnight"
+    },
+    {
+      "role": "button",
+      "bbox": {
+        "x": 420,
+        "y": 380,
+        "width": 280,
+        "height": 70
+      },
+      "color": "#FF4757"
+    },
+    {
+      "role": "button",
+      "bbox": {
+        "x": 450,
+        "y": 395,
+        "width": 220,
+        "height": 40
+      },
+      "text": "SHOP NOW"
+    }
+  ]
+}

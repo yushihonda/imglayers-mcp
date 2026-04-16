@@ -1,0 +1,79 @@
+{
+  "image_type": "ui-banner",
+  "canvas": {
+    "width": 600,
+    "height": 800
+  },
+  "layers": [
+    {
+      "role": "background",
+      "bbox": {
+        "x": 0,
+        "y": 0,
+        "width": 600,
+        "height": 800
+      },
+      "color": "#FFFFFF"
+    },
+    {
+      "role": "card",
+      "bbox": {
+        "x": 40,
+        "y": 40,
+        "width": 520,
+        "height": 520
+      },
+      "color": "#F0F0F0"
+    },
+    {
+      "role": "illustration",
+      "bbox": {
+        "x": 150,
+        "y": 150,
+        "width": 300,
+        "height": 300
+      },
+      "color": "#FF6B35"
+    },
+    {
+      "role": "button",
+      "bbox": {
+        "x": 40,
+        "y": 600,
+        "width": 160,
+        "height": 50
+      },
+      "color": "#FF6B35"
+    },
+    {
+      "role": "button",
+      "bbox": {
+        "x": 70,
+        "y": 605,
+        "width": 90,
+        "height": 40
+      },
+      "text": "NEW"
+    },
+    {
+      "role": "headline",
+      "bbox": {
+        "x": 40,
+        "y": 680,
+        "width": 400,
+        "height": 50
+      },
+      "text": "Premium Coffee"
+    },
+    {
+      "role": "headline",
+      "bbox": {
+        "x": 40,
+        "y": 730,
+        "width": 200,
+        "height": 44
+      },
+      "text": "$29.99"
+    }
+  ]
+}

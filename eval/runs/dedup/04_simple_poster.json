@@ -1,0 +1,489 @@
+{
+  "version": "0.1.0",
+  "projectId": "proj_20260416_168",
+  "createdAt": "2026-04-16T04:08:41Z",
+  "source": {
+    "inputUri": "/Users/hondayushi/workspaece/mcp/imglayers-mcp/eval/images/04_simple_poster.png",
+    "originalFileName": "04_simple_poster.png",
+    "mimeType": "image/png",
+    "sha256": "20e69d9362187b9904be5e48e2a8649729ddb5692818bdf9200762525947beea",
+    "width": 800,
+    "height": 1000
+  },
+  "canvas": {
+    "width": 800,
+    "height": 1000,
+    "background": "#FFAE4E"
+  },
+  "pipeline": {
+    "engineRequested": "layerd",
+    "engineSelected": "layerd",
+    "enableOCR": true,
+    "detailLevel": "high",
+    "timingsMs": {},
+    "engineCandidates": [
+      "layerd"
+    ]
+  },
+  "stats": {
+    "totalLayers": 8,
+    "textLayers": 5,
+    "imageLayers": 1,
+    "vectorLikeLayers": 0,
+    "unknownLayers": 2
+  },
+  "assets": {
+    "original": "meta/original.png",
+    "preview": "preview/preview.png",
+    "layersDir": "layers"
+  },
+  "layers": [
+    {
+      "id": "bg_001",
+      "name": "background",
+      "type": "image",
+      "semanticRole": "background",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 800.0,
+        "height": 1000.0
+      },
+      "zIndex": 0,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/bg_001.png",
+        "format": "png",
+        "hasAlpha": false
+      },
+      "styleHints": {
+        "dominantColors": [
+          "#F8D838",
+          "#F86868",
+          "#282828",
+          "#F8F8F8"
+        ],
+        "fill": {
+          "type": "linear-gradient",
+          "angle": 90.0,
+          "stops": [
+            {
+              "offset": 0.0,
+              "color": "#FF8760"
+            },
+            {
+              "offset": 1.0,
+              "color": "#7F6C1E"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "card_001",
+      "name": "card",
+      "type": "unknown",
+      "semanticRole": "card",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 800.0,
+        "height": 301.0
+      },
+      "zIndex": 1,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/card_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "card_002",
+      "name": "card",
+      "type": "unknown",
+      "semanticRole": "card",
+      "bbox": {
+        "x": 50.0,
+        "y": 620.0,
+        "width": 301.0,
+        "height": 81.0
+      },
+      "zIndex": 2,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/card_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "headline_001",
+      "name": "headline",
+      "type": "text",
+      "semanticRole": "headline",
+      "bbox": {
+        "x": 50.0,
+        "y": 77.0,
+        "width": 444.0,
+        "height": 86.0
+      },
+      "zIndex": 3,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/headline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "SUMMER",
+        "lines": [
+          {
+            "text": "SUMMER",
+            "bbox": {
+              "x": 50.0,
+              "y": 77.0,
+              "width": 444.0,
+              "height": 86.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 77.4,
+        "fontWeight": 700,
+        "textColor": "#FCFCFC",
+        "textAlign": "left",
+        "dominantColors": [
+          "#F86868",
+          "#F8F8F8",
+          "#F87878"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001",
+        "container_001"
+      ]
+    },
+    {
+      "id": "subheadline_001",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 51.0,
+        "y": 185.0,
+        "width": 266.0,
+        "height": 83.0
+      },
+      "zIndex": 4,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "VIBES",
+        "lines": [
+          {
+            "text": "VIBES",
+            "bbox": {
+              "x": 51.0,
+              "y": 185.0,
+              "width": 266.0,
+              "height": 83.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 74.7,
+        "fontWeight": 600,
+        "textColor": "#FCFCFC",
+        "textAlign": "left",
+        "dominantColors": [
+          "#F86868",
+          "#F8F8F8",
+          "#F88888"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001",
+        "container_001"
+      ]
+    },
+    {
+      "id": "body_001",
+      "name": "body_text",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 49.0,
+        "y": 397.0,
+        "width": 429.0,
+        "height": 49.0
+      },
+      "zIndex": 5,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/body_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Discover the beach",
+        "lines": [
+          {
+            "text": "Discover the beach",
+            "bbox": {
+              "x": 49.0,
+              "y": 397.0,
+              "width": 429.0,
+              "height": 49.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 44.1,
+        "fontWeight": 600,
+        "textColor": "#242424",
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8D838",
+          "#282828",
+          "#383828"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Paragraph",
+        "textRole": "paragraph"
+      },
+      "children": [
+        "textgroup_002"
+      ]
+    },
+    {
+      "id": "body_002",
+      "name": "body_text",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 42.0,
+        "y": 463.0,
+        "width": 303.0,
+        "height": 55.0
+      },
+      "zIndex": 6,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/body_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "this weekend",
+        "lines": [
+          {
+            "text": "this weekend",
+            "bbox": {
+              "x": 42.0,
+              "y": 463.0,
+              "width": 303.0,
+              "height": 55.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 49.5,
+        "fontWeight": 400,
+        "textColor": "#242424",
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8D838",
+          "#282828",
+          "#383828"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Paragraph",
+        "textRole": "paragraph"
+      },
+      "children": [
+        "textgroup_002"
+      ]
+    },
+    {
+      "id": "button_001",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 87.0,
+        "y": 631.0,
+        "width": 214.0,
+        "height": 34.0
+      },
+      "zIndex": 7,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "GET TICKETS",
+        "lines": [
+          {
+            "text": "GET TICKETS",
+            "bbox": {
+              "x": 87.0,
+              "y": 631.0,
+              "width": 214.0,
+              "height": 34.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 30.6,
+        "fontWeight": 900,
+        "textColor": "#242424",
+        "textAlign": "left",
+        "dominantColors": [
+          "#282828",
+          "#F8F8F8",
+          "#C8C8C8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      },
+      "children": [
+        "container_002"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "textgroup_001",
+      "name": "SUMMER\nVIBES",
+      "layerIds": [
+        "headline_001",
+        "subheadline_001"
+      ]
+    },
+    {
+      "id": "textgroup_002",
+      "name": "Discover the beach\nthis weekend",
+      "layerIds": [
+        "body_001",
+        "body_002"
+      ]
+    },
+    {
+      "id": "container_001",
+      "name": "card container",
+      "layerIds": [
+        "card_001",
+        "headline_001",
+        "subheadline_001"
+      ]
+    },
+    {
+      "id": "container_002",
+      "name": "card container",
+      "layerIds": [
+        "card_002",
+        "button_001"
+      ]
+    }
+  ],
+  "warnings": [],
+  "exports": {
+    "manifest": "manifest.json"
+  }
+}

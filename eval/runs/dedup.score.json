@@ -1,0 +1,124 @@
+{
+  "per_case": {
+    "01_simple_banner": {
+      "text_recall": 1.0,
+      "text_precision": 1.0,
+      "text_f1": 1.0,
+      "bbox_iou_mean": 0.7787192862278737,
+      "role_accuracy": 0.7142857142857143,
+      "layer_count_ratio": 1.0,
+      "overall": 0.873251250128397,
+      "gt_n": 7,
+      "det_n": 7
+    },
+    "02_tech_banner": {
+      "text_recall": 0.8571428571428571,
+      "text_precision": 0.8571428571428571,
+      "text_f1": 0.8571428571428571,
+      "bbox_iou_mean": 0.7160583162782882,
+      "role_accuracy": 0.6363636363636364,
+      "layer_count_ratio": 0.7727272727272727,
+      "overall": 0.754014579069572,
+      "gt_n": 11,
+      "det_n": 16
+    },
+    "03_product_card": {
+      "text_recall": 1.0,
+      "text_precision": 1.0,
+      "text_f1": 1.0,
+      "bbox_iou_mean": 0.5309451784274777,
+      "role_accuracy": 0.6666666666666666,
+      "layer_count_ratio": 0.9285714285714286,
+      "overall": 0.7886886755592504,
+      "gt_n": 7,
+      "det_n": 6
+    },
+    "04_simple_poster": {
+      "text_recall": 1.0,
+      "text_precision": 1.0,
+      "text_f1": 1.0,
+      "bbox_iou_mean": 0.7260543894954201,
+      "role_accuracy": 0.875,
+      "layer_count_ratio": 1.0,
+      "overall": 0.900263597373855,
+      "gt_n": 8,
+      "det_n": 8
+    },
+    "05_sale_badge": {
+      "text_recall": 1.0,
+      "text_precision": 1.0,
+      "text_f1": 1.0,
+      "bbox_iou_mean": 0.45359196161715365,
+      "role_accuracy": 0.5555555555555556,
+      "layer_count_ratio": 0.95,
+      "overall": 0.7447868792931772,
+      "gt_n": 10,
+      "det_n": 9
+    },
+    "06_article_header": {
+      "text_recall": 0.8571428571428571,
+      "text_precision": 0.8571428571428571,
+      "text_f1": 0.8571428571428571,
+      "bbox_iou_mean": 0.5567224171882871,
+      "role_accuracy": 0.875,
+      "layer_count_ratio": 1.0,
+      "overall": 0.8079306042970718,
+      "gt_n": 8,
+      "det_n": 8
+    },
+    "07_app_screen": {
+      "text_recall": 1.0,
+      "text_precision": 1.0,
+      "text_f1": 1.0,
+      "bbox_iou_mean": 0.2927358484689884,
+      "role_accuracy": 0.36363636363636365,
+      "layer_count_ratio": 0.8666666666666667,
+      "overall": 0.644093053026338,
+      "gt_n": 15,
+      "det_n": 11
+    },
+    "08_minimal_logo": {
+      "text_recall": 1.0,
+      "text_precision": 1.0,
+      "text_f1": 1.0,
+      "bbox_iou_mean": 0.7392649122489706,
+      "role_accuracy": 0.6,
+      "layer_count_ratio": 1.0,
+      "overall": 0.8348162280622426,
+      "gt_n": 5,
+      "det_n": 5
+    },
+    "09_multi_badge": {
+      "text_recall": 1.0,
+      "text_precision": 1.0,
+      "text_f1": 1.0,
+      "bbox_iou_mean": 0.688432013372945,
+      "role_accuracy": 0.8,
+      "layer_count_ratio": 1.0,
+      "overall": 0.8721080033432363,
+      "gt_n": 10,
+      "det_n": 10
+    },
+    "10_high_contrast": {
+      "text_recall": 1.0,
+      "text_precision": 1.0,
+      "text_f1": 1.0,
+      "bbox_iou_mean": 0.7598923195720605,
+      "role_accuracy": 0.5,
+      "layer_count_ratio": 1.0,
+      "overall": 0.8149730798930152,
+      "gt_n": 7,
+      "det_n": 7
+    }
+  },
+  "summary": {
+    "text_f1": 0.9714285714285715,
+    "text_recall": 0.9714285714285715,
+    "text_precision": 0.9714285714285715,
+    "bbox_iou_mean": 0.6242416642897466,
+    "role_accuracy": 0.6586507936507935,
+    "layer_count_ratio": 0.9517965367965369,
+    "overall": 0.8034925950046157,
+    "cases": 10
+  }
+}

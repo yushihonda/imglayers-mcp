@@ -1,0 +1,89 @@
+{
+  "image_type": "poster",
+  "canvas": {
+    "width": 800,
+    "height": 1000
+  },
+  "layers": [
+    {
+      "role": "background",
+      "bbox": {
+        "x": 0,
+        "y": 0,
+        "width": 800,
+        "height": 1000
+      },
+      "color": "#FFD93D"
+    },
+    {
+      "role": "card",
+      "bbox": {
+        "x": 0,
+        "y": 0,
+        "width": 800,
+        "height": 300
+      },
+      "color": "#FF6B6B"
+    },
+    {
+      "role": "headline",
+      "bbox": {
+        "x": 50,
+        "y": 80,
+        "width": 500,
+        "height": 110
+      },
+      "text": "SUMMER"
+    },
+    {
+      "role": "headline",
+      "bbox": {
+        "x": 50,
+        "y": 190,
+        "width": 400,
+        "height": 100
+      },
+      "text": "VIBES"
+    },
+    {
+      "role": "subheadline",
+      "bbox": {
+        "x": 50,
+        "y": 400,
+        "width": 500,
+        "height": 60
+      },
+      "text": "Discover the beach"
+    },
+    {
+      "role": "subheadline",
+      "bbox": {
+        "x": 50,
+        "y": 470,
+        "width": 400,
+        "height": 60
+      },
+      "text": "this weekend"
+    },
+    {
+      "role": "button",
+      "bbox": {
+        "x": 50,
+        "y": 620,
+        "width": 300,
+        "height": 80
+      },
+      "color": "#2D2D2D"
+    },
+    {
+      "role": "button",
+      "bbox": {
+        "x": 90,
+        "y": 635,
+        "width": 230,
+        "height": 50
+      },
+      "text": "GET TICKETS"
+    }
+  ]
+}

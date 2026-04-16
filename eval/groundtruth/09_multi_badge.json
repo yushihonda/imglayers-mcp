@@ -1,0 +1,109 @@
+{
+  "image_type": "ui-banner",
+  "canvas": {
+    "width": 1000,
+    "height": 500
+  },
+  "layers": [
+    {
+      "role": "background",
+      "bbox": {
+        "x": 0,
+        "y": 0,
+        "width": 1000,
+        "height": 500
+      },
+      "color": "#0F4C81"
+    },
+    {
+      "role": "card",
+      "bbox": {
+        "x": 80,
+        "y": 100,
+        "width": 240,
+        "height": 300
+      },
+      "color": "#F4A261"
+    },
+    {
+      "role": "headline",
+      "bbox": {
+        "x": 110,
+        "y": 150,
+        "width": 180,
+        "height": 60
+      },
+      "text": "Fast"
+    },
+    {
+      "role": "subheadline",
+      "bbox": {
+        "x": 110,
+        "y": 220,
+        "width": 180,
+        "height": 44
+      },
+      "text": "Shipping"
+    },
+    {
+      "role": "card",
+      "bbox": {
+        "x": 380,
+        "y": 100,
+        "width": 240,
+        "height": 300
+      },
+      "color": "#2A9D8F"
+    },
+    {
+      "role": "headline",
+      "bbox": {
+        "x": 410,
+        "y": 150,
+        "width": 180,
+        "height": 60
+      },
+      "text": "Free"
+    },
+    {
+      "role": "subheadline",
+      "bbox": {
+        "x": 410,
+        "y": 220,
+        "width": 180,
+        "height": 44
+      },
+      "text": "Returns"
+    },
+    {
+      "role": "card",
+      "bbox": {
+        "x": 680,
+        "y": 100,
+        "width": 240,
+        "height": 300
+      },
+      "color": "#E76F51"
+    },
+    {
+      "role": "headline",
+      "bbox": {
+        "x": 710,
+        "y": 150,
+        "width": 180,
+        "height": 60
+      },
+      "text": "24/7"
+    },
+    {
+      "role": "subheadline",
+      "bbox": {
+        "x": 710,
+        "y": 220,
+        "width": 180,
+        "height": 44
+      },
+      "text": "Support"
+    }
+  ]
+}

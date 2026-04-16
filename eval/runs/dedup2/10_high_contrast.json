@@ -1,0 +1,407 @@
+{
+  "version": "0.1.0",
+  "projectId": "proj_20260416_184",
+  "createdAt": "2026-04-16T04:10:11Z",
+  "source": {
+    "inputUri": "/Users/hondayushi/workspaece/mcp/imglayers-mcp/eval/images/10_high_contrast.png",
+    "originalFileName": "10_high_contrast.png",
+    "mimeType": "image/png",
+    "sha256": "3b4df7cb0acea057d05ef861f42d06899554a7e44cd1a775c7c04d1316c69b7c",
+    "width": 1600,
+    "height": 900
+  },
+  "canvas": {
+    "width": 1600,
+    "height": 900,
+    "background": "#170007"
+  },
+  "pipeline": {
+    "engineRequested": "layerd",
+    "engineSelected": "layerd",
+    "enableOCR": true,
+    "detailLevel": "high",
+    "timingsMs": {},
+    "engineCandidates": [
+      "layerd"
+    ]
+  },
+  "stats": {
+    "totalLayers": 7,
+    "textLayers": 4,
+    "imageLayers": 1,
+    "vectorLikeLayers": 0,
+    "unknownLayers": 2
+  },
+  "assets": {
+    "original": "meta/original.png",
+    "preview": "preview/preview.png",
+    "layersDir": "layers"
+  },
+  "layers": [
+    {
+      "id": "bg_001",
+      "name": "background",
+      "type": "image",
+      "semanticRole": "background",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 1600.0,
+        "height": 900.0
+      },
+      "zIndex": 0,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/bg_001.png",
+        "format": "png",
+        "hasAlpha": false
+      },
+      "styleHints": {
+        "dominantColors": [
+          "#080808",
+          "#F80858",
+          "#F8F8F8",
+          "#888888"
+        ],
+        "fill": {
+          "type": "linear-gradient",
+          "angle": 90.0,
+          "stops": [
+            {
+              "offset": 0.0,
+              "color": "#20000B"
+            },
+            {
+              "offset": 1.0,
+              "color": "#000000"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "image_001",
+      "name": "illustration",
+      "type": "unknown",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 80.0,
+        "y": 700.0,
+        "width": 321.0,
+        "height": 81.0
+      },
+      "zIndex": 1,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "image_002",
+      "name": "illustration",
+      "type": "unknown",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 21.0,
+        "height": 900.0
+      },
+      "zIndex": 2,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "body_001",
+      "name": "body_text",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 84.0,
+        "y": 193.0,
+        "width": 548.0,
+        "height": 162.0
+      },
+      "zIndex": 3,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/body_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "BOLD",
+        "lines": [
+          {
+            "text": "BOLD",
+            "bbox": {
+              "x": 84.0,
+              "y": 193.0,
+              "width": 548.0,
+              "height": 162.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 145.8,
+        "fontWeight": 600,
+        "textColor": "#FCFCFC",
+        "textAlign": "left",
+        "dominantColors": [
+          "#080808",
+          "#F8F8F8",
+          "#181818"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Paragraph",
+        "textRole": "paragraph"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    },
+    {
+      "id": "headline_001",
+      "name": "headline",
+      "type": "text",
+      "semanticRole": "headline",
+      "bbox": {
+        "x": 82.0,
+        "y": 393.0,
+        "width": 658.0,
+        "height": 175.0
+      },
+      "zIndex": 4,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/headline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "MOVES",
+        "lines": [
+          {
+            "text": "MOVES",
+            "bbox": {
+              "x": 82.0,
+              "y": 393.0,
+              "width": 658.0,
+              "height": 175.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 157.5,
+        "fontWeight": 600,
+        "textColor": "#FC0C54",
+        "textAlign": "left",
+        "dominantColors": [
+          "#080808",
+          "#F80858",
+          "#B80838"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    },
+    {
+      "id": "subheadline_001",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 124.0,
+        "y": 712.0,
+        "width": 245.0,
+        "height": 45.0
+      },
+      "zIndex": 5,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "START NOW",
+        "lines": [
+          {
+            "text": "START NOW",
+            "bbox": {
+              "x": 124.0,
+              "y": 712.0,
+              "width": 245.0,
+              "height": 45.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 40.5,
+        "fontWeight": 900,
+        "textColor": "#FCFCFC",
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#080808",
+          "#B8B8B8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "container_001"
+      ]
+    },
+    {
+      "id": "subheadline_002",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 78.0,
+        "y": 817.0,
+        "width": 190.0,
+        "height": 24.0
+      },
+      "zIndex": 6,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Est. 2024 / New York",
+        "lines": [
+          {
+            "text": "Est. 2024 / New York",
+            "bbox": {
+              "x": 78.0,
+              "y": 817.0,
+              "width": 190.0,
+              "height": 24.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 21.6,
+        "fontWeight": 400,
+        "textColor": "#848484",
+        "textAlign": "left",
+        "dominantColors": [
+          "#080808",
+          "#888888",
+          "#787878"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "textgroup_001",
+      "name": "BOLD\nMOVES",
+      "layerIds": [
+        "body_001",
+        "headline_001"
+      ]
+    },
+    {
+      "id": "container_001",
+      "name": "illustration container",
+      "layerIds": [
+        "image_001",
+        "subheadline_001"
+      ]
+    }
+  ],
+  "warnings": [],
+  "exports": {
+    "manifest": "manifest.json"
+  }
+}

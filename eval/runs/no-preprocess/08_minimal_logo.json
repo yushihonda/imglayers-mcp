@@ -1,0 +1,301 @@
+{
+  "version": "0.1.0",
+  "projectId": "proj_20260416_162",
+  "createdAt": "2026-04-16T04:06:34Z",
+  "source": {
+    "inputUri": "/Users/hondayushi/workspaece/mcp/imglayers-mcp/eval/images/08_minimal_logo.png",
+    "originalFileName": "08_minimal_logo.png",
+    "mimeType": "image/png",
+    "sha256": "558fdab22f96824c04916036e09abc6c8fa4afa46cd0e31ffddeefca8e45bc55",
+    "width": 800,
+    "height": 600
+  },
+  "canvas": {
+    "width": 800,
+    "height": 600,
+    "background": "#000000"
+  },
+  "pipeline": {
+    "engineRequested": "layerd",
+    "engineSelected": "layerd",
+    "enableOCR": true,
+    "detailLevel": "high",
+    "timingsMs": {},
+    "engineCandidates": [
+      "layerd"
+    ]
+  },
+  "stats": {
+    "totalLayers": 5,
+    "textLayers": 3,
+    "imageLayers": 1,
+    "vectorLikeLayers": 0,
+    "unknownLayers": 1
+  },
+  "assets": {
+    "original": "meta/original.png",
+    "preview": "preview/preview.png",
+    "layersDir": "layers"
+  },
+  "layers": [
+    {
+      "id": "bg_001",
+      "name": "background",
+      "type": "image",
+      "semanticRole": "background",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 800.0,
+        "height": 600.0
+      },
+      "zIndex": 0,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/bg_001.png",
+        "format": "png",
+        "hasAlpha": false
+      },
+      "styleHints": {
+        "dominantColors": [
+          "#080808",
+          "#F86838",
+          "#F8F8F8",
+          "#B8B8B8"
+        ],
+        "fill": {
+          "type": "solid",
+          "color": "#000000"
+        }
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "icon_001",
+      "name": "icon",
+      "type": "unknown",
+      "semanticRole": "icon",
+      "bbox": {
+        "x": 300.0,
+        "y": 150.0,
+        "width": 201.0,
+        "height": 201.0
+      },
+      "zIndex": 1,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/icon_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "headline_001",
+      "name": "headline",
+      "type": "text",
+      "semanticRole": "headline",
+      "bbox": {
+        "x": 356.0,
+        "y": 195.0,
+        "width": 91.0,
+        "height": 109.0
+      },
+      "zIndex": 2,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/headline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "N",
+        "lines": [
+          {
+            "text": "N",
+            "bbox": {
+              "x": 356.0,
+              "y": 195.0,
+              "width": 91.0,
+              "height": 109.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 98.1,
+        "fontWeight": 900,
+        "textColor": "#FC6C3C",
+        "textAlign": "center",
+        "dominantColors": [
+          "#F86838",
+          "#F8F8F8",
+          "#F8E8E8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      }
+    },
+    {
+      "id": "subheadline_001",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 276.0,
+        "y": 392.0,
+        "width": 200.0,
+        "height": 70.0
+      },
+      "zIndex": 3,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "NOVA",
+        "lines": [
+          {
+            "text": "NOVA",
+            "bbox": {
+              "x": 276.0,
+              "y": 392.0,
+              "width": 200.0,
+              "height": 70.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 63.0,
+        "fontWeight": 600,
+        "textColor": "#FCFCFC",
+        "textAlign": "center",
+        "dominantColors": [
+          "#080808",
+          "#F8F8F8",
+          "#D8D8D8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    },
+    {
+      "id": "subheadline_002",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 218.0,
+        "y": 487.0,
+        "width": 243.0,
+        "height": 30.0
+      },
+      "zIndex": 4,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Redefining tomorrow",
+        "lines": [
+          {
+            "text": "Redefining tomorrow",
+            "bbox": {
+              "x": 218.0,
+              "y": 487.0,
+              "width": 243.0,
+              "height": 30.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 27.0,
+        "fontWeight": 400,
+        "textColor": "#B4B4B4",
+        "textAlign": "center",
+        "dominantColors": [
+          "#080808",
+          "#B8B8B8",
+          "#383838"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "textgroup_001",
+      "name": "NOVA\nRedefining tomorrow",
+      "layerIds": [
+        "subheadline_001",
+        "subheadline_002"
+      ]
+    }
+  ],
+  "warnings": [],
+  "exports": {
+    "manifest": "manifest.json"
+  }
+}

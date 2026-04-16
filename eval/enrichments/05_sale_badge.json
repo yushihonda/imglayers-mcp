@@ -1,0 +1,33 @@
+{
+  "layer_updates": [
+    {
+      "layer_id": "card_002",
+      "semantic_role": "badge"
+    },
+    {
+      "layer_id": "image_001",
+      "semantic_role": "button"
+    },
+    {
+      "layer_id": "button_001",
+      "semantic_role": "headline"
+    },
+    {
+      "layer_id": "subheadline_001",
+      "semantic_role": "body_text"
+    },
+    {
+      "layer_id": "subheadline_002",
+      "semantic_role": "subheadline"
+    },
+    {
+      "layer_id": "subheadline_003",
+      "semantic_role": "body_text"
+    },
+    {
+      "layer_id": "subheadline_004",
+      "semantic_role": "button"
+    }
+  ],
+  "groups": []
+}

@@ -1,0 +1,79 @@
+{
+  "image_type": "ui-banner",
+  "canvas": {
+    "width": 1200,
+    "height": 600
+  },
+  "layers": [
+    {
+      "role": "background",
+      "bbox": {
+        "x": 0,
+        "y": 0,
+        "width": 1200,
+        "height": 600
+      },
+      "color": "#F5F5DC"
+    },
+    {
+      "role": "card",
+      "bbox": {
+        "x": 50,
+        "y": 200,
+        "width": 450,
+        "height": 300
+      },
+      "color": "#FF6B6B"
+    },
+    {
+      "role": "headline",
+      "bbox": {
+        "x": 80,
+        "y": 260,
+        "width": 350,
+        "height": 130
+      },
+      "text": "SALE"
+    },
+    {
+      "role": "headline",
+      "bbox": {
+        "x": 600,
+        "y": 180,
+        "width": 580,
+        "height": 70
+      },
+      "text": "Spring Collection"
+    },
+    {
+      "role": "subheadline",
+      "bbox": {
+        "x": 600,
+        "y": 280,
+        "width": 500,
+        "height": 60
+      },
+      "text": "Up to 50% OFF"
+    },
+    {
+      "role": "button",
+      "bbox": {
+        "x": 600,
+        "y": 420,
+        "width": 300,
+        "height": 70
+      },
+      "color": "#FF6B6B"
+    },
+    {
+      "role": "button",
+      "bbox": {
+        "x": 650,
+        "y": 430,
+        "width": 240,
+        "height": 40
+      },
+      "text": "SHOP NOW"
+    }
+  ]
+}

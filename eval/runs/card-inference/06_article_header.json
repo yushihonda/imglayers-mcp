@@ -1,0 +1,519 @@
+{
+  "version": "0.1.0",
+  "projectId": "proj_20260416_150",
+  "createdAt": "2026-04-16T04:03:58Z",
+  "source": {
+    "inputUri": "/Users/hondayushi/workspaece/mcp/imglayers-mcp/eval/images/06_article_header.png",
+    "originalFileName": "06_article_header.png",
+    "mimeType": "image/png",
+    "sha256": "8310223d719606d862cd6baac61b62ddcc5d7657c8bfacad1f111162398ccd7d",
+    "width": 1000,
+    "height": 400
+  },
+  "canvas": {
+    "width": 1000,
+    "height": 400,
+    "background": "#FAFAFA"
+  },
+  "pipeline": {
+    "engineRequested": "layerd",
+    "engineSelected": "layerd",
+    "enableOCR": true,
+    "detailLevel": "high",
+    "timingsMs": {},
+    "engineCandidates": [
+      "layerd"
+    ]
+  },
+  "stats": {
+    "totalLayers": 8,
+    "textLayers": 7,
+    "imageLayers": 1,
+    "vectorLikeLayers": 0,
+    "unknownLayers": 0
+  },
+  "assets": {
+    "original": "meta/original.png",
+    "preview": "preview/preview.png",
+    "layersDir": "layers"
+  },
+  "layers": [
+    {
+      "id": "bg_001",
+      "name": "background",
+      "type": "image",
+      "semanticRole": "background",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 1000.0,
+        "height": 400.0
+      },
+      "zIndex": 0,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/bg_001.png",
+        "format": "png",
+        "hasAlpha": false
+      },
+      "styleHints": {
+        "dominantColors": [
+          "#F8F8F8",
+          "#183858",
+          "#487898",
+          "#687878"
+        ],
+        "fill": {
+          "type": "linear-gradient",
+          "angle": 180.0,
+          "stops": [
+            {
+              "offset": 0.0,
+              "color": "#FAFAFA"
+            },
+            {
+              "offset": 1.0,
+              "color": "#646464"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "button_001",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 2.0,
+        "y": 20.0,
+        "width": 156.0,
+        "height": 24.0
+      },
+      "zIndex": 1,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "TECHNOLOGY",
+        "lines": [
+          {
+            "text": "TECHNOLOGY",
+            "bbox": {
+              "x": 2.0,
+              "y": 20.0,
+              "width": 156.0,
+              "height": 24.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 21.6,
+        "fontWeight": 400,
+        "textColor": "#E43C3C",
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#E83848",
+          "#E84858"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      }
+    },
+    {
+      "id": "body_001",
+      "name": "body_text",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 0.0,
+        "y": 65.0,
+        "width": 470.0,
+        "height": 61.0
+      },
+      "zIndex": 2,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/body_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "The Future of AI",
+        "lines": [
+          {
+            "text": "The Future of AI",
+            "bbox": {
+              "x": 0.0,
+              "y": 65.0,
+              "width": 470.0,
+              "height": 61.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 54.9,
+        "fontWeight": 400,
+        "textColor": "#243C54",
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#183858",
+          "#283858"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Paragraph",
+        "textRole": "paragraph"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    },
+    {
+      "id": "headline_001",
+      "name": "headline",
+      "type": "text",
+      "semanticRole": "headline",
+      "bbox": {
+        "x": 0.0,
+        "y": 140.0,
+        "width": 466.0,
+        "height": 77.0
+      },
+      "zIndex": 3,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/headline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "in Everyday Life",
+        "lines": [
+          {
+            "text": "in Everyday Life",
+            "bbox": {
+              "x": 0.0,
+              "y": 140.0,
+              "width": 466.0,
+              "height": 77.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 69.3,
+        "fontWeight": 400,
+        "textColor": "#243C54",
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#183858",
+          "#283858"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    },
+    {
+      "id": "subheadline_001",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 0.0,
+        "y": 239.0,
+        "width": 505.0,
+        "height": 37.0
+      },
+      "zIndex": 4,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "How artificial intelligence is reshaping",
+        "lines": [
+          {
+            "text": "How artificial intelligence is reshaping",
+            "bbox": {
+              "x": 0.0,
+              "y": 239.0,
+              "width": 505.0,
+              "height": 37.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 33.3,
+        "fontWeight": 400,
+        "textColor": "#3C849C",
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#487898",
+          "#D8E8E8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    },
+    {
+      "id": "subheadline_002",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 0.0,
+        "y": 284.0,
+        "width": 492.0,
+        "height": 34.0
+      },
+      "zIndex": 5,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "the way we work, learn, and connect",
+        "lines": [
+          {
+            "text": "the way we work, learn, and connect",
+            "bbox": {
+              "x": 0.0,
+              "y": 284.0,
+              "width": 492.0,
+              "height": 34.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 30.6,
+        "fontWeight": 400,
+        "textColor": "#3C849C",
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#487898",
+          "#D8E8E8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    },
+    {
+      "id": "subheadline_003",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 1.0,
+        "y": 349.0,
+        "width": 143.0,
+        "height": 24.0
+      },
+      "zIndex": 6,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_003.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "By Jane Smith",
+        "lines": [
+          {
+            "text": "By Jane Smith",
+            "bbox": {
+              "x": 1.0,
+              "y": 349.0,
+              "width": 143.0,
+              "height": 24.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 21.6,
+        "fontWeight": 400,
+        "textColor": "#6C6C84",
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#687878",
+          "#787888"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      }
+    },
+    {
+      "id": "subheadline_004",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 188.0,
+        "y": 350.0,
+        "width": 151.0,
+        "height": 23.0
+      },
+      "zIndex": 7,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_004.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "March 15, 2024",
+        "lines": [
+          {
+            "text": "March 15, 2024",
+            "bbox": {
+              "x": 188.0,
+              "y": 350.0,
+              "width": 151.0,
+              "height": 23.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 20.7,
+        "fontWeight": 400,
+        "textColor": "#6C6C84",
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#687878",
+          "#E8E8E8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "textgroup_001",
+      "name": "The Future of AI\nin Everyday Life\nHow artificial intelligence is reshaping\nthe way we work, learn, and connect",
+      "layerIds": [
+        "body_001",
+        "headline_001",
+        "subheadline_001",
+        "subheadline_002"
+      ]
+    }
+  ],
+  "warnings": [],
+  "exports": {
+    "manifest": "manifest.json"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "layer_updates": [
+    {
+      "layer_id": "image_002",
+      "semantic_role": "button"
+    },
+    {
+      "layer_id": "subheadline_001",
+      "semantic_role": "headline"
+    }
+  ],
+  "groups": []
+}

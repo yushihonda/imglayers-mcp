@@ -1,0 +1,79 @@
+{
+  "image_type": "poster",
+  "canvas": {
+    "width": 1600,
+    "height": 900
+  },
+  "layers": [
+    {
+      "role": "background",
+      "bbox": {
+        "x": 0,
+        "y": 0,
+        "width": 1600,
+        "height": 900
+      },
+      "color": "#000000"
+    },
+    {
+      "role": "decoration",
+      "bbox": {
+        "x": 0,
+        "y": 0,
+        "width": 20,
+        "height": 900
+      },
+      "color": "#FF0055"
+    },
+    {
+      "role": "headline",
+      "bbox": {
+        "x": 80,
+        "y": 200,
+        "width": 550,
+        "height": 200
+      },
+      "text": "BOLD"
+    },
+    {
+      "role": "headline",
+      "bbox": {
+        "x": 80,
+        "y": 400,
+        "width": 700,
+        "height": 200
+      },
+      "text": "MOVES"
+    },
+    {
+      "role": "button",
+      "bbox": {
+        "x": 80,
+        "y": 700,
+        "width": 320,
+        "height": 80
+      },
+      "color": "#FFFFFF"
+    },
+    {
+      "role": "button",
+      "bbox": {
+        "x": 130,
+        "y": 720,
+        "width": 240,
+        "height": 50
+      },
+      "text": "START NOW"
+    },
+    {
+      "role": "body_text",
+      "bbox": {
+        "x": 80,
+        "y": 820,
+        "width": 500,
+        "height": 30
+      },
+      "text": "Est. 2024 / New York"
+    }
+  ]
+}

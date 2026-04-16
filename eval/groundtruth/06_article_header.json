@@ -1,0 +1,89 @@
+{
+  "image_type": "text-heavy",
+  "canvas": {
+    "width": 1000,
+    "height": 400
+  },
+  "layers": [
+    {
+      "role": "background",
+      "bbox": {
+        "x": 0,
+        "y": 0,
+        "width": 1000,
+        "height": 400
+      },
+      "color": "#FAFAFA"
+    },
+    {
+      "role": "body_text",
+      "bbox": {
+        "x": 50,
+        "y": 40,
+        "width": 200,
+        "height": 30
+      },
+      "text": "TECHNOLOGY"
+    },
+    {
+      "role": "headline",
+      "bbox": {
+        "x": 50,
+        "y": 80,
+        "width": 600,
+        "height": 70
+      },
+      "text": "The Future of AI"
+    },
+    {
+      "role": "headline",
+      "bbox": {
+        "x": 50,
+        "y": 150,
+        "width": 500,
+        "height": 70
+      },
+      "text": "in Everyday Life"
+    },
+    {
+      "role": "body_text",
+      "bbox": {
+        "x": 50,
+        "y": 240,
+        "width": 700,
+        "height": 40
+      },
+      "text": "How artificial intelligence is reshaping"
+    },
+    {
+      "role": "body_text",
+      "bbox": {
+        "x": 50,
+        "y": 280,
+        "width": 700,
+        "height": 40
+      },
+      "text": "the way we work, learn, and connect"
+    },
+    {
+      "role": "body_text",
+      "bbox": {
+        "x": 50,
+        "y": 340,
+        "width": 160,
+        "height": 30
+      },
+      "text": "By Jane Smith"
+    },
+    {
+      "role": "body_text",
+      "bbox": {
+        "x": 220,
+        "y": 340,
+        "width": 200,
+        "height": 30
+      },
+      "text": "March 15, 2024"
+    }
+  ]
+}

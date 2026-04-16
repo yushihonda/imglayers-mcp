@@ -1,0 +1,863 @@
+{
+  "version": "0.1.0",
+  "projectId": "proj_20260416_136",
+  "createdAt": "2026-04-16T04:01:09Z",
+  "source": {
+    "inputUri": "/Users/hondayushi/workspaece/mcp/imglayers-mcp/eval/images/02_tech_banner.png",
+    "originalFileName": "02_tech_banner.png",
+    "mimeType": "image/png",
+    "sha256": "6a55afa32691873228225ef1b3167e825cf28d3e910240395827adec412ef0b8",
+    "width": 1000,
+    "height": 500
+  },
+  "canvas": {
+    "width": 1000,
+    "height": 500,
+    "background": "#0E0C52"
+  },
+  "pipeline": {
+    "engineRequested": "layerd",
+    "engineSelected": "layerd",
+    "enableOCR": true,
+    "detailLevel": "high",
+    "timingsMs": {},
+    "engineCandidates": [
+      "layerd"
+    ]
+  },
+  "stats": {
+    "totalLayers": 18,
+    "textLayers": 7,
+    "imageLayers": 1,
+    "vectorLikeLayers": 2,
+    "unknownLayers": 8
+  },
+  "assets": {
+    "original": "meta/original.png",
+    "preview": "preview/preview.png",
+    "layersDir": "layers"
+  },
+  "layers": [
+    {
+      "id": "bg_001",
+      "name": "background",
+      "type": "image",
+      "semanticRole": "background",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 1000.0,
+        "height": 500.0
+      },
+      "zIndex": 0,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/bg_001.png",
+        "format": "png",
+        "hasAlpha": false
+      },
+      "styleHints": {
+        "dominantColors": [
+          "#181848",
+          "#080838",
+          "#180868",
+          "#080848"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "deco_001",
+      "name": "decoration",
+      "type": "vector_like",
+      "semanticRole": "decoration",
+      "bbox": {
+        "x": 50.0,
+        "y": 50.0,
+        "width": 401.0,
+        "height": 401.0
+      },
+      "zIndex": 1,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/deco_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "styleHints": {
+        "dominantColors": [
+          "#181848",
+          "#6868F8",
+          "#F8F8F8",
+          "#A8A8D8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "image_001",
+      "name": "illustration",
+      "type": "unknown",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 52.0,
+        "y": 52.0,
+        "width": 397.0,
+        "height": 397.0
+      },
+      "zIndex": 2,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "image_002",
+      "name": "illustration",
+      "type": "unknown",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 451.0,
+        "y": 120.0,
+        "width": 549.0,
+        "height": 220.0
+      },
+      "zIndex": 3,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "image_003",
+      "name": "illustration",
+      "type": "unknown",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 1000.0,
+        "height": 120.0
+      },
+      "zIndex": 4,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_003.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "image_004",
+      "name": "illustration",
+      "type": "unknown",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 500.0,
+        "y": 280.0,
+        "width": 281.0,
+        "height": 61.0
+      },
+      "zIndex": 5,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_004.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      },
+      "children": [
+        "container_001"
+      ]
+    },
+    {
+      "id": "button_001",
+      "name": "button",
+      "type": "vector_like",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 500.0,
+        "y": 370.0,
+        "width": 277.0,
+        "height": 61.0
+      },
+      "zIndex": 6,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "styleHints": {
+        "dominantColors": [
+          "#180868",
+          "#6868F8",
+          "#4838B8",
+          "#6858F8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      },
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "containerLikely": false
+      }
+    },
+    {
+      "id": "image_005",
+      "name": "illustration",
+      "type": "unknown",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 0.0,
+        "y": 120.0,
+        "width": 50.0,
+        "height": 220.0
+      },
+      "zIndex": 7,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_005.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "image_006",
+      "name": "illustration",
+      "type": "unknown",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 451.0,
+        "y": 340.0,
+        "width": 549.0,
+        "height": 20.0
+      },
+      "zIndex": 8,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_006.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "image_007",
+      "name": "illustration",
+      "type": "unknown",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 0.0,
+        "y": 340.0,
+        "width": 50.0,
+        "height": 20.0
+      },
+      "zIndex": 9,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_007.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "image_008",
+      "name": "illustration",
+      "type": "unknown",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 172.0,
+        "y": 87.0,
+        "width": 11.0,
+        "height": 86.0
+      },
+      "zIndex": 10,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_008.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      },
+      "children": [
+        "container_002"
+      ]
+    },
+    {
+      "id": "headline_001",
+      "name": "headline",
+      "type": "text",
+      "semanticRole": "headline",
+      "bbox": {
+        "x": 27.0,
+        "y": 34.0,
+        "width": 143.0,
+        "height": 126.0
+      },
+      "zIndex": 11,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/headline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "AI",
+        "lines": [
+          {
+            "text": "AI",
+            "bbox": {
+              "x": 27.0,
+              "y": 34.0,
+              "width": 143.0,
+              "height": 126.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 113.4,
+        "fontWeight": 400,
+        "textColor": "#6C6CFC",
+        "textAlign": "left",
+        "dominantColors": [
+          "#181848",
+          "#080838",
+          "#6868F8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    },
+    {
+      "id": "body_001",
+      "name": "body_text",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 512.0,
+        "y": 55.0,
+        "width": 370.0,
+        "height": 62.0
+      },
+      "zIndex": 12,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/body_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Transform your",
+        "lines": [
+          {
+            "text": "Transform your",
+            "bbox": {
+              "x": 512.0,
+              "y": 55.0,
+              "width": 370.0,
+              "height": 62.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 55.8,
+        "fontWeight": 400,
+        "textColor": "#FCFCFC",
+        "textAlign": "right",
+        "dominantColors": [
+          "#080838",
+          "#F8F8F8",
+          "#181848"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Paragraph",
+        "textRole": "paragraph"
+      },
+      "children": [
+        "textgroup_002",
+        "container_003"
+      ]
+    },
+    {
+      "id": "subheadline_001",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 519.0,
+        "y": 138.0,
+        "width": 405.0,
+        "height": 58.0
+      },
+      "zIndex": 13,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "data into insights",
+        "lines": [
+          {
+            "text": "data into insights",
+            "bbox": {
+              "x": 519.0,
+              "y": 138.0,
+              "width": 405.0,
+              "height": 58.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 52.2,
+        "fontWeight": 400,
+        "textColor": "#B4B4E4",
+        "textAlign": "right",
+        "dominantColors": [
+          "#080848",
+          "#A8A8D8",
+          "#9898C8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_002",
+        "container_001"
+      ]
+    },
+    {
+      "id": "subheadline_002",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 29.0,
+        "y": 199.0,
+        "width": 240.0,
+        "height": 55.0
+      },
+      "zIndex": 14,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Powered",
+        "lines": [
+          {
+            "text": "Powered",
+            "bbox": {
+              "x": 29.0,
+              "y": 199.0,
+              "width": 240.0,
+              "height": 55.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 49.5,
+        "fontWeight": 400,
+        "textColor": "#FCFCFC",
+        "textAlign": "left",
+        "dominantColors": [
+          "#181848",
+          "#F8F8F8",
+          "#080848"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    },
+    {
+      "id": "subheadline_003",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 569.0,
+        "y": 274.0,
+        "width": 188.0,
+        "height": 39.0
+      },
+      "zIndex": 15,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_003.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Get Started",
+        "lines": [
+          {
+            "text": "Get Started",
+            "bbox": {
+              "x": 569.0,
+              "y": 274.0,
+              "width": 188.0,
+              "height": 39.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 35.1,
+        "fontWeight": 900,
+        "textColor": "#6C6CFC",
+        "textAlign": "right",
+        "dominantColors": [
+          "#6868F8",
+          "#080858",
+          "#F8F8F8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "container_001"
+      ]
+    },
+    {
+      "id": "subheadline_004",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 28.0,
+        "y": 282.0,
+        "width": 243.0,
+        "height": 58.0
+      },
+      "zIndex": 16,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_004.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Analytics",
+        "lines": [
+          {
+            "text": "Analytics",
+            "bbox": {
+              "x": 28.0,
+              "y": 282.0,
+              "width": 243.0,
+              "height": 58.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 52.2,
+        "fontWeight": 400,
+        "textColor": "#B4B4E4",
+        "textAlign": "left",
+        "dominantColors": [
+          "#181848",
+          "#A8A8D8",
+          "#180858"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    },
+    {
+      "id": "subheadline_005",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 583.0,
+        "y": 383.0,
+        "width": 194.0,
+        "height": 32.0
+      },
+      "zIndex": 17,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_005.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Learn More",
+        "lines": [
+          {
+            "text": "Learn More",
+            "bbox": {
+              "x": 583.0,
+              "y": 383.0,
+              "width": 194.0,
+              "height": 32.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 28.8,
+        "fontWeight": 400,
+        "textColor": "#6C6CFC",
+        "textAlign": "right",
+        "dominantColors": [
+          "#180868",
+          "#6868F8",
+          "#6858F8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "container_004"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "textgroup_001",
+      "name": "AI\nPowered\nAnalytics",
+      "layerIds": [
+        "headline_001",
+        "subheadline_002",
+        "subheadline_004"
+      ]
+    },
+    {
+      "id": "textgroup_002",
+      "name": "Transform your\ndata into insights",
+      "layerIds": [
+        "body_001",
+        "subheadline_001"
+      ]
+    },
+    {
+      "id": "container_001",
+      "name": "illustration container",
+      "layerIds": [
+        "image_002",
+        "image_004",
+        "subheadline_001",
+        "subheadline_003"
+      ]
+    },
+    {
+      "id": "container_002",
+      "name": "illustration container",
+      "layerIds": [
+        "image_001",
+        "image_008"
+      ]
+    },
+    {
+      "id": "container_003",
+      "name": "illustration container",
+      "layerIds": [
+        "image_003",
+        "body_001"
+      ]
+    },
+    {
+      "id": "container_004",
+      "name": "button container",
+      "layerIds": [
+        "button_001",
+        "subheadline_005"
+      ]
+    }
+  ],
+  "warnings": [],
+  "exports": {
+    "manifest": "manifest.json"
+  }
+}

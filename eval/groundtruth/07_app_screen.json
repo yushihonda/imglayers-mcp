@@ -1,0 +1,159 @@
+{
+  "image_type": "ui-screenshot",
+  "canvas": {
+    "width": 400,
+    "height": 800
+  },
+  "layers": [
+    {
+      "role": "background",
+      "bbox": {
+        "x": 0,
+        "y": 0,
+        "width": 400,
+        "height": 800
+      },
+      "color": "#F8F9FA"
+    },
+    {
+      "role": "card",
+      "bbox": {
+        "x": 0,
+        "y": 0,
+        "width": 400,
+        "height": 80
+      },
+      "color": "#FFFFFF"
+    },
+    {
+      "role": "headline",
+      "bbox": {
+        "x": 20,
+        "y": 30,
+        "width": 150,
+        "height": 40
+      },
+      "text": "Explore"
+    },
+    {
+      "role": "card",
+      "bbox": {
+        "x": 20,
+        "y": 100,
+        "width": 360,
+        "height": 250
+      },
+      "color": "#FFFFFF"
+    },
+    {
+      "role": "illustration",
+      "bbox": {
+        "x": 30,
+        "y": 110,
+        "width": 340,
+        "height": 130
+      },
+      "color": "#FFB6C1"
+    },
+    {
+      "role": "headline",
+      "bbox": {
+        "x": 30,
+        "y": 260,
+        "width": 250,
+        "height": 30
+      },
+      "text": "Beach Paradise"
+    },
+    {
+      "role": "body_text",
+      "bbox": {
+        "x": 30,
+        "y": 290,
+        "width": 150,
+        "height": 25
+      },
+      "text": "From $299"
+    },
+    {
+      "role": "card",
+      "bbox": {
+        "x": 20,
+        "y": 380,
+        "width": 360,
+        "height": 250
+      },
+      "color": "#FFFFFF"
+    },
+    {
+      "role": "illustration",
+      "bbox": {
+        "x": 30,
+        "y": 390,
+        "width": 340,
+        "height": 130
+      },
+      "color": "#87CEEB"
+    },
+    {
+      "role": "headline",
+      "bbox": {
+        "x": 30,
+        "y": 540,
+        "width": 250,
+        "height": 30
+      },
+      "text": "Mountain Retreat"
+    },
+    {
+      "role": "body_text",
+      "bbox": {
+        "x": 30,
+        "y": 570,
+        "width": 150,
+        "height": 25
+      },
+      "text": "From $399"
+    },
+    {
+      "role": "card",
+      "bbox": {
+        "x": 0,
+        "y": 720,
+        "width": 400,
+        "height": 80
+      },
+      "color": "#FFFFFF"
+    },
+    {
+      "role": "body_text",
+      "bbox": {
+        "x": 40,
+        "y": 745,
+        "width": 60,
+        "height": 20
+      },
+      "text": "Home"
+    },
+    {
+      "role": "body_text",
+      "bbox": {
+        "x": 160,
+        "y": 745,
+        "width": 70,
+        "height": 20
+      },
+      "text": "Search"
+    },
+    {
+      "role": "body_text",
+      "bbox": {
+        "x": 290,
+        "y": 745,
+        "width": 70,
+        "height": 20
+      },
+      "text": "Profile"
+    }
+  ]
+}

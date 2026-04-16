@@ -1,0 +1,445 @@
+{
+  "version": "0.1.0",
+  "projectId": "proj_20260416_224",
+  "createdAt": "2026-04-16T04:20:11Z",
+  "source": {
+    "inputUri": "/Users/hondayushi/workspaece/mcp/imglayers-mcp/eval/images/10_high_contrast.png",
+    "originalFileName": "10_high_contrast.png",
+    "mimeType": "image/png",
+    "sha256": "3b4df7cb0acea057d05ef861f42d06899554a7e44cd1a775c7c04d1316c69b7c",
+    "width": 1600,
+    "height": 900
+  },
+  "canvas": {
+    "width": 1600,
+    "height": 900,
+    "background": "#170007"
+  },
+  "pipeline": {
+    "engineRequested": "layerd",
+    "engineSelected": "layerd",
+    "enableOCR": true,
+    "detailLevel": "high",
+    "timingsMs": {},
+    "engineCandidates": [
+      "layerd"
+    ]
+  },
+  "stats": {
+    "totalLayers": 8,
+    "textLayers": 4,
+    "imageLayers": 2,
+    "vectorLikeLayers": 0,
+    "unknownLayers": 2
+  },
+  "assets": {
+    "original": "meta/original.png",
+    "preview": "preview/preview.png",
+    "layersDir": "layers"
+  },
+  "layers": [
+    {
+      "id": "bg_001",
+      "name": "background",
+      "type": "image",
+      "semanticRole": "background",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 1600.0,
+        "height": 900.0
+      },
+      "zIndex": 0,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/bg_001.png",
+        "format": "png",
+        "hasAlpha": false
+      },
+      "styleHints": {
+        "dominantColors": [
+          "#080808",
+          "#F80858",
+          "#F8F8F8",
+          "#888888"
+        ],
+        "fill": {
+          "type": "linear-gradient",
+          "angle": 90.0,
+          "stops": [
+            {
+              "offset": 0.0,
+              "color": "#20000B"
+            },
+            {
+              "offset": 1.0,
+              "color": "#000000"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "bg_002",
+      "name": "background",
+      "type": "image",
+      "semanticRole": "background",
+      "bbox": {
+        "x": 20.0,
+        "y": 0.0,
+        "width": 1580.0,
+        "height": 900.0
+      },
+      "zIndex": 1,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/bg_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "styleHints": {
+        "dominantColors": [
+          "#080808",
+          "#F8F8F8",
+          "#F80858",
+          "#888888"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.55
+      }
+    },
+    {
+      "id": "image_001",
+      "name": "illustration",
+      "type": "unknown",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 80.0,
+        "y": 700.0,
+        "width": 321.0,
+        "height": 81.0
+      },
+      "zIndex": 2,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "image_002",
+      "name": "illustration",
+      "type": "unknown",
+      "semanticRole": "decoration",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 21.0,
+        "height": 900.0
+      },
+      "zIndex": 3,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "body_001",
+      "name": "body_text",
+      "type": "text",
+      "semanticRole": "headline",
+      "bbox": {
+        "x": 71.0,
+        "y": 169.0,
+        "width": 574.0,
+        "height": 210.0
+      },
+      "zIndex": 4,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/body_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "BOLD",
+        "lines": [
+          {
+            "text": "BOLD",
+            "bbox": {
+              "x": 71.0,
+              "y": 169.0,
+              "width": 574.0,
+              "height": 210.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 189.0,
+        "fontWeight": 400,
+        "textColor": "#FCFCFC",
+        "textAlign": "left",
+        "dominantColors": [
+          "#080808",
+          "#F8F8F8",
+          "#181818"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Paragraph",
+        "textRole": "paragraph"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    },
+    {
+      "id": "headline_001",
+      "name": "headline",
+      "type": "text",
+      "semanticRole": "headline",
+      "bbox": {
+        "x": 68.0,
+        "y": 367.0,
+        "width": 686.0,
+        "height": 227.0
+      },
+      "zIndex": 5,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/headline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "MOVES",
+        "lines": [
+          {
+            "text": "MOVES",
+            "bbox": {
+              "x": 68.0,
+              "y": 367.0,
+              "width": 686.0,
+              "height": 227.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 204.3,
+        "fontWeight": 600,
+        "textColor": "#FC0C54",
+        "textAlign": "left",
+        "dominantColors": [
+          "#080808",
+          "#F80858",
+          "#B80838"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    },
+    {
+      "id": "subheadline_001",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 120.0,
+        "y": 705.0,
+        "width": 253.0,
+        "height": 59.0
+      },
+      "zIndex": 6,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "START NOW",
+        "lines": [
+          {
+            "text": "START NOW",
+            "bbox": {
+              "x": 120.0,
+              "y": 705.0,
+              "width": 253.0,
+              "height": 59.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 53.1,
+        "fontWeight": 900,
+        "textColor": "#FCFCFC",
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#080808",
+          "#B8B8B8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001",
+        "container_001"
+      ]
+    },
+    {
+      "id": "subheadline_002",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 76.0,
+        "y": 813.0,
+        "width": 194.0,
+        "height": 32.0
+      },
+      "zIndex": 7,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Est. 2024 / New York",
+        "lines": [
+          {
+            "text": "Est. 2024 / New York",
+            "bbox": {
+              "x": 76.0,
+              "y": 813.0,
+              "width": 194.0,
+              "height": 32.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 28.8,
+        "fontWeight": 400,
+        "textColor": "#848484",
+        "textAlign": "left",
+        "dominantColors": [
+          "#080808",
+          "#888888",
+          "#787878"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "textgroup_001",
+      "name": "BOLD\nMOVES\nSTART NOW",
+      "layerIds": [
+        "body_001",
+        "headline_001",
+        "subheadline_001"
+      ]
+    },
+    {
+      "id": "container_001",
+      "name": "illustration container",
+      "layerIds": [
+        "image_001",
+        "subheadline_001"
+      ]
+    }
+  ],
+  "warnings": [],
+  "exports": {
+    "manifest": "manifest.json"
+  }
+}

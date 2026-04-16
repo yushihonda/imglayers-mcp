@@ -1,0 +1,21 @@
+{
+  "layer_updates": [
+    {
+      "layer_id": "icon_001",
+      "semantic_role": "logo"
+    },
+    {
+      "layer_id": "headline_001",
+      "semantic_role": "logo"
+    },
+    {
+      "layer_id": "subheadline_001",
+      "semantic_role": "headline"
+    },
+    {
+      "layer_id": "subheadline_002",
+      "semantic_role": "body_text"
+    }
+  ],
+  "groups": []
+}

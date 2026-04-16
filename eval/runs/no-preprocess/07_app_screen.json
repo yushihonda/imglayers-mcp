@@ -1,0 +1,648 @@
+{
+  "version": "0.1.0",
+  "projectId": "proj_20260416_161",
+  "createdAt": "2026-04-16T04:06:32Z",
+  "source": {
+    "inputUri": "/Users/hondayushi/workspaece/mcp/imglayers-mcp/eval/images/07_app_screen.png",
+    "originalFileName": "07_app_screen.png",
+    "mimeType": "image/png",
+    "sha256": "b54a80ad466da05621c8f62de0338398d1cf76e254bf2548965d0b033770dfd5",
+    "width": 400,
+    "height": 800
+  },
+  "canvas": {
+    "width": 400,
+    "height": 800,
+    "background": "#FBFBFC"
+  },
+  "pipeline": {
+    "engineRequested": "layerd",
+    "engineSelected": "layerd",
+    "enableOCR": true,
+    "detailLevel": "high",
+    "timingsMs": {},
+    "engineCandidates": [
+      "layerd"
+    ]
+  },
+  "stats": {
+    "totalLayers": 11,
+    "textLayers": 8,
+    "imageLayers": 3,
+    "vectorLikeLayers": 0,
+    "unknownLayers": 0
+  },
+  "assets": {
+    "original": "meta/original.png",
+    "preview": "preview/preview.png",
+    "layersDir": "layers"
+  },
+  "layers": [
+    {
+      "id": "bg_001",
+      "name": "background",
+      "type": "image",
+      "semanticRole": "background",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 400.0,
+        "height": 800.0
+      },
+      "zIndex": 0,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/bg_001.png",
+        "format": "png",
+        "hasAlpha": false
+      },
+      "styleHints": {
+        "dominantColors": [
+          "#F8F8F8",
+          "#F8B8C8",
+          "#88C8E8",
+          "#282828"
+        ],
+        "fill": {
+          "type": "linear-gradient",
+          "angle": 90.0,
+          "stops": [
+            {
+              "offset": 0.0,
+              "color": "#FCFCFC"
+            },
+            {
+              "offset": 1.0,
+              "color": "#7E7E7F"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "image_001",
+      "name": "illustration",
+      "type": "image",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 30.0,
+        "y": 390.0,
+        "width": 341.0,
+        "height": 131.0
+      },
+      "zIndex": 1,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "styleHints": {
+        "dominantColors": [
+          "#88C8E8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "image_002",
+      "name": "illustration",
+      "type": "image",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 30.0,
+        "y": 110.0,
+        "width": 341.0,
+        "height": 131.0
+      },
+      "zIndex": 2,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "styleHints": {
+        "dominantColors": [
+          "#F8B8C8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "headline_001",
+      "name": "headline",
+      "type": "text",
+      "semanticRole": "headline",
+      "bbox": {
+        "x": 13.0,
+        "y": 23.0,
+        "width": 107.0,
+        "height": 38.0
+      },
+      "zIndex": 3,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/headline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Explore",
+        "lines": [
+          {
+            "text": "Explore",
+            "bbox": {
+              "x": 13.0,
+              "y": 23.0,
+              "width": 107.0,
+              "height": 38.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 34.2,
+        "fontWeight": 400,
+        "textColor": "#242424",
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#282828",
+          "#E8E8E8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      }
+    },
+    {
+      "id": "body_001",
+      "name": "body_text",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 26.0,
+        "y": 256.0,
+        "width": 160.0,
+        "height": 24.0
+      },
+      "zIndex": 4,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/body_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Beach Paradise",
+        "lines": [
+          {
+            "text": "Beach Paradise",
+            "bbox": {
+              "x": 26.0,
+              "y": 256.0,
+              "width": 160.0,
+              "height": 24.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 21.6,
+        "fontWeight": 400,
+        "textColor": "#242424",
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#282828",
+          "#383838"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Paragraph",
+        "textRole": "paragraph"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    },
+    {
+      "id": "button_001",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 25.0,
+        "y": 284.0,
+        "width": 94.0,
+        "height": 24.0
+      },
+      "zIndex": 5,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "From $299",
+        "lines": [
+          {
+            "text": "From $299",
+            "bbox": {
+              "x": 25.0,
+              "y": 284.0,
+              "width": 94.0,
+              "height": 24.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 21.6,
+        "fontWeight": 400,
+        "textColor": "#E43C3C",
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#E83848",
+          "#F8C8C8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    },
+    {
+      "id": "body_002",
+      "name": "body_text",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 28.0,
+        "y": 538.0,
+        "width": 173.0,
+        "height": 20.0
+      },
+      "zIndex": 6,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/body_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Mountain Retreat",
+        "lines": [
+          {
+            "text": "Mountain Retreat",
+            "bbox": {
+              "x": 28.0,
+              "y": 538.0,
+              "width": 173.0,
+              "height": 20.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 18.0,
+        "fontWeight": 400,
+        "textColor": "#242424",
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#282828",
+          "#585858"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Paragraph",
+        "textRole": "paragraph"
+      },
+      "children": [
+        "textgroup_002"
+      ]
+    },
+    {
+      "id": "button_002",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 26.0,
+        "y": 566.0,
+        "width": 93.0,
+        "height": 21.0
+      },
+      "zIndex": 7,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "From $399",
+        "lines": [
+          {
+            "text": "From $399",
+            "bbox": {
+              "x": 26.0,
+              "y": 566.0,
+              "width": 93.0,
+              "height": 21.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 18.9,
+        "fontWeight": 400,
+        "textColor": "#E43C3C",
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#E83848",
+          "#F8C8C8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      },
+      "children": [
+        "textgroup_002"
+      ]
+    },
+    {
+      "id": "button_003",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 35.0,
+        "y": 740.0,
+        "width": 46.0,
+        "height": 20.0
+      },
+      "zIndex": 8,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_003.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Home",
+        "lines": [
+          {
+            "text": "Home",
+            "bbox": {
+              "x": 35.0,
+              "y": 740.0,
+              "width": 46.0,
+              "height": 20.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 18.0,
+        "fontWeight": 400,
+        "textColor": "#6C6C84",
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#687878",
+          "#788888"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      }
+    },
+    {
+      "id": "button_004",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 286.0,
+        "y": 741.0,
+        "width": 46.0,
+        "height": 18.0
+      },
+      "zIndex": 9,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_004.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Profile",
+        "lines": [
+          {
+            "text": "Profile",
+            "bbox": {
+              "x": 286.0,
+              "y": 741.0,
+              "width": 46.0,
+              "height": 18.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 16.2,
+        "fontWeight": 400,
+        "textColor": "#6C6C84",
+        "textAlign": "right",
+        "dominantColors": [
+          "#F8F8F8",
+          "#687878",
+          "#E8E8E8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      }
+    },
+    {
+      "id": "button_005",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 157.0,
+        "y": 743.0,
+        "width": 49.0,
+        "height": 15.0
+      },
+      "zIndex": 10,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_005.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Search",
+        "lines": [
+          {
+            "text": "Search",
+            "bbox": {
+              "x": 157.0,
+              "y": 743.0,
+              "width": 49.0,
+              "height": 15.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 13.5,
+        "fontWeight": 400,
+        "textColor": "#3C3C3C",
+        "textAlign": "center",
+        "dominantColors": [
+          "#F8F8F8",
+          "#E8E8E8",
+          "#383838"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      }
+    }
+  ],
+  "groups": [
+    {
+      "id": "textgroup_001",
+      "name": "Beach Paradise\nFrom $299",
+      "layerIds": [
+        "body_001",
+        "button_001"
+      ]
+    },
+    {
+      "id": "textgroup_002",
+      "name": "Mountain Retreat\nFrom $399",
+      "layerIds": [
+        "body_002",
+        "button_002"
+      ]
+    }
+  ],
+  "warnings": [],
+  "exports": {
+    "manifest": "manifest.json"
+  }
+}

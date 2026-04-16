@@ -1,0 +1,25 @@
+{
+  "layer_updates": [
+    {
+      "layer_id": "image_001",
+      "semantic_role": "button"
+    },
+    {
+      "layer_id": "image_002",
+      "semantic_role": "decoration"
+    },
+    {
+      "layer_id": "body_001",
+      "semantic_role": "headline"
+    },
+    {
+      "layer_id": "subheadline_001",
+      "semantic_role": "button"
+    },
+    {
+      "layer_id": "subheadline_002",
+      "semantic_role": "body_text"
+    }
+  ],
+  "groups": []
+}

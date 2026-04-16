@@ -1,0 +1,649 @@
+{
+  "version": "0.1.0",
+  "projectId": "proj_20260416_260",
+  "createdAt": "2026-04-16T04:35:00Z",
+  "source": {
+    "inputUri": "/Users/hondayushi/workspaece/mcp/imglayers-mcp/eval/images/05_sale_badge.png",
+    "originalFileName": "05_sale_badge.png",
+    "mimeType": "image/png",
+    "sha256": "ad15f209b9577436f8b404069c390bdd9c62c67413a7b982f9e37bf5c7b9c231",
+    "width": 900,
+    "height": 600
+  },
+  "canvas": {
+    "width": 900,
+    "height": 600,
+    "background": "#EEEEEE"
+  },
+  "pipeline": {
+    "engineRequested": "layerd",
+    "engineSelected": "layerd",
+    "enableOCR": true,
+    "detailLevel": "high",
+    "timingsMs": {},
+    "engineCandidates": [
+      "layerd"
+    ]
+  },
+  "stats": {
+    "totalLayers": 11,
+    "textLayers": 6,
+    "imageLayers": 2,
+    "vectorLikeLayers": 0,
+    "unknownLayers": 3
+  },
+  "assets": {
+    "original": "meta/original.png",
+    "preview": "preview/preview.png",
+    "layersDir": "layers"
+  },
+  "layers": [
+    {
+      "id": "bg_001",
+      "name": "background",
+      "type": "image",
+      "semanticRole": "background",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 900.0,
+        "height": 600.0
+      },
+      "zIndex": 0,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/bg_001.png",
+        "format": "png",
+        "hasAlpha": false
+      },
+      "styleHints": {
+        "dominantColors": [
+          "#F8F8F8",
+          "#E8E8E8",
+          "#F84858",
+          "#283848"
+        ],
+        "fill": {
+          "type": "linear-gradient",
+          "angle": 90.0,
+          "stops": [
+            {
+              "offset": 0.0,
+              "color": "#EEEEEE"
+            },
+            {
+              "offset": 1.0,
+              "color": "#777777"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "bg_002",
+      "name": "background",
+      "type": "image",
+      "semanticRole": "background",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 900.0,
+        "height": 600.0
+      },
+      "zIndex": 1,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/bg_002.png",
+        "format": "png",
+        "hasAlpha": false
+      },
+      "styleHints": {
+        "dominantColors": [
+          "#F8F8F8",
+          "#E8E8E8",
+          "#F84858",
+          "#283848"
+        ],
+        "fill": {
+          "type": "linear-gradient",
+          "angle": 90.0,
+          "stops": [
+            {
+              "offset": 0.0,
+              "color": "#EEEEEE"
+            },
+            {
+              "offset": 1.0,
+              "color": "#777777"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.55
+      }
+    },
+    {
+      "id": "card_001",
+      "name": "card",
+      "type": "unknown",
+      "semanticRole": "card",
+      "bbox": {
+        "x": 50.0,
+        "y": 50.0,
+        "width": 801.0,
+        "height": 501.0
+      },
+      "zIndex": 2,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/card_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "card_002",
+      "name": "card",
+      "type": "unknown",
+      "semanticRole": "badge",
+      "bbox": {
+        "x": 100.0,
+        "y": 100.0,
+        "width": 251.0,
+        "height": 251.0
+      },
+      "zIndex": 3,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/card_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      },
+      "children": [
+        "container_001"
+      ]
+    },
+    {
+      "id": "image_001",
+      "name": "illustration",
+      "type": "unknown",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 420.0,
+        "y": 380.0,
+        "width": 281.0,
+        "height": 71.0
+      },
+      "zIndex": 4,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      },
+      "children": [
+        "container_001"
+      ]
+    },
+    {
+      "id": "body_001",
+      "name": "body_text",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 410.0,
+        "y": 125.0,
+        "width": 303.0,
+        "height": 79.0
+      },
+      "zIndex": 5,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/body_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Flash Sale",
+        "lines": [
+          {
+            "text": "Flash Sale",
+            "bbox": {
+              "x": 410.0,
+              "y": 125.0,
+              "width": 303.0,
+              "height": 79.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 71.1,
+        "fontWeight": 400,
+        "textColor": "#243C3C",
+        "textAlign": "right",
+        "dominantColors": [
+          "#F8F8F8",
+          "#283848",
+          "#383848"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Paragraph",
+        "textRole": "paragraph"
+      },
+      "children": [
+        "textgroup_001",
+        "container_001"
+      ]
+    },
+    {
+      "id": "headline_001",
+      "name": "headline",
+      "type": "text",
+      "semanticRole": "headline",
+      "bbox": {
+        "x": 135.0,
+        "y": 140.0,
+        "width": 168.0,
+        "height": 96.0
+      },
+      "zIndex": 6,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/headline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "70%",
+        "lines": [
+          {
+            "text": "70%",
+            "bbox": {
+              "x": 135.0,
+              "y": 140.0,
+              "width": 168.0,
+              "height": 96.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 86.4,
+        "fontWeight": 900,
+        "textColor": "#FC3C54",
+        "textAlign": "left",
+        "dominantColors": [
+          "#F84858",
+          "#F8F8F8",
+          "#F85868"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_002",
+        "container_002"
+      ]
+    },
+    {
+      "id": "subheadline_001",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 412.0,
+        "y": 206.0,
+        "width": 252.0,
+        "height": 55.0
+      },
+      "zIndex": 7,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Limited time only",
+        "lines": [
+          {
+            "text": "Limited time only",
+            "bbox": {
+              "x": 412.0,
+              "y": 206.0,
+              "width": 252.0,
+              "height": 55.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 49.5,
+        "fontWeight": 400,
+        "textColor": "#6C8484",
+        "textAlign": "center",
+        "dominantColors": [
+          "#F8F8F8",
+          "#787888",
+          "#788898"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001",
+        "container_001"
+      ]
+    },
+    {
+      "id": "subheadline_002",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 171.0,
+        "y": 216.0,
+        "width": 117.0,
+        "height": 68.0
+      },
+      "zIndex": 8,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "OFF",
+        "lines": [
+          {
+            "text": "OFF",
+            "bbox": {
+              "x": 171.0,
+              "y": 216.0,
+              "width": 117.0,
+              "height": 68.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 61.2,
+        "fontWeight": 900,
+        "textColor": "#FC3C54",
+        "textAlign": "left",
+        "dominantColors": [
+          "#F84858",
+          "#F8F8F8",
+          "#F8C8D8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_002",
+        "container_002"
+      ]
+    },
+    {
+      "id": "subheadline_003",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 412.0,
+        "y": 257.0,
+        "width": 209.0,
+        "height": 53.0
+      },
+      "zIndex": 9,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_003.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Until midnight",
+        "lines": [
+          {
+            "text": "Until midnight",
+            "bbox": {
+              "x": 412.0,
+              "y": 257.0,
+              "width": 209.0,
+              "height": 53.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 47.7,
+        "fontWeight": 400,
+        "textColor": "#6C8484",
+        "textAlign": "center",
+        "dominantColors": [
+          "#F8F8F8",
+          "#787888",
+          "#788898"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001",
+        "container_001"
+      ]
+    },
+    {
+      "id": "subheadline_004",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 444.0,
+        "y": 386.0,
+        "width": 188.0,
+        "height": 43.0
+      },
+      "zIndex": 10,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_004.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "SHOP NOW",
+        "lines": [
+          {
+            "text": "SHOP NOW",
+            "bbox": {
+              "x": 444.0,
+              "y": 386.0,
+              "width": 188.0,
+              "height": 43.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 38.7,
+        "fontWeight": 900,
+        "textColor": "#FC3C54",
+        "textAlign": "center",
+        "dominantColors": [
+          "#F84858",
+          "#F8F8F8",
+          "#F85868"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "container_003"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "textgroup_001",
+      "name": "Flash Sale\nLimited time only\nUntil midnight",
+      "layerIds": [
+        "body_001",
+        "subheadline_001",
+        "subheadline_003"
+      ]
+    },
+    {
+      "id": "textgroup_002",
+      "name": "70%\nOFF",
+      "layerIds": [
+        "headline_001",
+        "subheadline_002"
+      ]
+    },
+    {
+      "id": "container_001",
+      "name": "card container",
+      "layerIds": [
+        "card_001",
+        "card_002",
+        "image_001",
+        "body_001",
+        "subheadline_001",
+        "subheadline_003"
+      ]
+    },
+    {
+      "id": "container_002",
+      "name": "card (badge)",
+      "layerIds": [
+        "card_002",
+        "headline_001",
+        "subheadline_002"
+      ]
+    },
+    {
+      "id": "container_003",
+      "name": "illustration (button)",
+      "layerIds": [
+        "image_001",
+        "subheadline_004"
+      ]
+    }
+  ],
+  "warnings": [],
+  "exports": {
+    "manifest": "manifest.json"
+  }
+}

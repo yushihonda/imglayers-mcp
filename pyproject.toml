@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "imglayers-mcp"
+version = "0.2.0"
+description = "MCP server that decomposes design images into editable layers from a vision LLM's element list."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+authors = [{ name = "imglayers-mcp" }]
+keywords = ["mcp", "image", "layer", "decomposition", "vision-llm", "figma"]
+dependencies = [
+    "mcp>=1.0.0",
+    "pydantic>=2.6",
+    "numpy>=1.26",
+    "pillow>=10.2",
+    "typer>=0.12",
+    "rich>=13.7",
+]
+
+[project.optional-dependencies]
+ocr = [
+    "paddleocr>=2.7",
+]
+export = [
+    "psd-tools>=1.9",
+]
+recommended = [
+    "paddleocr>=2.7",
+    "psd-tools>=1.9",
+]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.4",
+]
+
+[project.scripts]
+imglayers-mcp = "imglayers_mcp.server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

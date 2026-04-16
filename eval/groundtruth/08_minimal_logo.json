@@ -1,0 +1,59 @@
+{
+  "image_type": "poster",
+  "canvas": {
+    "width": 800,
+    "height": 600
+  },
+  "layers": [
+    {
+      "role": "background",
+      "bbox": {
+        "x": 0,
+        "y": 0,
+        "width": 800,
+        "height": 600
+      },
+      "color": "#000000"
+    },
+    {
+      "role": "logo",
+      "bbox": {
+        "x": 300,
+        "y": 150,
+        "width": 200,
+        "height": 200
+      },
+      "color": "#FF6B35"
+    },
+    {
+      "role": "logo",
+      "bbox": {
+        "x": 360,
+        "y": 200,
+        "width": 80,
+        "height": 120
+      },
+      "text": "N"
+    },
+    {
+      "role": "headline",
+      "bbox": {
+        "x": 280,
+        "y": 400,
+        "width": 250,
+        "height": 80
+      },
+      "text": "NOVA"
+    },
+    {
+      "role": "body_text",
+      "bbox": {
+        "x": 220,
+        "y": 490,
+        "width": 380,
+        "height": 40
+      },
+      "text": "Redefining tomorrow"
+    }
+  ]
+}

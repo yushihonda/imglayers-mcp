@@ -1,0 +1,819 @@
+{
+  "version": "0.1.0",
+  "projectId": "proj_20260416_166",
+  "createdAt": "2026-04-16T04:08:35Z",
+  "source": {
+    "inputUri": "/Users/hondayushi/workspaece/mcp/imglayers-mcp/eval/images/02_tech_banner.png",
+    "originalFileName": "02_tech_banner.png",
+    "mimeType": "image/png",
+    "sha256": "6a55afa32691873228225ef1b3167e825cf28d3e910240395827adec412ef0b8",
+    "width": 1000,
+    "height": 500
+  },
+  "canvas": {
+    "width": 1000,
+    "height": 500,
+    "background": "#0E0C52"
+  },
+  "pipeline": {
+    "engineRequested": "layerd",
+    "engineSelected": "layerd",
+    "enableOCR": true,
+    "detailLevel": "high",
+    "timingsMs": {},
+    "engineCandidates": [
+      "layerd"
+    ]
+  },
+  "stats": {
+    "totalLayers": 16,
+    "textLayers": 7,
+    "imageLayers": 2,
+    "vectorLikeLayers": 2,
+    "unknownLayers": 5
+  },
+  "assets": {
+    "original": "meta/original.png",
+    "preview": "preview/preview.png",
+    "layersDir": "layers"
+  },
+  "layers": [
+    {
+      "id": "bg_001",
+      "name": "background",
+      "type": "image",
+      "semanticRole": "background",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 1000.0,
+        "height": 500.0
+      },
+      "zIndex": 0,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/bg_001.png",
+        "format": "png",
+        "hasAlpha": false
+      },
+      "styleHints": {
+        "dominantColors": [
+          "#181848",
+          "#080838",
+          "#180868",
+          "#080848"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "card_001",
+      "name": "card",
+      "type": "vector_like",
+      "semanticRole": "card",
+      "bbox": {
+        "x": 50.0,
+        "y": 50.0,
+        "width": 401.0,
+        "height": 401.0
+      },
+      "zIndex": 1,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/card_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "styleHints": {
+        "dominantColors": [
+          "#181848",
+          "#6868F8",
+          "#F8F8F8",
+          "#A8A8D8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      },
+      "codegenHints": {
+        "componentCandidate": "Card",
+        "containerLikely": true
+      }
+    },
+    {
+      "id": "card_002",
+      "name": "card",
+      "type": "unknown",
+      "semanticRole": "card",
+      "bbox": {
+        "x": 451.0,
+        "y": 120.0,
+        "width": 549.0,
+        "height": 220.0
+      },
+      "zIndex": 2,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/card_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "image_001",
+      "name": "illustration",
+      "type": "unknown",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 1000.0,
+        "height": 120.0
+      },
+      "zIndex": 3,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "image_002",
+      "name": "illustration",
+      "type": "unknown",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 500.0,
+        "y": 280.0,
+        "width": 281.0,
+        "height": 61.0
+      },
+      "zIndex": 4,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      },
+      "children": [
+        "container_001"
+      ]
+    },
+    {
+      "id": "button_001",
+      "name": "button",
+      "type": "vector_like",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 500.0,
+        "y": 370.0,
+        "width": 281.0,
+        "height": 61.0
+      },
+      "zIndex": 5,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "styleHints": {
+        "dominantColors": [
+          "#180868",
+          "#6868F8",
+          "#4838B8",
+          "#6858F8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      },
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "containerLikely": false
+      }
+    },
+    {
+      "id": "image_003",
+      "name": "illustration",
+      "type": "image",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 0.0,
+        "y": 120.0,
+        "width": 50.0,
+        "height": 220.0
+      },
+      "zIndex": 6,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_003.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "styleHints": {
+        "dominantColors": [
+          "#080848",
+          "#080858",
+          "#180858",
+          "#180868"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "image_004",
+      "name": "illustration",
+      "type": "unknown",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 451.0,
+        "y": 340.0,
+        "width": 549.0,
+        "height": 20.0
+      },
+      "zIndex": 7,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_004.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "image_005",
+      "name": "illustration",
+      "type": "unknown",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 0.0,
+        "y": 340.0,
+        "width": 50.0,
+        "height": 20.0
+      },
+      "zIndex": 8,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_005.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "headline_001",
+      "name": "headline",
+      "type": "text",
+      "semanticRole": "headline",
+      "bbox": {
+        "x": 74.0,
+        "y": 75.0,
+        "width": 122.0,
+        "height": 110.0
+      },
+      "zIndex": 9,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/headline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "AI",
+        "lines": [
+          {
+            "text": "AI",
+            "bbox": {
+              "x": 74.0,
+              "y": 75.0,
+              "width": 122.0,
+              "height": 110.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 99.0,
+        "fontWeight": 600,
+        "textColor": "#6C6CFC",
+        "textAlign": "left",
+        "dominantColors": [
+          "#181848",
+          "#6868F8",
+          "#4848B8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001",
+        "container_002"
+      ]
+    },
+    {
+      "id": "button_002",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 494.0,
+        "y": 92.0,
+        "width": 335.0,
+        "height": 58.0
+      },
+      "zIndex": 10,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Transform your",
+        "lines": [
+          {
+            "text": "Transform your",
+            "bbox": {
+              "x": 494.0,
+              "y": 92.0,
+              "width": 335.0,
+              "height": 58.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 52.2,
+        "fontWeight": 400,
+        "textColor": "#FCFCFC",
+        "textAlign": "right",
+        "dominantColors": [
+          "#080848",
+          "#080838",
+          "#F8F8F8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      },
+      "children": [
+        "textgroup_002"
+      ]
+    },
+    {
+      "id": "subheadline_001",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 497.0,
+        "y": 167.0,
+        "width": 365.0,
+        "height": 52.0
+      },
+      "zIndex": 11,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "data into i insights",
+        "lines": [
+          {
+            "text": "data into i insights",
+            "bbox": {
+              "x": 497.0,
+              "y": 167.0,
+              "width": 365.0,
+              "height": 52.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 46.8,
+        "fontWeight": 600,
+        "textColor": "#B4B4E4",
+        "textAlign": "right",
+        "dominantColors": [
+          "#080848",
+          "#A8A8D8",
+          "#9898C8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_002",
+        "container_001"
+      ]
+    },
+    {
+      "id": "subheadline_002",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 79.0,
+        "y": 219.0,
+        "width": 199.0,
+        "height": 45.0
+      },
+      "zIndex": 12,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Powered",
+        "lines": [
+          {
+            "text": "Powered",
+            "bbox": {
+              "x": 79.0,
+              "y": 219.0,
+              "width": 199.0,
+              "height": 45.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 40.5,
+        "fontWeight": 600,
+        "textColor": "#FCFCFC",
+        "textAlign": "left",
+        "dominantColors": [
+          "#181848",
+          "#F8F8F8",
+          "#383868"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001",
+        "container_002"
+      ]
+    },
+    {
+      "id": "subheadline_003",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 537.0,
+        "y": 285.0,
+        "width": 170.0,
+        "height": 33.0
+      },
+      "zIndex": 13,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_003.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Get Started",
+        "lines": [
+          {
+            "text": "Get Started",
+            "bbox": {
+              "x": 537.0,
+              "y": 285.0,
+              "width": 170.0,
+              "height": 33.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 29.7,
+        "fontWeight": 900,
+        "textColor": "#6C6CFC",
+        "textAlign": "right",
+        "dominantColors": [
+          "#6868F8",
+          "#F8F8F8",
+          "#E8E8F8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "container_003"
+      ]
+    },
+    {
+      "id": "subheadline_004",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 75.0,
+        "y": 288.0,
+        "width": 206.0,
+        "height": 51.0
+      },
+      "zIndex": 14,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_004.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Analytics",
+        "lines": [
+          {
+            "text": "Analytics",
+            "bbox": {
+              "x": 75.0,
+              "y": 288.0,
+              "width": 206.0,
+              "height": 51.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 45.9,
+        "fontWeight": 600,
+        "textColor": "#B4B4E4",
+        "textAlign": "left",
+        "dominantColors": [
+          "#181848",
+          "#A8A8D8",
+          "#8888B8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001",
+        "container_002"
+      ]
+    },
+    {
+      "id": "subheadline_005",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 548.0,
+        "y": 376.0,
+        "width": 168.0,
+        "height": 30.0
+      },
+      "zIndex": 15,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_005.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Learn More",
+        "lines": [
+          {
+            "text": "Learn More",
+            "bbox": {
+              "x": 548.0,
+              "y": 376.0,
+              "width": 168.0,
+              "height": 30.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 27.0,
+        "fontWeight": 600,
+        "textColor": "#6C6CFC",
+        "textAlign": "right",
+        "dominantColors": [
+          "#180868",
+          "#6868F8",
+          "#4838B8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "container_004"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "textgroup_001",
+      "name": "AI\nPowered\nAnalytics",
+      "layerIds": [
+        "headline_001",
+        "subheadline_002",
+        "subheadline_004"
+      ]
+    },
+    {
+      "id": "textgroup_002",
+      "name": "Transform your\ndata into i insights",
+      "layerIds": [
+        "button_002",
+        "subheadline_001"
+      ]
+    },
+    {
+      "id": "container_001",
+      "name": "card container",
+      "layerIds": [
+        "card_002",
+        "image_002",
+        "subheadline_001"
+      ]
+    },
+    {
+      "id": "container_002",
+      "name": "card container",
+      "layerIds": [
+        "card_001",
+        "headline_001",
+        "subheadline_002",
+        "subheadline_004"
+      ]
+    },
+    {
+      "id": "container_003",
+      "name": "illustration container",
+      "layerIds": [
+        "image_002",
+        "subheadline_003"
+      ]
+    },
+    {
+      "id": "container_004",
+      "name": "button container",
+      "layerIds": [
+        "button_001",
+        "subheadline_005"
+      ]
+    }
+  ],
+  "warnings": [],
+  "exports": {
+    "manifest": "manifest.json"
+  }
+}

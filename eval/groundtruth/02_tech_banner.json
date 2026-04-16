@@ -1,0 +1,118 @@
+{
+  "image_type": "ui-banner",
+  "canvas": {
+    "width": 1000,
+    "height": 500
+  },
+  "layers": [
+    {
+      "role": "background",
+      "bbox": {
+        "x": 0,
+        "y": 0,
+        "width": 1000,
+        "height": 500
+      },
+      "color": "#0F1145"
+    },
+    {
+      "role": "card",
+      "bbox": {
+        "x": 50,
+        "y": 50,
+        "width": 400,
+        "height": 400
+      },
+      "color": "#1A1A4E"
+    },
+    {
+      "role": "headline",
+      "bbox": {
+        "x": 80,
+        "y": 80,
+        "width": 160,
+        "height": 140
+      },
+      "text": "AI"
+    },
+    {
+      "role": "subheadline",
+      "bbox": {
+        "x": 80,
+        "y": 220,
+        "width": 260,
+        "height": 60
+      },
+      "text": "Powered"
+    },
+    {
+      "role": "subheadline",
+      "bbox": {
+        "x": 80,
+        "y": 290,
+        "width": 260,
+        "height": 60
+      },
+      "text": "Analytics"
+    },
+    {
+      "role": "headline",
+      "bbox": {
+        "x": 500,
+        "y": 100,
+        "width": 420,
+        "height": 60
+      },
+      "text": "Transform your"
+    },
+    {
+      "role": "body_text",
+      "bbox": {
+        "x": 500,
+        "y": 170,
+        "width": 450,
+        "height": 60
+      },
+      "text": "data into insights"
+    },
+    {
+      "role": "button",
+      "bbox": {
+        "x": 500,
+        "y": 280,
+        "width": 280,
+        "height": 60
+      },
+      "color": "#6C63FF"
+    },
+    {
+      "role": "button",
+      "bbox": {
+        "x": 540,
+        "y": 288,
+        "width": 200,
+        "height": 44
+      },
+      "text": "Get Started"
+    },
+    {
+      "role": "button",
+      "bbox": {
+        "x": 500,
+        "y": 370,
+        "width": 280,
+        "height": 60
+      }
+    },
+    {
+      "role": "button",
+      "bbox": {
+        "x": 550,
+        "y": 378,
+        "width": 200,
+        "height": 44
+      },
+      "text": "Learn More"
+    }
+  ]
+}

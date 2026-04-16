@@ -1,0 +1,404 @@
+{
+  "version": "0.1.0",
+  "projectId": "proj_20260416_165",
+  "createdAt": "2026-04-16T04:08:32Z",
+  "source": {
+    "inputUri": "/Users/hondayushi/workspaece/mcp/imglayers-mcp/eval/images/01_simple_banner.png",
+    "originalFileName": "01_simple_banner.png",
+    "mimeType": "image/png",
+    "sha256": "11430f3b8c83f7783b5881f6dbb1a6b4223d4592ae5c7d083e428eafcc6a2eae",
+    "width": 1200,
+    "height": 600
+  },
+  "canvas": {
+    "width": 1200,
+    "height": 600,
+    "background": "#F5F5DC"
+  },
+  "pipeline": {
+    "engineRequested": "layerd",
+    "engineSelected": "layerd",
+    "enableOCR": true,
+    "detailLevel": "high",
+    "timingsMs": {},
+    "engineCandidates": [
+      "layerd"
+    ]
+  },
+  "stats": {
+    "totalLayers": 7,
+    "textLayers": 4,
+    "imageLayers": 1,
+    "vectorLikeLayers": 0,
+    "unknownLayers": 2
+  },
+  "assets": {
+    "original": "meta/original.png",
+    "preview": "preview/preview.png",
+    "layersDir": "layers"
+  },
+  "layers": [
+    {
+      "id": "bg_001",
+      "name": "background",
+      "type": "image",
+      "semanticRole": "background",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 1200.0,
+        "height": 600.0
+      },
+      "zIndex": 0,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/bg_001.png",
+        "format": "png",
+        "hasAlpha": false
+      },
+      "styleHints": {
+        "dominantColors": [
+          "#F8F8D8",
+          "#F86868",
+          "#F8F8F8",
+          "#383838"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "card_001",
+      "name": "card",
+      "type": "unknown",
+      "semanticRole": "card",
+      "bbox": {
+        "x": 50.0,
+        "y": 200.0,
+        "width": 451.0,
+        "height": 301.0
+      },
+      "zIndex": 1,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/card_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "image_001",
+      "name": "illustration",
+      "type": "unknown",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 600.0,
+        "y": 420.0,
+        "width": 301.0,
+        "height": 71.0
+      },
+      "zIndex": 2,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.6
+      }
+    },
+    {
+      "id": "body_001",
+      "name": "body_text",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 591.0,
+        "y": 169.0,
+        "width": 469.0,
+        "height": 82.0
+      },
+      "zIndex": 3,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/body_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Spring Collection",
+        "lines": [
+          {
+            "text": "Spring Collection",
+            "bbox": {
+              "x": 591.0,
+              "y": 169.0,
+              "width": 469.0,
+              "height": 82.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 73.8,
+        "fontWeight": 400,
+        "textColor": "#3C3C3C",
+        "textAlign": "right",
+        "dominantColors": [
+          "#F8F8D8",
+          "#383838",
+          "#D8D8C8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Paragraph",
+        "textRole": "paragraph"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    },
+    {
+      "id": "headline_001",
+      "name": "headline",
+      "type": "text",
+      "semanticRole": "headline",
+      "bbox": {
+        "x": 73.0,
+        "y": 253.0,
+        "width": 323.0,
+        "height": 117.0
+      },
+      "zIndex": 4,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/headline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "SALE",
+        "lines": [
+          {
+            "text": "SALE",
+            "bbox": {
+              "x": 73.0,
+              "y": 253.0,
+              "width": 323.0,
+              "height": 117.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 105.3,
+        "fontWeight": 900,
+        "textColor": "#FC6C6C",
+        "textAlign": "left",
+        "dominantColors": [
+          "#F86868",
+          "#F8F8F8",
+          "#F8E8E8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "container_001"
+      ]
+    },
+    {
+      "id": "body_002",
+      "name": "body_text",
+      "type": "text",
+      "semanticRole": "body_text",
+      "bbox": {
+        "x": 588.0,
+        "y": 264.0,
+        "width": 372.0,
+        "height": 79.0
+      },
+      "zIndex": 5,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/body_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Up to 50% OFF",
+        "lines": [
+          {
+            "text": "Up to 50% OFF",
+            "bbox": {
+              "x": 588.0,
+              "y": 264.0,
+              "width": 372.0,
+              "height": 79.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 71.1,
+        "fontWeight": 400,
+        "textColor": "#FC6C6C",
+        "textAlign": "right",
+        "dominantColors": [
+          "#F8F8D8",
+          "#F86868",
+          "#F87878"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Paragraph",
+        "textRole": "paragraph"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    },
+    {
+      "id": "subheadline_001",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 646.0,
+        "y": 424.0,
+        "width": 184.0,
+        "height": 36.0
+      },
+      "zIndex": 6,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "SHOPNOW",
+        "lines": [
+          {
+            "text": "SHOPNOW",
+            "bbox": {
+              "x": 646.0,
+              "y": 424.0,
+              "width": 184.0,
+              "height": 36.0
+            }
+          }
+        ]
+      },
+      "styleHints": {
+        "fontSize": 32.4,
+        "fontWeight": 900,
+        "textColor": "#FC6C6C",
+        "textAlign": "right",
+        "dominantColors": [
+          "#F86868",
+          "#F8F8F8",
+          "#F8B8B8"
+        ]
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ],
+        "confidence": 0.85
+      },
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "container_002"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "textgroup_001",
+      "name": "Spring Collection\nUp to 50% OFF",
+      "layerIds": [
+        "body_001",
+        "body_002"
+      ]
+    },
+    {
+      "id": "container_001",
+      "name": "card container",
+      "layerIds": [
+        "card_001",
+        "headline_001"
+      ]
+    },
+    {
+      "id": "container_002",
+      "name": "illustration container",
+      "layerIds": [
+        "image_001",
+        "subheadline_001"
+      ]
+    }
+  ],
+  "warnings": [],
+  "exports": {
+    "manifest": "manifest.json"
+  }
+}
