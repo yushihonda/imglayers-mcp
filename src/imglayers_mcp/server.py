@@ -50,16 +50,20 @@ def _build_tool_specs(orchestrator: Orchestrator, store: ProjectStore) -> list[T
         ToolSpec(
             name="decompose_image",
             description=(
-                "Automatic decomposition: LayerD (CV) splits the image into RGBA layers, "
-                "PaddleOCR promotes text regions. Fast, works offline. Produces a manifest "
-                "with bbox + pixel-precise alpha. Use enrich_with_vision afterwards to have "
-                "a vision LLM add semantic roles, names, groupings."
+                "Automatic decomposition. engine=layerd runs the fast LayerD (CV) + "
+                "PaddleOCR path; engine=sam2 runs SAM2 mask generation with alpha "
+                "refinement; engine=hybrid picks per image-type and allows cross-engine "
+                "retry. Produces a manifest with RGBA layers, OCR text, and style hints."
             ),
             input_schema={
                 "type": "object",
                 "required": ["input_uri"],
                 "properties": {
                     "input_uri": {"type": "string"},
+                    "engine": {"type": "string", "enum": ["layerd", "sam2", "hybrid"], "default": "layerd"},
+                    "device_preference": {"type": "string", "enum": ["auto", "cuda", "mps", "cpu"], "default": "auto"},
+                    "sam2_checkpoint": {"type": "string", "enum": ["auto", "tiny", "small", "base_plus", "large"], "default": "auto"},
+                    "allow_cross_engine_retry": {"type": "boolean", "default": True},
                     "detail_level": {"type": "string", "enum": ["fast", "balanced", "high"], "default": "balanced"},
                     "max_side": {"type": "integer", "default": 2048},
                     "text_granularity": {"type": "string", "enum": ["char", "line", "block"], "default": "line"},

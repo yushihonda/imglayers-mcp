@@ -56,9 +56,9 @@ class CanvasInfo(Base):
 
 
 class PipelineEngines(Base):
-    decomposition: Literal["layerd"] = "layerd"
+    decomposition: Literal["layerd", "sam2", "hybrid"] = "layerd"
     ocr: Literal["paddleocr", "disabled"] = "paddleocr"
-    retry_segmentation: Optional[RetryBackend] = Field(default=None, alias="retrySegmentation")
+    retry_segmentation: Optional[Literal["grounded-sam", "sam2", "cc-refine"]] = Field(default=None, alias="retrySegmentation")
     font_classifier: Optional[FontClassifierKind] = Field(default=None, alias="fontClassifier")
     vision_review: VisionReviewMode = Field(default="disabled", alias="visionReview")
 
@@ -74,6 +74,11 @@ class PipelineInfo(Base):
     detail_level: DetailLevel = Field(alias="detailLevel")
     preprocessing: PipelinePreprocessing
     timings_ms: Optional[dict[str, float]] = Field(default=None, alias="timingsMs")
+    engine_requested: Optional[str] = Field(default=None, alias="engineRequested")
+    engine_initial: Optional[str] = Field(default=None, alias="engineInitial")
+    cross_engine_retry_used: bool = Field(default=False, alias="crossEngineRetryUsed")
+    device_used: Optional[str] = Field(default=None, alias="deviceUsed")
+    sam2_checkpoint: Optional[str] = Field(default=None, alias="sam2Checkpoint")
 
 
 class StatsInfo(Base):
@@ -180,6 +185,11 @@ class LayerNode(Base):
     style_hints: Optional[StylePayload] = Field(default=None, alias="styleHints")
     provenance: Provenance
     confidence: float = 0.7
+    engine_used: Optional[str] = Field(default=None, alias="engineUsed")
+    mask_quality: Optional[float] = Field(default=None, alias="maskQuality")
+    alpha_edge_quality: Optional[float] = Field(default=None, alias="alphaEdgeQuality")
+    preferred_retry_engine: Optional[str] = Field(default=None, alias="preferredRetryEngine")
+    failure_signals: Optional[list[str]] = Field(default=None, alias="failureSignals")
     retry_state: Optional[RetryState] = Field(default=None, alias="retryState")
     codegen_hints: Optional[CodegenHints] = Field(default=None, alias="codegenHints")
     children: Optional[list[str]] = None

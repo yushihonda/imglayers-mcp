@@ -27,6 +27,26 @@ ocr = [
 export = [
     "psd-tools>=1.9",
 ]
+sam2 = [
+    "torch>=2.3.1",
+    "torchvision>=0.18.1",
+    "opencv-python>=4.8",
+    "scikit-image>=0.22",
+]
+grounded_sam2 = [
+    "torch>=2.3.1",
+    "torchvision>=0.18.1",
+    "opencv-python>=4.8",
+    "scikit-image>=0.22",
+]
+hybrid = [
+    "paddleocr>=2.7",
+    "psd-tools>=1.9",
+    "torch>=2.3.1",
+    "torchvision>=0.18.1",
+    "opencv-python>=4.8",
+    "scikit-image>=0.22",
+]
 recommended = [
     "paddleocr>=2.7",
     "psd-tools>=1.9",

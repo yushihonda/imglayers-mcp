@@ -164,6 +164,22 @@ def build_manifest(
             if override.get("text_align"):
                 style_hints.text_align = override["text_align"]
 
+        engines_sorted = sorted(set(layer.engines))
+        engine_used = "layerd"
+        for e in engines_sorted:
+            if e.startswith("sam2"):
+                engine_used = "sam2"
+                break
+            if e.startswith("vision"):
+                engine_used = "vision"
+                break
+            if e.startswith("layerd"):
+                engine_used = "layerd"
+
+        debug = dict(layer.debug or {}) if hasattr(layer, "debug") and layer.debug else {}
+        mask_quality = debug.get("mask_quality")
+        alpha_edge_quality = debug.get("alpha_edge_quality")
+
         layer_nodes.append(
             LayerNode(
                 id=layer_id,
@@ -179,8 +195,11 @@ def build_manifest(
                 asset=LayerAsset(path=asset_rel, format="png", has_alpha=has_alpha),
                 text=text_payload,
                 style=style_hints,
-                provenance=Provenance(engines=sorted(set(layer.engines))),
+                provenance=Provenance(engines=engines_sorted),
                 confidence=layer.confidence,
+                engine_used=engine_used,
+                mask_quality=float(mask_quality) if mask_quality is not None else None,
+                alpha_edge_quality=float(alpha_edge_quality) if alpha_edge_quality is not None else None,
                 codegen_hints=codegen_hints,
             )
         )

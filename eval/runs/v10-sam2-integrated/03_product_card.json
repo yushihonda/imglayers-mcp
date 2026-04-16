@@ -1,0 +1,465 @@
+{
+  "version": "0.1.0",
+  "projectId": "proj_20260416_386",
+  "createdAt": "2026-04-16T07:06:59Z",
+  "source": {
+    "inputUri": "/Users/hondayushi/workspaece/mcp/imglayers-mcp/eval/images/03_product_card.png",
+    "originalFileName": "03_product_card.png",
+    "mimeType": "image/png",
+    "sha256": "5bbe8efaa72c5654644b5cc1e7c1cc0f839a34fd00c1965e8606263989f7d1db",
+    "width": 600,
+    "height": 800
+  },
+  "canvas": {
+    "width": 600,
+    "height": 800,
+    "background": "#FFFFFF"
+  },
+  "pipeline": {
+    "imageType": "poster",
+    "engines": {
+      "decomposition": "layerd",
+      "ocr": "paddleocr",
+      "fontClassifier": "known-fonts",
+      "visionReview": "disabled"
+    },
+    "detailLevel": "high",
+    "preprocessing": {
+      "orientationCorrection": false,
+      "unwarping": false
+    },
+    "timingsMs": {
+      "image_type_ms": 9.360874999401858,
+      "ocr_ms": 1991.7399160003697,
+      "decompose_ms": 782.5359580019722,
+      "text_reconstruction_ms": 10.27487500323332
+    },
+    "engineRequested": "layerd",
+    "engineInitial": "layerd",
+    "crossEngineRetryUsed": false,
+    "deviceUsed": "cpu"
+  },
+  "stats": {
+    "totalLayers": 7,
+    "textLayers": 3,
+    "imageLayers": 2,
+    "vectorLikeLayers": 0,
+    "lowConfidenceLayers": 5
+  },
+  "assets": {
+    "original": "meta/original.png",
+    "preview": "preview/preview.png",
+    "layersDir": "layers"
+  },
+  "layers": [
+    {
+      "id": "bg_001",
+      "name": "background",
+      "type": "image",
+      "semanticRole": "background",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 600.0,
+        "height": 800.0
+      },
+      "zIndex": 0,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/bg_001.png",
+        "format": "png",
+        "hasAlpha": false
+      },
+      "style": {
+        "dominantColors": [
+          "#F8F8F8",
+          "#F86838",
+          "#282828",
+          "#D8D8D8"
+        ],
+        "fill": {
+          "type": "linear-gradient",
+          "angle": 90.0,
+          "stops": [
+            {
+              "offset": 0.0,
+              "color": "#FDFCFB"
+            },
+            {
+              "offset": 1.0,
+              "color": "#7E7D7D"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.6,
+      "engineUsed": "layerd"
+    },
+    {
+      "id": "bg_002",
+      "name": "background",
+      "type": "image",
+      "semanticRole": "background",
+      "bbox": {
+        "x": 0.0,
+        "y": 0.0,
+        "width": 600.0,
+        "height": 800.0
+      },
+      "zIndex": 1,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/bg_002.png",
+        "format": "png",
+        "hasAlpha": false
+      },
+      "style": {
+        "fontFamily": "Hiragino Sans",
+        "fontCandidates": [
+          "Hiragino Sans",
+          "Helvetica",
+          "Inter",
+          "Arial",
+          "Arial"
+        ],
+        "fontWeight": 400,
+        "color": "#FCFCFC",
+        "textAlign": "left",
+        "reconstructionConfidence": 0.0,
+        "dominantColors": [
+          "#F8F8F8",
+          "#F86838",
+          "#282828",
+          "#D8D8D8"
+        ],
+        "fill": {
+          "type": "linear-gradient",
+          "angle": 90.0,
+          "stops": [
+            {
+              "offset": 0.0,
+              "color": "#FDFCFB"
+            },
+            {
+              "offset": 1.0,
+              "color": "#7E7D7D"
+            }
+          ]
+        }
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.55,
+      "engineUsed": "layerd"
+    },
+    {
+      "id": "image_001",
+      "name": "illustration",
+      "type": "unknown",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 150.0,
+        "y": 150.0,
+        "width": 301.0,
+        "height": 301.0
+      },
+      "zIndex": 2,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.8,
+      "engineUsed": "layerd",
+      "retryState": {
+        "attempted": true,
+        "backend": "cc-refine",
+        "reason": "alpha_edge_mismatch",
+        "improved": true
+      }
+    },
+    {
+      "id": "image_002",
+      "name": "illustration",
+      "type": "unknown",
+      "semanticRole": "illustration",
+      "bbox": {
+        "x": 40.0,
+        "y": 600.0,
+        "width": 161.0,
+        "height": 51.0
+      },
+      "zIndex": 3,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/image_002.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.8,
+      "engineUsed": "layerd",
+      "retryState": {
+        "attempted": true,
+        "backend": "cc-refine",
+        "reason": "alpha_edge_mismatch",
+        "improved": true
+      }
+    },
+    {
+      "id": "button_001",
+      "name": "button",
+      "type": "text",
+      "semanticRole": "button",
+      "bbox": {
+        "x": 62.0,
+        "y": 594.0,
+        "width": 81.0,
+        "height": 43.0
+      },
+      "zIndex": 4,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/button_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "NEW",
+        "lines": [
+          {
+            "text": "NEW",
+            "bbox": {
+              "x": 62.0,
+              "y": 594.0,
+              "width": 81.0,
+              "height": 43.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 900,
+        "fontSize": 38.7,
+        "textAlign": "left",
+        "dominantColors": [
+          "#F86838",
+          "#F8F8F8",
+          "#F87848"
+        ],
+        "text_color": "#FC6C3C",
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.0,
+        "styleConfidence": 0.1,
+        "pass2Updated": false
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "engineUsed": "layerd",
+      "codegenHints": {
+        "componentCandidate": "Button",
+        "textRole": "button-label"
+      }
+    },
+    {
+      "id": "headline_001",
+      "name": "headline",
+      "type": "text",
+      "semanticRole": "headline",
+      "bbox": {
+        "x": 31.0,
+        "y": 667.0,
+        "width": 333.0,
+        "height": 60.0
+      },
+      "zIndex": 5,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/headline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "Premium Coffee",
+        "lines": [
+          {
+            "text": "Premium Coffee",
+            "bbox": {
+              "x": 31.0,
+              "y": 667.0,
+              "width": 333.0,
+              "height": 60.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 700,
+        "fontSize": 54.0,
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#282828",
+          "#D8D8D8"
+        ],
+        "text_color": "#242424",
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Helvetica",
+          "Hiragino Sans",
+          "Inter",
+          "Arial"
+        ],
+        "reconstructionConfidence": 0.2709835814024858,
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.2709835814024858,
+        "styleConfidence": 0.2709835814024858,
+        "pass2Updated": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "engineUsed": "layerd",
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    },
+    {
+      "id": "subheadline_001",
+      "name": "subheadline",
+      "type": "text",
+      "semanticRole": "subheadline",
+      "bbox": {
+        "x": 32.0,
+        "y": 717.0,
+        "width": 123.0,
+        "height": 52.0
+      },
+      "zIndex": 6,
+      "visible": true,
+      "locked": false,
+      "editable": true,
+      "opacity": 1.0,
+      "asset": {
+        "path": "layers/subheadline_001.png",
+        "format": "png",
+        "hasAlpha": true
+      },
+      "text": {
+        "content": "$29.99",
+        "lines": [
+          {
+            "text": "$29.99",
+            "bbox": {
+              "x": 32.0,
+              "y": 717.0,
+              "width": 123.0,
+              "height": 52.0
+            }
+          }
+        ]
+      },
+      "style": {
+        "fontWeight": 700,
+        "fontSize": 46.8,
+        "textAlign": "left",
+        "dominantColors": [
+          "#F8F8F8",
+          "#F86838",
+          "#F87848"
+        ],
+        "text_color": "#FC6C3C",
+        "fontFamily": "Arial",
+        "fontCandidates": [
+          "Arial",
+          "Arial",
+          "Inter",
+          "Helvetica",
+          "Hiragino Sans"
+        ],
+        "reconstructionConfidence": 0.20007621951219512,
+        "fitScorePass1": 0.1,
+        "fitScorePass2": 0.20007621951219512,
+        "styleConfidence": 0.20007621951219512,
+        "pass2Updated": true
+      },
+      "provenance": {
+        "engines": [
+          "layerd-fallback"
+        ]
+      },
+      "confidence": 0.85,
+      "engineUsed": "layerd",
+      "codegenHints": {
+        "componentCandidate": "Heading",
+        "textRole": "title"
+      },
+      "children": [
+        "textgroup_001"
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "id": "textgroup_001",
+      "name": "Premium Coffee\n$29.99",
+      "layerIds": [
+        "headline_001",
+        "subheadline_001"
+      ]
+    }
+  ],
+  "warnings": [],
+  "exports": {
+    "manifest": "manifest.json",
+    "preview": "preview/preview.png"
+  }
+}

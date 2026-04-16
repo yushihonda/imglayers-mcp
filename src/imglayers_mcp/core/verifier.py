@@ -35,6 +35,9 @@ class LayerDiag:
     ocr_reread_consistency: float | None
     retry_priority: float
     reasons: list[str] = field(default_factory=list)
+    engine_used: str = "layerd"
+    preferred_retry_engine: str = "same_engine"
+    mask_fragmentation: float = 0.0
 
     def to_dict(self) -> dict:
         return {
@@ -46,6 +49,9 @@ class LayerDiag:
             "ocrRereadConsistency": round(self.ocr_reread_consistency, 4) if self.ocr_reread_consistency is not None else None,
             "retryPriority": round(self.retry_priority, 4),
             "reasons": self.reasons,
+            "engineUsed": self.engine_used,
+            "preferredRetryEngine": self.preferred_retry_engine,
+            "maskFragmentation": round(self.mask_fragmentation, 4),
         }
 
 
@@ -75,6 +81,8 @@ def verify(
     manifest: dict,
     project_dir: Path,
     thresholds: dict | None = None,
+    *,
+    sam2_available: bool = False,
 ) -> VerificationResult:
     thresholds = thresholds or {}
     low_conf_thr = float(thresholds.get("low_confidence_layer", 0.55))
@@ -150,6 +158,20 @@ def verify(
         if ocr_cons is not None and ocr_cons < 0.6:
             diag_reasons.append("ocr_inconsistency")
 
+        engine_used = (
+            (l.get("provenance") or {}).get("engines") or ["layerd"]
+        )[0]
+        if not isinstance(engine_used, str):
+            engine_used = "layerd"
+        engine_used = engine_used.split("-")[0]
+        image_type = (manifest.get("pipeline") or {}).get("imageType", "unknown")
+        from .engine_selector import preferred_retry_engine as _preferred
+        preferred = _preferred(
+            engine_used, l.get("semanticRole"), diag_reasons,
+            image_type=image_type,
+            sam2_available=sam2_available,
+        )
+
         per_layer.append(LayerDiag(
             layer_id=l["id"],
             local_residual_mean=residual_mean,
@@ -159,6 +181,8 @@ def verify(
             ocr_reread_consistency=ocr_cons,
             retry_priority=priority,
             reasons=diag_reasons,
+            engine_used=engine_used,
+            preferred_retry_engine=preferred,
         ))
 
     low_conf = [d.layer_id for d in per_layer if d.retry_priority > 0.15]
@@ -175,6 +199,9 @@ def verify(
             "role": layer.get("semanticRole"),
             "reason": ",".join(d.reasons) or "low_quality",
             "priority": round(d.retry_priority, 4),
+            "engineUsed": d.engine_used,
+            "preferredRetryEngine": d.preferred_retry_engine,
+            "failureSignals": list(d.reasons),
         })
 
     # Overall score: avg confidence minus preview diff penalty.

@@ -40,7 +40,9 @@ def refine(
     *,
     role: str | None = None,
     gsam_adapter: Any = None,
+    sam2_adapter: Any = None,
     allow_grounded_sam: bool = False,
+    allow_sam2: bool = False,
     tier_cap: int = 3,  # how many tiers to try
 ) -> RefinedMaskResult | None:
     """Run the tier ladder on a single bbox. Returns the best mask found."""
@@ -63,6 +65,17 @@ def refine(
         if mm is not None:
             tried.append(mm)
 
+    if allow_sam2 and sam2_adapter is not None and getattr(sam2_adapter, "available", False):
+        try:
+            cand = sam2_adapter.refine_bbox(rgba[..., :3], bbox)
+            if cand is not None:
+                tried.append(RefinedMaskResult(
+                    mask=cand.mask, bbox=cand.bbox, score=float(cand.score),
+                    backend="sam2-prompt",
+                ))
+        except Exception as exc:
+            log.debug("sam2 bbox refine failed: %s", exc)
+
     if allow_grounded_sam and gsam_adapter is not None and getattr(gsam_adapter, "available", False):
         try:
             gs = gsam_adapter.refine(rgba, prompt=role or "object", bbox=bbox)
@@ -73,7 +86,7 @@ def refine(
                 ))
         except NotImplementedError:
             pass
-        except Exception as exc:  # pragma: no cover — defensive
+        except Exception as exc:
             log.debug("grounded-sam refinement failed: %s", exc)
 
     if not tried:

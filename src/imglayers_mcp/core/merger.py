@@ -28,9 +28,8 @@ class PromotedLayer:
     text_confidence: float | None = None
     text_lines: list[dict] = field(default_factory=list)
     group_tag: str | None = None
-    # Hint from vision LLM: "button", "card", "badge", "icon", etc.
-    # When present, naming.py prefers this over heuristic role inference.
     semantic_hint: str | None = None
+    debug: dict = field(default_factory=dict)
 
 
 @dataclass
@@ -96,6 +95,7 @@ def merge(
             rgba=raw.rgba, bbox=raw.bbox, kind=raw.kind,
             engines=[raw.engine], confidence=raw.confidence, z_index=raw.z_index,
             semantic_hint=hint,
+            debug=dict(raw.debug or {}),
         ))
 
     if text_granularity == "char":

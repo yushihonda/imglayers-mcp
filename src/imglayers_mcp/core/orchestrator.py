@@ -15,11 +15,12 @@ from __future__ import annotations
 
 import json
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 
 import numpy as np
 
+from ..adapters.sam2_adapter import SAM2Adapter
 from ..config import Config
 from ..decomposition import LayerDEngine
 from ..models.manifest import (
@@ -31,6 +32,7 @@ from ..models.manifest import (
     SourceInfo,
     WarningItem,
 )
+from ..models.runtime_device import resolve_device
 from ..ocr import OCRLine, PaddleOCREngine, cluster_into_lines
 from ..retry_segmentation import GroundedSAMEngine
 from ..storage.paths import ProjectPaths
@@ -55,6 +57,7 @@ from ..utils.logging import get_logger
 from .annotated_preview import render_annotated_preview, render_layer_grid
 from .exporter import export_codegen_plan, export_psd, export_svg
 from .html_viewer import render_viewer_html
+from .engine_selector import preferred_retry_engine, route_initial
 from .image_type_classifier import ImageTypeResult, classify
 from .manifest_builder import build_manifest
 from .merger import merge
@@ -76,6 +79,13 @@ class DecomposeResult:
     viewer_html_path: Path | None = None
     image_type: str = "unknown"
     verification_score: float = 0.0
+    engine_selected: str = "layerd"
+    engine_requested: str = "layerd"
+    device_used: str = "cpu"
+    sam2_checkpoint: str | None = None
+    cross_engine_retry_used: bool = False
+    retry_summary: dict = field(default_factory=dict)
+    layer_engine_breakdown: dict = field(default_factory=dict)
 
 
 class Orchestrator:
@@ -86,6 +96,20 @@ class Orchestrator:
         self.ocr = PaddleOCREngine()
         self.retry_backend = GroundedSAMEngine()
         self._font_fitter = RerenderFitter() if config.text_reconstruction.rerender_fit else None
+        self._sam2_cache: dict[tuple[str, str], SAM2Adapter] = {}
+
+    def _get_sam2(self, device_pref: str, checkpoint_req: str) -> tuple[SAM2Adapter, str, str]:
+        """Return (adapter, device, checkpoint) honoring the config."""
+        device_info = resolve_device(device_pref, checkpoint_req)
+        key = (device_info.device, device_info.checkpoint)
+        adapter = self._sam2_cache.get(key)
+        if adapter is None:
+            adapter = SAM2Adapter(
+                checkpoint=device_info.checkpoint,
+                device=device_info.device,
+            )
+            self._sam2_cache[key] = adapter
+        return adapter, device_info.device, device_info.checkpoint
 
     # ------------------------------------------------------------------
     # Path A: CV + OCR automatic decomposition (spec §5 main pipeline)
@@ -100,6 +124,10 @@ class Orchestrator:
         enable_ocr: bool = True,
         export_formats: list[str] | None = None,
         open_in_browser: bool = False,
+        engine: str = "layerd",
+        device_preference: str = "auto",
+        sam2_checkpoint: str = "auto",
+        allow_cross_engine_retry: bool = True,
     ) -> DecomposeResult:
         timings: dict[str, float] = {}
         warnings: list[WarningItem] = []
@@ -108,15 +136,19 @@ class Orchestrator:
         )
         h, w = rgba.shape[:2]
 
-        # ---- Stage 1: image type classification
         t = time.perf_counter()
         ocr_boxes_for_classifier: list = []
         it_result: ImageTypeResult = classify(rgba, ocr_boxes_for_classifier)
         timings["image_type_ms"] = (time.perf_counter() - t) * 1000
         self._save_debug(paths, "meta/image_type.json", it_result.to_dict())
 
-        # ---- Preprocessing decision
         preprocess = self._decide_preprocessing(it_result.image_type)
+
+        sam2, sam2_device, sam2_ckpt = self._get_sam2(device_preference, sam2_checkpoint)
+        sam2_available = sam2.available
+        decision = route_initial(engine, it_result.image_type, sam2_available=sam2_available)
+        initial_engine = decision.initial
+        self._save_debug(paths, "meta/engine_decision.json", decision.to_dict())
 
         # ---- Stage 3: OCR extraction (image-type-aware preprocessing)
         ocr_lines: list[OCRLine] = []
@@ -145,20 +177,18 @@ class Orchestrator:
                 severity="info",
             ))
 
-        # ---- Stage 2: Base decomposition
         ocr_bboxes = [ln.bbox for ln in ocr_lines] if ocr_lines else None
         t = time.perf_counter()
-        raw_layers = self.layerd.decompose(rgba, detail=detail_level, text_boxes=ocr_bboxes)
+        if initial_engine == "sam2":
+            from .sam2_pipeline import run as run_sam2
+            sam2_result = run_sam2(rgba, it_result.image_type, sam2=sam2, text_boxes=ocr_bboxes)
+            raw_layers = sam2_result.raw_layers
+        else:
+            raw_layers = self.layerd.decompose(rgba, detail=detail_level, text_boxes=ocr_bboxes)
         timings["decompose_ms"] = (time.perf_counter() - t) * 1000
 
-        # WS3: OCR matching v2 (composite score + split/merge).
         text_contents = _match_v2(raw_layers, ocr_lines)
 
-        # ---- Stage 5: optional retry segmentation (flagged but not yet wired)
-        # Retry is triggered by the verifier's retry_queue; executed at a later
-        # iteration. For v0.1 we record availability but do not invoke.
-
-        # ---- Stage 4: text reconstruction hints (font candidates)
         font_classifier = self._build_font_classifier()
         style_overrides: dict[int, dict] = {}
         if self.config.text_reconstruction.enabled and text_contents:
@@ -175,6 +205,13 @@ class Orchestrator:
             preprocess=preprocess,
             warnings=warnings,
             timings=timings,
+            engine_requested=engine,
+            engine_initial=initial_engine,
+            device_used=sam2_device if initial_engine == "sam2" else "cpu",
+            sam2_checkpoint=sam2_ckpt if initial_engine == "sam2" else None,
+            sam2_available=sam2_available,
+            sam2_adapter=sam2,
+            allow_cross_engine_retry=allow_cross_engine_retry,
         )
 
     # ------------------------------------------------------------------
@@ -340,6 +377,13 @@ class Orchestrator:
         warnings: list[WarningItem],
         timings: dict[str, float],
         engine_override: str | None = None,
+        engine_requested: str = "layerd",
+        engine_initial: str = "layerd",
+        device_used: str = "cpu",
+        sam2_checkpoint: str | None = None,
+        sam2_available: bool = False,
+        sam2_adapter: SAM2Adapter | None = None,
+        allow_cross_engine_retry: bool = False,
     ) -> DecomposeResult:
         h, w = rgba.shape[:2]
 
@@ -361,15 +405,24 @@ class Orchestrator:
             height=int(rgba_full.shape[0]),
         )
         canvas = CanvasInfo(width=int(w), height=int(h), background=bg_hex)
+        retry_segmentation_label = None
+        if sam2_available:
+            retry_segmentation_label = "sam2"
+        elif self.retry_backend.available:
+            retry_segmentation_label = "grounded-sam"
         pipeline = PipelineInfo(
             imageType=image_type,  # type: ignore[arg-type]
             engines=PipelineEngines(
-                decomposition="layerd",
+                decomposition=engine_initial if engine_initial in ("layerd", "sam2") else "layerd",  # type: ignore[arg-type]
                 ocr=("paddleocr" if self.ocr.available else "disabled"),
-                retrySegmentation=("grounded-sam" if self.retry_backend.available else None),
+                retrySegmentation=retry_segmentation_label,  # type: ignore[arg-type]
                 fontClassifier=self.config.text_reconstruction.font_mode,  # type: ignore[arg-type]
                 visionReview=self.config.engine.vision_review,  # type: ignore[arg-type]
             ),
+            engineRequested=engine_requested,
+            engineInitial=engine_initial,
+            deviceUsed=device_used,
+            sam2Checkpoint=sam2_checkpoint,
             detailLevel="high",
             preprocessing=preprocess,
             timingsMs=timings,
@@ -435,14 +488,19 @@ class Orchestrator:
         thresholds = _thresholds_for_image_type(
             image_type, self.config.thresholds
         )
-        verification = verify(manifest_dict, paths.dir, thresholds=thresholds)
+        verification = verify(
+            manifest_dict, paths.dir, thresholds=thresholds,
+            sam2_available=sam2_available,
+        )
 
         # Stage 5: CV-based retry for low-confidence layers (Grounded-SAM stub
-        # is preferred when installed; this falls back to dense CC refinement).
+        self._last_cross_engine_used = False
         if verification.retry_queue:
-            retried = self._run_cv_retry(manifest_dict, verification.retry_queue, rgba, paths)
+            retried = self._run_cv_retry(
+                manifest_dict, verification.retry_queue, rgba, paths,
+                sam2_adapter=sam2_adapter if allow_cross_engine_retry else None,
+            )
             if retried:
-                # Update stats/confidence after retry.
                 pass
         self._save_debug(paths, "debug/verification.json", verification.to_dict())
         # Update stats with low-confidence count.
@@ -464,6 +522,11 @@ class Orchestrator:
             except Exception as exc:
                 warnings.append(WarningItem(code="VIEWER_OPEN_FAILED", message=str(exc), severity="info"))
 
+        layer_engine_breakdown: dict[str, int] = {}
+        for layer in manifest_dict.get("layers", []):
+            eu = layer.get("engineUsed") or "unknown"
+            layer_engine_breakdown[eu] = layer_engine_breakdown.get(eu, 0) + 1
+
         return DecomposeResult(
             project_paths=paths,
             manifest=manifest_dict,
@@ -474,6 +537,13 @@ class Orchestrator:
             viewer_html_path=viewer_path,
             image_type=image_type,
             verification_score=verification.overall_score,
+            engine_selected=engine_initial,
+            engine_requested=engine_requested,
+            device_used=device_used,
+            sam2_checkpoint=sam2_checkpoint,
+            cross_engine_retry_used=getattr(self, "_last_cross_engine_used", False),
+            retry_summary={"queued": len(verification.retry_queue)},
+            layer_engine_breakdown=layer_engine_breakdown,
         )
 
     def _run_cv_retry(
@@ -482,6 +552,8 @@ class Orchestrator:
         retry_queue: list[dict],
         rgba: np.ndarray,
         paths: ProjectPaths,
+        *,
+        sam2_adapter: SAM2Adapter | None = None,
     ) -> list[str]:
         """Tier-ladder retry (spec WS5).
 
@@ -523,15 +595,20 @@ class Orchestrator:
             # tiers (edge/morph/grounded-sam) escalate only for the top-K
             # hardest items, and only when the result stays near the
             # original bbox size.
+            preferred = item.get("preferredRetryEngine", "same_engine")
             result = retry_segmentation.refine_cc(rgba, bb)
-            if result is None and rank < HARD_TOP_K:
+            if (result is None or result.score < 0.7) and rank < HARD_TOP_K:
                 result = retry_segmentation.refine(
                     rgba, bb,
                     role=role,
                     gsam_adapter=gsam,
+                    sam2_adapter=sam2_adapter,
                     allow_grounded_sam=True,
+                    allow_sam2=(preferred == "sam2" and sam2_adapter is not None),
                     tier_cap=3,
                 )
+                if result is not None and result.backend.startswith("sam2"):
+                    self._last_cross_engine_used = True
             if result is not None:
                 area_ratio = result.bbox.area / max(1.0, bb.area)
                 if area_ratio < 0.6 or area_ratio > 1.5:

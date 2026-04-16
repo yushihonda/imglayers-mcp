@@ -11,10 +11,16 @@ The **source of truth** is `manifest.json`. Layer assets are PNG files reference
 ```bash
 pip install -e .
 # Optional engines:
-pip install -e '.[ocr]'     # PaddleOCR for text promotion
-pip install -e '.[layerd]'  # LayerD extras
-pip install -e '.[qwen]'    # Qwen-Image-Layered (GPU recommended)
+pip install -e '.[ocr]'          # PaddleOCR for text promotion
+pip install -e '.[sam2]'         # SAM2 mask backbone (CUDA / MPS)
+pip install -e '.[grounded_sam2]' # Grounded-SAM-2 semantic retry (optional)
+pip install -e '.[hybrid]'       # ocr + sam2 together
+pip install -e '.[recommended]'  # PaddleOCR + psd-tools
 ```
+
+SAM2 weights live under `./weights/sam2/` by default (override via
+`SAM2_WEIGHTS_DIR`). Download `sam2.1_hiera_{tiny,small,base_plus,large}.pt`
+from the official SAM2 release into that directory.
 
 ## Run
 
@@ -37,19 +43,29 @@ Starts an MCP stdio server exposing the tools:
 
 Projects are written under `$IMGLAYERS_PROJECT_ROOT` (default: `./projects/`).
 
-## Pipeline (spec v0.1)
+## Engines
+
+`decompose_image` accepts `engine={layerd,sam2,hybrid}` plus `device_preference={auto,cuda,mps,cpu}` and `sam2_checkpoint={auto,tiny,small,base_plus,large}`.
+
+- **layerd** — CV connected components + PaddleOCR. Fast, offline, best for flat banners / UI mocks / posters.
+- **sam2** — SAM2 automatic mask generation + alpha refinement. Best for illustrations, photo-mixed designs, complex boundaries. Requires `sam2` extra + weights.
+- **hybrid** — routes per image type (`illustration`/`photo_mixed` → sam2 first, others → layerd first) with cross-engine retry for low-confidence layers.
+
+Cross-engine retry kicks in when the verifier flags a layer with `alpha_edge_mismatch` or `high_residual_p95`, and escalates to SAM2 prompt-mode refinement when available.
+
+## Pipeline
 
 ```
 Input image
  ├─ Stage 0  Source-aware routing
  ├─ Stage 1  Image type classification
  │            → ui_mock / banner / poster / illustration / photo_mixed / scan_capture
- ├─ Stage 2  Base decomposition  (LayerD)
+ ├─ Stage 2  Base decomposition  (LayerD or SAM2, per engine/hybrid route)
  ├─ Stage 3  Text extraction      (PaddleOCR)
- ├─ Stage 4  Text reconstruction  (font candidates + rerender fit)
- ├─ Stage 5  Retry segmentation   (optional Grounded-SAM)
- ├─ Stage 6  Manifest building    (semantic roles + hierarchy)
- └─ Stage 7  Verification         (confidence + retry queue)
+ ├─ Stage 4  Text reconstruction  (font candidates + rerender fit, 2-pass)
+ ├─ Stage 5  Retry segmentation   (cc/edge/morph/SAM2-prompt/Grounded-SAM)
+ ├─ Stage 6  Manifest building    (semantic roles + hierarchy + engineUsed)
+ └─ Stage 7  Verification         (per-layer residuals + retry queue)
 ```
 
 ## Design principles
