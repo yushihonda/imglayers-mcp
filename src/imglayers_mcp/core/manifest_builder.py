@@ -21,9 +21,10 @@ from ..models.manifest import (
     Manifest,
     PipelineInfo,
     Provenance,
+    RetryState,
     SourceInfo,
     StatsInfo,
-    StyleHints,
+    StylePayload,
     TextLine,
     TextPayload,
     WarningItem,
@@ -51,7 +52,9 @@ def build_manifest(
     text_groups: list[TextGroupInfo] | None = None,
     warnings: Iterable[WarningItem] = (),
     exports: ExportIndex | None = None,
+    style_overrides: dict[int, dict] | None = None,
 ) -> Manifest:
+    style_overrides = style_overrides or {}
     allocator = NameAllocator()
 
     # Rank text layers by font-size (taller bbox ≈ larger text).
@@ -71,6 +74,9 @@ def build_manifest(
 
     # Precompute text bboxes for contains_text check.
     text_bboxes = [l.bbox for l in promoted_layers if l.kind == "text"]
+
+    # Map promoted layer index → style override (from text_reconstruction).
+    promoted_idx: dict[int, int] = {id(pl): i for i, pl in enumerate(promoted_layers)}
 
     for layer in promoted_layers:
         # Prefer vision-provided semantic hint (button/card/badge/icon) when available.
@@ -143,6 +149,22 @@ def build_manifest(
                     container_likely=(role == "card"),
                 )
 
+        # Apply style_overrides from text_reconstruction when present.
+        override = style_overrides.get(promoted_idx.get(id(layer), -1))
+        if override and style_hints is not None:
+            if override.get("font_family"):
+                style_hints.font_family = override["font_family"]
+            if override.get("font_candidates"):
+                style_hints.font_candidates = override["font_candidates"]
+            if override.get("reconstruction_confidence") is not None:
+                style_hints.reconstruction_confidence = override["reconstruction_confidence"]
+            if override.get("font_weight"):
+                style_hints.font_weight = override["font_weight"]
+            if override.get("color"):
+                style_hints.color = override["color"]
+            if override.get("text_align"):
+                style_hints.text_align = override["text_align"]
+
         layer_nodes.append(
             LayerNode(
                 id=layer_id,
@@ -157,20 +179,23 @@ def build_manifest(
                 opacity=1.0,
                 asset=LayerAsset(path=asset_rel, format="png", has_alpha=has_alpha),
                 text=text_payload,
-                style_hints=style_hints,
-                provenance=Provenance(engines=sorted(set(layer.engines)), confidence=layer.confidence),
+                style=style_hints,
+                provenance=Provenance(engines=sorted(set(layer.engines))),
+                confidence=layer.confidence,
                 codegen_hints=codegen_hints,
             )
         )
         key = layer.kind if layer.kind in stats else "unknown"
         stats[key] += 1
 
+    # low_confidence_layers is filled by verifier later; initial estimate here.
+    low_conf = sum(1 for n in layer_nodes if n.confidence < 0.55)
     stats_info = StatsInfo(
         total_layers=len(layer_nodes),
         text_layers=stats["text"],
         image_layers=stats["image"],
         vector_like_layers=stats["vector_like"],
-        unknown_layers=stats["unknown"],
+        low_confidence_layers=low_conf,
     )
 
     # Build groups from text_groups (char→line hierarchy).
@@ -430,7 +455,7 @@ def _infer_text_style(
     *,
     canvas_bg: str | None = None,
     canvas_w: int | None = None,
-) -> StyleHints:
+) -> StylePayload:
     # Font size proxy: bbox height (≈ cap-height + descender).
     font_size = max(8.0, layer.bbox.h * 0.9)
     patch_rgb = _slice_rgb(rgb, layer.bbox)
@@ -468,7 +493,7 @@ def _infer_text_style(
             line_height = round(sum(gaps) / len(gaps) / max(1.0, font_size), 2)
 
     palette = dominant_colors(patch_rgb, k=3) if patch_rgb.size else []
-    return StyleHints(
+    return StylePayload(
         font_size=round(font_size, 1),
         font_weight=weight,
         text_color=text_color,
@@ -480,7 +505,7 @@ def _infer_text_style(
 
 def _infer_region_style(
     layer: PromotedLayer, rgb: np.ndarray, *, is_background: bool = False
-) -> StyleHints | None:
+) -> StylePayload | None:
     patch = _slice_rgb(rgb, layer.bbox)
     if patch.size == 0:
         return None
@@ -499,7 +524,7 @@ def _infer_region_style(
                 angle=fill_dict.get("angle"),
                 stops=[GradientStop(**s) for s in fill_dict.get("stops", [])],
             )
-    return StyleHints(
+    return StylePayload(
         dominant_colors=dominant_colors(patch, k=4) or None,
         fill=fill,
     )

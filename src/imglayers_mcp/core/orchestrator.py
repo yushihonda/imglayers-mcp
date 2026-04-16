@@ -1,30 +1,46 @@
-"""Decomposition orchestration.
+"""Stage-driven orchestrator (spec §5).
 
-Two paths:
-  1. `decompose()` — LayerD (CV) + PaddleOCR (text). Full automatic pipeline.
-  2. `decompose_from_vision()` — caller supplies element list from a vision LLM.
+Pipeline stages:
+  0. Source-aware routing (metadata vs raster)
+  1. Image type classification
+  2. Base decomposition (LayerD)
+  3. OCR extraction (PaddleOCR)
+  4. Text reconstruction (font classifier + rerender fit)
+  5. Retry segmentation (optional, Grounded-SAM)
+  6. Manifest building
+  7. Verification + confidence scoring
 """
 
 from __future__ import annotations
 
+import json
 import time
 from dataclasses import dataclass
 from pathlib import Path
 
 import numpy as np
 
-from ..adapters.layerd_adapter import LayerDAdapter
-from ..adapters.paddleocr_adapter import OCRLine, PaddleOCRAdapter
 from ..config import Config
+from ..decomposition import LayerDEngine
 from ..models.manifest import (
     CanvasInfo,
     ExportIndex,
+    PipelineEngines,
     PipelineInfo,
+    PipelinePreprocessing,
     SourceInfo,
     WarningItem,
 )
+from ..ocr import OCRLine, PaddleOCREngine, cluster_into_lines
+from ..retry_segmentation import GroundedSAMEngine
 from ..storage.paths import ProjectPaths
 from ..storage.projects import ProjectStore
+from ..text_reconstruction import (
+    FontCandidate,
+    HeuristicBackend,
+    KnownFontsBackend,
+    RerenderFitter,
+)
 from ..utils.bbox import Box
 from ..utils.color import average_color
 from ..utils.hash_utils import sha256_file
@@ -39,10 +55,12 @@ from ..utils.logging import get_logger
 from .annotated_preview import render_annotated_preview, render_layer_grid
 from .exporter import export_codegen_plan, export_psd, export_svg
 from .html_viewer import render_viewer_html
+from .image_type_classifier import ImageTypeResult, classify
 from .manifest_builder import build_manifest
 from .merger import merge
 from .preview_renderer import render_preview
 from .types import RawLayer, VisionElement
+from .verifier import verify
 
 log = get_logger(__name__)
 
@@ -56,67 +74,119 @@ class DecomposeResult:
     annotated_preview_path: Path | None = None
     grid_preview_path: Path | None = None
     viewer_html_path: Path | None = None
+    image_type: str = "unknown"
+    verification_score: float = 0.0
 
 
 class Orchestrator:
     def __init__(self, config: Config, store: ProjectStore) -> None:
         self.config = config
         self.store = store
-        self.layerd = LayerDAdapter()
-        self.ocr = PaddleOCRAdapter()
+        self.layerd = LayerDEngine()
+        self.ocr = PaddleOCREngine()
+        self.retry_backend = GroundedSAMEngine()
+        self._font_fitter = RerenderFitter() if config.text_reconstruction.rerender_fit else None
 
     # ------------------------------------------------------------------
-    # Path 1: CV + OCR automatic decomposition
+    # Path A: CV + OCR automatic decomposition (spec §5 main pipeline)
     # ------------------------------------------------------------------
     def decompose(
         self,
         *,
         input_uri: str,
         detail_level: str = "balanced",
-        max_side: int = 2048,
+        max_side: int | None = None,
         text_granularity: str = "line",
         enable_ocr: bool = True,
         export_formats: list[str] | None = None,
         open_in_browser: bool = False,
     ) -> DecomposeResult:
+        timings: dict[str, float] = {}
         warnings: list[WarningItem] = []
-        rgba, paths, rgba_full, src_path = self._prepare(input_uri, max_side)
+        rgba, paths, rgba_full, src_path = self._prepare(
+            input_uri, max_side or self.config.default_max_side
+        )
         h, w = rgba.shape[:2]
 
+        # ---- Stage 1: image type classification
+        t = time.perf_counter()
+        ocr_boxes_for_classifier: list = []
+        it_result: ImageTypeResult = classify(rgba, ocr_boxes_for_classifier)
+        timings["image_type_ms"] = (time.perf_counter() - t) * 1000
+        self._save_debug(paths, "meta/image_type.json", it_result.to_dict())
+
+        # ---- Preprocessing decision
+        preprocess = self._decide_preprocessing(it_result.image_type)
+
+        # ---- Stage 3: OCR extraction
         ocr_lines: list[OCRLine] = []
         if enable_ocr and self.ocr.available:
+            t = time.perf_counter()
             try:
                 ocr_lines = self.ocr.extract(rgba[..., :3])
             except Exception as exc:
                 warnings.append(WarningItem(code="OCR_FAILED", message=str(exc), severity="warn"))
+            timings["ocr_ms"] = (time.perf_counter() - t) * 1000
+            # Save raw OCR for debug.
+            self._save_debug(paths, "ocr/ocr.json", {
+                "lines": [
+                    {"text": l.text, "bbox": l.bbox.to_dict(), "confidence": l.confidence}
+                    for l in ocr_lines
+                ],
+            })
         elif enable_ocr and not self.ocr.available:
             warnings.append(WarningItem(
                 code="OCR_UNAVAILABLE",
-                message="PaddleOCR not installed — text won't be promoted",
+                message="PaddleOCR not installed",
                 severity="info",
             ))
 
-        ocr_boxes = [ln.bbox for ln in ocr_lines] if ocr_lines else None
-        raw_layers = self.layerd.decompose(rgba, detail=detail_level, text_boxes=ocr_boxes)
+        # ---- Stage 2: Base decomposition
+        ocr_bboxes = [ln.bbox for ln in ocr_lines] if ocr_lines else None
+        t = time.perf_counter()
+        raw_layers = self.layerd.decompose(rgba, detail=detail_level, text_boxes=ocr_bboxes)
+        timings["decompose_ms"] = (time.perf_counter() - t) * 1000
 
-        # Map text RawLayers (kind="text") to their OCR line text_content.
+        # Associate OCR text with corresponding raw text layers (IoU).
         text_contents: dict[int, str] = {}
         for i, raw in enumerate(raw_layers):
             if raw.kind != "text":
                 continue
+            best = None
+            best_iou = 0.0
             for ln in ocr_lines:
-                if _iou(raw.bbox, ln.bbox) > 0.5:
-                    text_contents[i] = ln.text
-                    break
+                iou = _iou(raw.bbox, ln.bbox)
+                if iou > best_iou:
+                    best_iou = iou
+                    best = ln
+            if best and best_iou > 0.3:
+                text_contents[i] = best.text
+
+        # ---- Stage 5: optional retry segmentation (flagged but not yet wired)
+        # Retry is triggered by the verifier's retry_queue; executed at a later
+        # iteration. For v0.1 we record availability but do not invoke.
+
+        # ---- Stage 4: text reconstruction hints (font candidates)
+        font_classifier = self._build_font_classifier()
+        style_overrides: dict[int, dict] = {}
+        if self.config.text_reconstruction.enabled and text_contents:
+            t = time.perf_counter()
+            style_overrides = self._reconstruct_text_styles(
+                raw_layers, text_contents, ocr_lines, rgba, w, h, font_classifier,
+            )
+            timings["text_reconstruction_ms"] = (time.perf_counter() - t) * 1000
 
         return self._finalize(
-            paths, rgba, rgba_full, src_path, raw_layers, text_contents,
+            paths, rgba, rgba_full, src_path, raw_layers, text_contents, style_overrides,
             text_granularity, export_formats or ["manifest"], open_in_browser,
-            engine="layerd", warnings=warnings,
+            image_type=it_result.image_type,
+            preprocess=preprocess,
+            warnings=warnings,
+            timings=timings,
         )
 
     # ------------------------------------------------------------------
-    # Path 2: vision-LLM-driven decomposition
+    # Path B: external vision-model-driven decomposition
     # ------------------------------------------------------------------
     def decompose_from_vision(
         self,
@@ -124,15 +194,17 @@ class Orchestrator:
         input_uri: str,
         elements: list[VisionElement],
         text_granularity: str = "line",
-        max_side: int = 2048,
+        max_side: int | None = None,
         export_formats: list[str] | None = None,
         open_in_browser: bool = False,
     ) -> DecomposeResult:
+        timings: dict[str, float] = {}
         warnings: list[WarningItem] = []
-        rgba, paths, rgba_full, src_path = self._prepare(input_uri, max_side)
+        rgba, paths, rgba_full, src_path = self._prepare(
+            input_uri, max_side or self.config.default_max_side
+        )
         h, w = rgba.shape[:2]
 
-        # Scale element bboxes if the source was resized.
         source_w = int(rgba_full.shape[1])
         if source_w != w:
             scale = w / source_w
@@ -141,14 +213,21 @@ class Orchestrator:
         raw_layers = _vision_to_raw_layers(elements, rgba, h, w)
         text_contents = {i: el.text_content for i, el in enumerate(elements) if el.text_content}
 
+        it_result = classify(rgba, [])
+        self._save_debug(paths, "meta/image_type.json", it_result.to_dict())
+
         return self._finalize(
-            paths, rgba, rgba_full, src_path, raw_layers, text_contents,
+            paths, rgba, rgba_full, src_path, raw_layers, text_contents, {},
             text_granularity, export_formats or ["manifest"], open_in_browser,
-            engine="vision-external", warnings=warnings,
+            image_type=it_result.image_type,
+            preprocess=self._decide_preprocessing(it_result.image_type),
+            warnings=warnings,
+            timings=timings,
+            engine_override="vision-external",
         )
 
     # ------------------------------------------------------------------
-    # Shared helpers
+    # Helpers
     # ------------------------------------------------------------------
     def _prepare(self, input_uri: str, max_side: int):
         src_path = resolve_input_uri(input_uri)
@@ -160,6 +239,78 @@ class Orchestrator:
         save_png(rgba_full, paths.original_path)
         return rgba, paths, rgba_full, src_path
 
+    def _decide_preprocessing(self, image_type: str) -> PipelinePreprocessing:
+        cfg = self.config.ocr
+        if cfg.orientation_correction == "on":
+            return PipelinePreprocessing(orientation_correction=True, unwarping=cfg.unwarping == "on")
+        if cfg.orientation_correction == "off":
+            return PipelinePreprocessing(orientation_correction=False, unwarping=False)
+        # auto
+        if image_type == "scan_capture":
+            return PipelinePreprocessing(orientation_correction=True, unwarping=True)
+        if image_type == "photo_mixed":
+            return PipelinePreprocessing(orientation_correction=False, unwarping=False)
+        return PipelinePreprocessing(orientation_correction=False, unwarping=False)
+
+    def _build_font_classifier(self):
+        cfg = self.config.text_reconstruction
+        if cfg.font_mode == "known-fonts":
+            return KnownFontsBackend(fitter=self._font_fitter)
+        return HeuristicBackend()
+
+    def _reconstruct_text_styles(
+        self,
+        raw_layers: list[RawLayer],
+        text_contents: dict[int, str],
+        ocr_lines: list[OCRLine],
+        rgba: np.ndarray,
+        w: int,
+        h: int,
+        classifier,
+    ) -> dict[int, dict]:
+        """Run font candidate ranking on each text layer and return style overrides."""
+        from .. import text_reconstruction as tr_mod
+        from ..text_reconstruction.font_classifier import FontConfig
+
+        out: dict[int, dict] = {}
+        cfg = self.config.text_reconstruction
+        fc_cfg = FontConfig(
+            known_fonts=list(cfg.known_fonts),
+            top_k=cfg.top_k_candidates,
+        )
+        for i, text in text_contents.items():
+            raw = raw_layers[i]
+            bbox = raw.bbox
+            x1 = max(0, int(round(bbox.x)))
+            y1 = max(0, int(round(bbox.y)))
+            x2 = min(w, int(round(bbox.x + bbox.w)))
+            y2 = min(h, int(round(bbox.y + bbox.h)))
+            if x2 <= x1 or y2 <= y1:
+                continue
+            crop = rgba[y1:y2, x1:x2, :3]
+            try:
+                style = tr_mod.estimate_style(
+                    crop_rgb=crop,
+                    text=text,
+                    cfg=fc_cfg,
+                    classifier=classifier,
+                    canvas_width=w,
+                    line_bbox_x=bbox.x,
+                    line_bbox_w=bbox.w,
+                )
+            except Exception:
+                continue
+            out[i] = {
+                "font_family": style.font_family,
+                "font_candidates": style.font_candidates,
+                "font_weight": style.font_weight,
+                "font_size": style.font_size,
+                "color": style.color,
+                "text_align": style.text_align,
+                "reconstruction_confidence": style.reconstruction_confidence,
+            }
+        return out
+
     def _finalize(
         self,
         paths: ProjectPaths,
@@ -168,12 +319,16 @@ class Orchestrator:
         src_path: Path,
         raw_layers: list[RawLayer],
         text_contents: dict[int, str],
+        style_overrides: dict[int, dict],
         text_granularity: str,
         export_formats: list[str],
         open_in_browser: bool,
         *,
-        engine: str,
+        image_type: str,
+        preprocess: PipelinePreprocessing,
         warnings: list[WarningItem],
+        timings: dict[str, float],
+        engine_override: str | None = None,
     ) -> DecomposeResult:
         h, w = rgba.shape[:2]
 
@@ -196,12 +351,17 @@ class Orchestrator:
         )
         canvas = CanvasInfo(width=int(w), height=int(h), background=bg_hex)
         pipeline = PipelineInfo(
-            engineRequested=engine,  # type: ignore[arg-type]
-            engineSelected=engine,  # type: ignore[arg-type]
-            enableOCR=(engine == "layerd"),
+            imageType=image_type,  # type: ignore[arg-type]
+            engines=PipelineEngines(
+                decomposition="layerd",
+                ocr=("paddleocr" if self.ocr.available else "disabled"),
+                retrySegmentation=("grounded-sam" if self.retry_backend.available else None),
+                fontClassifier=self.config.text_reconstruction.font_mode,  # type: ignore[arg-type]
+                visionReview=self.config.engine.vision_review,  # type: ignore[arg-type]
+            ),
             detailLevel="high",
-            timingsMs={},
-            engineCandidates=[engine],
+            preprocessing=preprocess,
+            timingsMs=timings,
         )
 
         manifest = build_manifest(
@@ -214,6 +374,7 @@ class Orchestrator:
             text_groups=text_groups,
             warnings=warnings,
             exports=ExportIndex(manifest="manifest.json"),
+            style_overrides=style_overrides,
         )
         manifest_dict = manifest.to_json_dict()
 
@@ -229,7 +390,7 @@ class Orchestrator:
         except Exception as exc:
             warnings.append(WarningItem(code="PREVIEW_FAILED", message=f"grid: {exc}", severity="info"))
 
-        exports_rel: dict[str, str] = {"manifest": "manifest.json"}
+        exports_rel: dict[str, str] = {"manifest": "manifest.json", "preview": "preview/preview.png"}
         if "svg" in export_formats:
             try:
                 svg_path = export_svg(manifest_dict, paths)
@@ -252,6 +413,26 @@ class Orchestrator:
 
         manifest_dict["warnings"] = [w.model_dump(by_alias=True) for w in warnings]
         manifest_dict["exports"] = exports_rel
+
+        # Stage 7: verification.
+        verification = verify(
+            manifest_dict, paths.dir,
+            thresholds={
+                "low_confidence_layer": self.config.thresholds.low_confidence_layer,
+                "retry_preview_diff": self.config.thresholds.retry_preview_diff,
+            },
+        )
+        self._save_debug(paths, "debug/verification.json", {
+            "overall_score": verification.overall_score,
+            "preview_diff": verification.preview_diff,
+            "low_confidence_layers": verification.low_confidence_layers,
+            "retry_queue": verification.retry_queue,
+            "notes": verification.notes,
+        })
+        # Update stats with low-confidence count.
+        if "stats" in manifest_dict:
+            manifest_dict["stats"]["lowConfidenceLayers"] = len(verification.low_confidence_layers)
+
         self.store.write_manifest(paths, manifest_dict)
 
         viewer_path: Path | None = None
@@ -275,7 +456,14 @@ class Orchestrator:
             annotated_preview_path=annotated_path,
             grid_preview_path=grid_path,
             viewer_html_path=viewer_path,
+            image_type=image_type,
+            verification_score=verification.overall_score,
         )
+
+    def _save_debug(self, paths: ProjectPaths, rel: str, data: dict) -> None:
+        out = paths.dir / rel
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 def _iou(a: Box, b: Box) -> float:
@@ -311,10 +499,8 @@ def _scale_elements(elements: list[VisionElement], scale: float) -> list[VisionE
 def _vision_to_raw_layers(
     elements: list[VisionElement], rgba: np.ndarray, h: int, w: int
 ) -> list[RawLayer]:
-    """Cut pixel data from the source image for each vision element."""
     rgb = rgba[..., :3]
     layers: list[RawLayer] = []
-
     border_w = max(1, min(h, w) // 20)
     border = np.concatenate([
         rgb[:border_w].reshape(-1, 3), rgb[-border_w:].reshape(-1, 3),

@@ -1,4 +1,4 @@
-"""Pydantic models mirroring the manifest.json schema (spec §8)."""
+"""Pydantic models mirroring the manifest.json schema (spec v0.1 §8)."""
 
 from __future__ import annotations
 
@@ -21,10 +21,12 @@ SemanticRole = Literal[
     "decoration",
     "unknown",
 ]
-EngineRequested = Literal["layerd", "vision-external"]
-EngineSelected = Literal["layerd", "vision-external"]
+ImageType = Literal["ui_mock", "banner", "poster", "illustration", "photo_mixed", "scan_capture"]
 DetailLevel = Literal["fast", "balanced", "high"]
 Severity = Literal["info", "warn", "error"]
+RetryBackend = Literal["grounded-sam"]
+FontClassifierKind = Literal["known-fonts", "deepfont-like", "heuristic"]
+VisionReviewMode = Literal["disabled", "optional"]
 
 
 class Base(BaseModel):
@@ -53,13 +55,25 @@ class CanvasInfo(Base):
     background: Optional[str] = None
 
 
+class PipelineEngines(Base):
+    decomposition: Literal["layerd"] = "layerd"
+    ocr: Literal["paddleocr", "disabled"] = "paddleocr"
+    retry_segmentation: Optional[RetryBackend] = Field(default=None, alias="retrySegmentation")
+    font_classifier: Optional[FontClassifierKind] = Field(default=None, alias="fontClassifier")
+    vision_review: VisionReviewMode = Field(default="disabled", alias="visionReview")
+
+
+class PipelinePreprocessing(Base):
+    orientation_correction: bool = Field(default=False, alias="orientationCorrection")
+    unwarping: bool = False
+
+
 class PipelineInfo(Base):
-    engine_requested: EngineRequested = Field(alias="engineRequested")
-    engine_selected: EngineSelected = Field(alias="engineSelected")
-    enable_ocr: bool = Field(alias="enableOCR")
+    image_type: ImageType = Field(alias="imageType")
+    engines: PipelineEngines
     detail_level: DetailLevel = Field(alias="detailLevel")
+    preprocessing: PipelinePreprocessing
     timings_ms: Optional[dict[str, float]] = Field(default=None, alias="timingsMs")
-    engine_candidates: Optional[list[str]] = Field(default=None, alias="engineCandidates")
 
 
 class StatsInfo(Base):
@@ -67,7 +81,7 @@ class StatsInfo(Base):
     text_layers: int = Field(alias="textLayers")
     image_layers: int = Field(alias="imageLayers")
     vector_like_layers: int = Field(alias="vectorLikeLayers")
-    unknown_layers: int = Field(alias="unknownLayers")
+    low_confidence_layers: int = Field(default=0, alias="lowConfidenceLayers")
 
 
 class AssetIndex(Base):
@@ -80,6 +94,7 @@ class LayerAsset(Base):
     path: str
     format: Literal["png"] = "png"
     has_alpha: bool = Field(alias="hasAlpha")
+    original_path: Optional[str] = Field(default=None, alias="originalPath")
 
 
 class TextLine(Base):
@@ -106,23 +121,29 @@ class Fill(Base):
     stops: Optional[list[GradientStop]] = None
 
 
-class StyleHints(Base):
-    font_size: Optional[float] = Field(default=None, alias="fontSize")
+class StylePayload(Base):
+    """Text + region style. Spec §8 `StylePayload`."""
+    font_family: Optional[str] = Field(default=None, alias="fontFamily")
+    font_candidates: Optional[list[str]] = Field(default=None, alias="fontCandidates")
     font_weight: Optional[int] = Field(default=None, alias="fontWeight")
-    font_family_guess: Optional[str] = Field(default=None, alias="fontFamilyGuess")
+    font_size: Optional[float] = Field(default=None, alias="fontSize")
     font_style: Optional[Literal["normal", "italic"]] = Field(default=None, alias="fontStyle")
-    text_color: Optional[str] = Field(default=None, alias="textColor")
-    text_align: Optional[Literal["left", "center", "right"]] = Field(default=None, alias="textAlign")
     line_height: Optional[float] = Field(default=None, alias="lineHeight")
     letter_spacing: Optional[float] = Field(default=None, alias="letterSpacing")
+    color: Optional[str] = None
+    text_align: Optional[Literal["left", "center", "right"]] = Field(default=None, alias="textAlign")
+    reconstruction_confidence: Optional[float] = Field(default=None, alias="reconstructionConfidence")
     dominant_colors: Optional[list[str]] = Field(default=None, alias="dominantColors")
     border_radius_guess: Optional[float] = Field(default=None, alias="borderRadiusGuess")
     fill: Optional[Fill] = None
 
 
+# Legacy alias kept for backwards compatibility.
+StyleHints = StylePayload
+
+
 class Provenance(Base):
     engines: list[str]
-    confidence: float
     notes: Optional[list[str]] = None
 
 
@@ -132,6 +153,13 @@ class CodegenHints(Base):
     text_role: Optional[Literal["title", "paragraph", "button-label", "caption"]] = Field(
         default=None, alias="textRole"
     )
+
+
+class RetryState(Base):
+    attempted: bool = False
+    backend: Optional[RetryBackend] = None
+    reason: Optional[str] = None
+    improved: Optional[bool] = None
 
 
 class LayerNode(Base):
@@ -148,8 +176,11 @@ class LayerNode(Base):
     blend_mode: Optional[str] = Field(default=None, alias="blendMode")
     asset: Optional[LayerAsset] = None
     text: Optional[TextPayload] = None
-    style_hints: Optional[StyleHints] = Field(default=None, alias="styleHints")
+    style: Optional[StylePayload] = None
+    style_hints: Optional[StylePayload] = Field(default=None, alias="styleHints")
     provenance: Provenance
+    confidence: float = 0.7
+    retry_state: Optional[RetryState] = Field(default=None, alias="retryState")
     codegen_hints: Optional[CodegenHints] = Field(default=None, alias="codegenHints")
     children: Optional[list[str]] = None
 
@@ -168,6 +199,7 @@ class WarningItem(Base):
 
 class ExportIndex(Base):
     manifest: Optional[str] = None
+    preview: Optional[str] = None
     svg: Optional[str] = None
     psd: Optional[str] = None
     codegen_plan: Optional[str] = Field(default=None, alias="codegenPlan")

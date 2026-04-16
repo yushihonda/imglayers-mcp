@@ -44,6 +44,10 @@ class ProjectPaths:
         return self.dir / "exports"
 
     @property
+    def text_dir(self) -> Path:
+        return self.dir / "text"
+
+    @property
     def original_path(self) -> Path:
         return self.meta_dir / "original.png"
 
@@ -72,6 +76,7 @@ class ProjectPaths:
             self.ocr_dir,
             self.debug_dir,
             self.exports_dir,
+            self.text_dir,
         ):
             p.mkdir(parents=True, exist_ok=True)
 
